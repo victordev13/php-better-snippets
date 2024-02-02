@@ -1,0 +1,415 @@
+{
+    "New PHP Class": {
+        "prefix": "php",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "class ${TM_FILENAME_BASE}",
+            "{\n$3}\n"
+        ],
+        "description": "New PHP Class"
+    },
+    "PHP Attribute": {
+        "prefix": "#",
+        "body": "#[$1]",
+        "scope": "php",
+        "description": "PHP Attribute"
+    },
+    "New 'execute' function": {
+        "scope": "php",
+        "prefix": "ex",
+        "body": [
+            "public function execute($1): ${2|void,string,int,bool,float,array,never,mixed|}",
+            "{",
+            "\t$3",
+            "}"
+        ],
+        "description": "New 'execute' function"
+    },
+    "PHP constructor": {
+        "scope": "php",
+        "prefix": "__",
+        "body": [
+            "public function __construct($1)",
+            "{",
+            "\t$2",
+            "}"
+        ],
+        "description": "PHP Constructor"
+    },
+    "PHP __invoke function": {
+        "scope": "php",
+        "prefix": "inv",
+        "body": [
+            "public function __invoke($1): ${2|void,string,int,bool,float,array,never,mixed|}",
+            "{",
+            "\t$3",
+            "}"
+        ],
+        "description": "PHP Invoke function"
+    },
+    "New PHP Service": {
+        "prefix": "service",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "class ${TM_FILENAME_BASE}",
+            "{",
+            "\tpublic function execute($3): ${4|void,string,int,bool,float,array,never,mixed|}",
+            "\t{",
+            "\t}",
+            "}"
+        ],
+        "description": "New PHP Service"
+    },
+    "Setter": {
+        "prefix": "set",
+        "scope": "php",
+        "body": [
+            "public function set${1/(.)/${1:/capitalize}/}($2 $${1/(.)/${1:/downcase}/}): self",
+            "{",
+            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
+            "\treturn $$this;",
+            "}\n",
+        ],
+        "description": "Setter"
+    },
+    "Getter": {
+        "prefix": "get",
+        "scope": "php",
+        "body": [
+            "public function get${1/(.)/${1:/capitalize}/}(): $2",
+            "{",
+            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "}\n\n$3"
+        ],
+        "description": "Setter"
+    },
+    "Getter and Setter": {
+        "prefix": "sg",
+        "scope": "php",
+        "body": [
+            "public function set${1/(.)/${1:/capitalize}/}($2 $${1/(.)/${1:/downcase}/}): self",
+            "{",
+            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
+            "\treturn $$this;",
+            "}\n",
+            "public function get${1/(.)/${1:/capitalize}/}(): $2",
+            "{",
+            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "}\n\n$3"
+        ],
+        "description": "Getter and Setter"
+    },
+    "Getter and Setter whitout 'get' prefix": {
+        "prefix": "wsg",
+        "scope": "php",
+        "body": [
+            "public function set${1/(.)/${1:/capitalize}/}($2 $${1/(.)/${1:/downcase}/}): self",
+            "{",
+            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
+            "\treturn $$this;",
+            "}\n",
+            "public function $1(): $2",
+            "{",
+            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "}\n\n$3"
+        ],
+        "description": "Getter and Setter whitout 'get' prefix"
+    },
+    "Getter whitout prefix": {
+        "prefix": "wget",
+        "scope": "php",
+        "body": [
+            "public function ${1/(.)/${1:/downcase}/}(): $2",
+            "{",
+            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "}\n\n$3"
+        ],
+        "description": "Create a new PHP property setter function"
+    },
+    "Function": {
+        "prefix": "fn",
+        "scope": "php",
+        "body": [
+            "public function $1($2): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "{",
+            "\t$4",
+            "}"
+        ],
+        "description": "Create a new PHP function"
+    },
+    "Static Function": {
+        "prefix": "st",
+        "scope": "php",
+        "body": [
+            "public static function $1($2): ${3:self}",
+            "{",
+            "\t$4",
+            "}"
+        ],
+        "Create a new PHP static function"
+    },
+    "Private Function": {
+        "prefix": "prf",
+        "scope": "php",
+        "body": [
+            "private function $1($2): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "{",
+            "\t$4",
+            "}"
+        ],
+        "description": "Create a new PHP private function"
+    },
+    "PHP Namespace": {
+        "prefix": "name",
+        "scope": "php",
+        "body": [
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+        ],
+        "description": "PHP Namespace"
+    },
+    "jsonSerialize Function": {
+        "prefix": "json",
+        "scope": "php",
+        "body": [
+            "/** @return mixed[] */",
+            "public function jsonSerialize(): array",
+            "{",
+            "\treturn [",
+            "\t\t'$1' => \\$this->$1,",
+            "\t];",
+            "}"
+        ],
+        "description": "Create a new PHP jsonSerialize function"
+    },
+    "Current filename": {
+        "prefix": "fname",
+        "body": "${TM_FILENAME_BASE}",
+        "description": "Get current filename"
+    },
+    "Boolean method": {
+        "prefix": "is",
+        "scope": "php",
+        "body": [
+            "public function is${1/(.)/${1:/capitalize}/}(): bool",
+            "{",
+            "\treturn $2;",
+            "}\n\n"
+        ],
+        "description": "Create a new PHP function to return boolean if is something"
+    },
+    "PHP Interface": {
+        "prefix": "interface",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "interface ${TM_FILENAME_BASE}",
+            "{\n    $3\n}\n"
+        ],
+        "description": "New PHP interface"
+    },
+    "PHP Enum": {
+        "prefix": "enum",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "enum ${TM_FILENAME_BASE}",
+            "{\n    $3\n}\n"
+        ],
+        "description": "PHP Enum"
+    },
+    "PHP Backed Enum": {
+        "prefix": "bnum",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "enum ${TM_FILENAME_BASE}: ${3|string,int|}",
+            "{\n    case $4\n}\n"
+        ],
+        "description": "PHP Backed Enum"
+    },
+    "Private readonly property": {
+        "prefix": "prr",
+        "scope": "php",
+        "body": "private readonly ${1|void,string,int,bool,float,array,never,mixed|} $$2;",
+        "description": "New PHP private readonly property"
+    },
+    "Private property": {
+        "prefix": "pv",
+        "scope": "php",
+        "body": "private ${1|void,string,int,bool,float,array,never,mixed|} $$2;",
+        "description": "New PHP private readonly property"
+    },
+    "Public readonly property": {
+        "prefix": "pbr",
+        "scope": "php",
+        "body": "public readonly ${1|void,string,int,bool,float,array,never,mixed|} $$2;",
+        "description": "Public readonly property"
+    },
+    "Symfony Controller with annotations": {
+        "prefix": "controllerAnnotated",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\Response;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;\n",
+            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5:GET}\") */",
+            "class ${TM_FILENAME_BASE} extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): Response",
+            "\t{",
+            "\t\treturn \\$this->render('$6')",
+            "\t}",
+            "}",
+        ],
+        "description": "Symfony Controller with annotations"
+    },
+    "Symfony Controller with annotations and return Json": {
+        "prefix": "controllerAnnotatedJson",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;\n",
+            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5:GET}\") */",
+            "class ${TM_FILENAME_BASE} extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): JsonResponse",
+            "\t{",
+            "\t\treturn \\$this->json([]);",
+            "\t}",
+            "}",
+        ],
+        "description": "Symfony Controller with annotations and return Json"
+    },
+    "Symfony Controller with PHP attributes": {
+        "prefix": "controller",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\Response;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;",
+            "\n#[Route('$3', methods: '${4:GET}')]",
+            "class Controller extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): Response",
+            "\t{",
+            "\t\treturn \\$this->render('$5');",
+            "\t}",
+            "}",
+        ],
+        "description": "Symfony Controller with PHP attributes and return Json"
+    },
+    "Symfony Controller with PHP attributes and return Json": {
+        "prefix": "controllerJson",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;",
+            "\n#[Route('$3', methods: '${4:GET}')]",
+            "class Controller extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): JsonResponse",
+            "\t{",
+            "\t\treturn \\$this->json([]);",
+            "\t}",
+            "}",
+        ],
+        "description": "Symfony Controller with PHP attributes and return Json"
+    },
+    "Symfony Form file": {
+        "prefix": "form",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Symfony\\Component\\Form\\AbstractType;",
+            "use Symfony\\Component\\Form\\FormBuilderInterface;",
+            "use Symfony\\Component\\OptionsResolver\\OptionsResolver;",
+            "\nclass ${TM_FILENAME_BASE} extends AbstractType",
+            "{",
+            "\tpublic function buildForm(FormBuilderInterface \\$builder, array \\$options): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "\t{",
+            "\t}\n",
+            "\tpublic function configureOptions(OptionsResolver \\$resolver): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "\t{",
+            "\t\t\\$resolver->setDefaults([",
+            "\t\t\t'allow_extra_fields' => true,",
+            "\t\t\t\/\/ 'data_class' => ,",
+            "\t\t]);",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Form file"
+    },
+    "Symfony Doctrine repository": {
+        "prefix": "repo",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository;",
+            "use Doctrine\\Persistence\\ManagerRegistry;\n",
+            "/**",
+            " * @extends ServiceEntityRepository<$3>",
+            " * @method $3|null find(\\$id, \\$lockMode = null, \\$lockVersion = null)",
+            " * @method $3|null findOneBy(array \\$criteria, array \\$orderBy = null)",
+            " * @method $3[]    findAll()",
+            " * @method $3[]    findBy(array \\$criteria, array \\$orderBy = null, \\$limit = null, \\$offset = null)",
+            " */",
+            "class ${TM_FILENAME_BASE} extends ServiceEntityRepository",
+            "{",
+            "\tpublic function __construct(ManagerRegistry \\$managerRegistry)",
+            "\t{",
+            "\t\tparent::__construct(\\$managerRegistry, $3::class);",
+            "\t}",
+            "}"
+        ],
+        "descriptions": "Symfony Doctrine repository"
+    },
+    "Symfony Doctrine Entity class with PHP attributes": {
+        "prefix": "entity",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Doctrine\\ORM\\Mapping as ORM;\n",
+            "#[ORM\\Entity]",
+            "class ${TM_FILENAME_BASE}",
+            "{",
+            "\tpublic function __construct($4) {}",
+            "}"
+        ],
+        "description": "Symfony Doctrine Entity class with PHP attributes"
+    },
+    "Symfony Doctrine Column with PHP attributes": {
+        "prefix": "col",
+        "scope": "php",
+        "body": "#[ORM\\Column]",
+        "description": "Symfony Doctrine Column with PHP attributes"
+    },
+    "Import doctrine mapping annotation": {
+        "prefix": "orm",
+        "scope": "php",
+        "body": "use Doctrine\\ORM\\Mapping as ORM;",
+        "description": "Import doctrine mapping annotation"
+    },
+    "PHPUnit Test class": {
+        "prefix": "test",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use PHPUnit\\Framework\\TestCase;\n",
+            "class ${TM_FILENAME_BASE} extends TestCase",
+            "{\n$3}"
+        ],
+        "description": "PHPUnit Test class"
+    },
+}
