@@ -19,7 +19,6 @@
   "contributes": {
     "snippets": [
       {
-        "language": "php",
         "path": "./snippets/snippets.code-snippets"
       }
     ]
