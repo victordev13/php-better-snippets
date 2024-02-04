@@ -1,65 +1,65 @@
-# php-better-snippets README
+# PHP Better Snippets
 
-This is the README for your extension "php-better-snippets". After writing up a brief description, we recommend including the following sections.
+Hi PHP Developers 👋!
+
+This extension provides code snippets for PHP and Symfony framework, enabling you to code faster and be more productive.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+The snippets follow the fluent interfaces and Type declarations standard.
 
-For example if there is an image subfolder under your extension project workspace:
+### PHP Snippets:
 
-\!\[feature X\]\(images/feature-x.png\)
+ - `php`: New PHP Class
+ - `#`: PHP Attribute
+ - `ex`: New 'execute' function
+ - `__`: PHP Constructor
+ - `inv`: PHP __invoke function
+ - `service`: New PHP Service with 'execute' method
+ - `set`: Property Setter
+ - `get`: Property Getter
+ - `sg`: Getter and Setter
+ - `wget`: Create a new PHP property setter function
+ - `wsg`: Getter and Setter without 'get' prefix
+ - `fn`: Create a new PHP anonymous function
+ - `fnc`: Create a new PHP function
+ - `st`: Create a new PHP static function
+ - `prf`: Create a new PHP private function
+ - `name`: PHP Namespace
+ - `json`: Create a new PHP jsonSerialize function
+ - `fname`: Get current filename
+ - `is`: Create a new PHP function to return boolean if is something
+ - `interface`: New PHP interface
+ - `enum`: PHP Enum
+ - `bnum`: PHP Backed Enum
+ - `pp`: New PHP public property
+ - `pv`: New PHP private property
+ - `pvr`: New PHP private readonly property
+ - `pbr`: Public readonly property
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Symfony Snippets:
 
-## Requirements
+ - `controllerAnnotated`: Symfony Controller with PHP annotations
+ - `controllerAnnotatedJson`: Symfony Controller with PHP annotations and return Json
+ - `controller`: Symfony Controller with PHP attributes and return Json
+ - `controllerJson`: Symfony Controller with PHP attributes and return Json
+ - `form`: Symfony Form file
+ - `repo`: Symfony Doctrine repository
+ - `entity`: Symfony Doctrine Entity class with PHP attributes
+ - `entity`: Symfony Doctrine Entity class with PHP annotations
+ - `col`: Symfony Doctrine Column with PHP attributes
+ - `orm`: Import doctrine mapping annotation
+ - `test`: PHPUnit Test class
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### About namespace generation:
 
-## Extension Settings
+The namespace was generated based on the current file directory, considering files in "src", "test", "tests", and "testes"
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Example:
+  your file is `src/App/Company/Services/CreateAnUserService.php` -> `namespace App\Company\Services;`
+  
+If your composer.json has a namespace prefix defined that differs from the folder structure, remember to adjust the generated namespace.
 
 ---
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+By Brazilian PHP Developer 🐘
