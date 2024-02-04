@@ -7,6 +7,7 @@
     "name": "victordev",
     "url": "https://github.com/victordev13"
   },
+  "publisher": "victordev",
   "icon": "./images/icon.png",
   "keywords": ["php", "snippets", "php snippets", "symfony", "php functions"],
   "engines": {
