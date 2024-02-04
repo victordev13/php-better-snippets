@@ -19,7 +19,7 @@
         "scope": "php",
         "prefix": "ex",
         "body": [
-            "public function execute($1): ${2|void,string,int,bool,float,array,never,mixed|}",
+            "public function execute($1): ${2|void,string,int,bool,float,array,never,mixed,static,self|}",
             "{",
             "\t$3",
             "}"
@@ -41,12 +41,12 @@
         "scope": "php",
         "prefix": "inv",
         "body": [
-            "public function __invoke($1): ${2|void,string,int,bool,float,array,never,mixed|}",
+            "public function __invoke($1): ${2|void,string,int,bool,float,array,never,mixed,static,self|}",
             "{",
             "\t$3",
             "}"
         ],
-        "description": "PHP Invoke function"
+        "description": "PHP __invoke function"
     },
     "New PHP Service": {
         "prefix": "service",
@@ -55,12 +55,12 @@
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
             "class ${TM_FILENAME_BASE}",
             "{",
-            "\tpublic function execute($3): ${4|void,string,int,bool,float,array,never,mixed|}",
+            "\tpublic function execute($3): ${4|void,string,int,bool,float,array,never,mixed,static,self|}",
             "\t{",
             "\t}",
             "}"
         ],
-        "description": "New PHP Service"
+        "description": "New PHP Service with 'execute' method"
     },
     "Setter": {
         "prefix": "set",
@@ -72,67 +72,67 @@
             "\treturn $$this;",
             "}\n",
         ],
-        "description": "Setter"
+        "description": "Property Setter"
     },
     "Getter": {
         "prefix": "get",
         "scope": "php",
         "body": [
-            "public function get${1/(.)/${1:/capitalize}/}(): $2",
+            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,float,array,mixed|}",
             "{",
             "\treturn $$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
         ],
-        "description": "Setter"
+        "description": "Property Getter"
     },
     "Getter and Setter": {
         "prefix": "sg",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}($2 $${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,float,array,mixed|} $${1/(.)/${1:/downcase}/}): self",
             "{",
             "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
             "\treturn $$this;",
             "}\n",
-            "public function get${1/(.)/${1:/capitalize}/}(): $2",
+            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,float,array,mixed|}",
             "{",
             "\treturn $$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
         ],
         "description": "Getter and Setter"
     },
-    "Getter and Setter whitout 'get' prefix": {
-        "prefix": "wsg",
-        "scope": "php",
-        "body": [
-            "public function set${1/(.)/${1:/capitalize}/}($2 $${1/(.)/${1:/downcase}/}): self",
-            "{",
-            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
-            "\treturn $$this;",
-            "}\n",
-            "public function $1(): $2",
-            "{",
-            "\treturn $$this->${1/(.)/${1:/downcase}/};",
-            "}\n\n$3"
-        ],
-        "description": "Getter and Setter whitout 'get' prefix"
-    },
     "Getter whitout prefix": {
         "prefix": "wget",
         "scope": "php",
         "body": [
-            "public function ${1/(.)/${1:/downcase}/}(): $2",
+            "public function ${1/(.)/${1:/downcase}/}(): ${2|string,int,bool,float,array,mixed|}",
             "{",
             "\treturn $$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
         ],
         "description": "Create a new PHP property setter function"
     },
+    "Getter and Setter whitout 'get' prefix": {
+        "prefix": "wsg",
+        "scope": "php",
+        "body": [
+            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,float,array,mixed|} $${1/(.)/${1:/downcase}/}): self",
+            "{",
+            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
+            "\treturn $$this;",
+            "}\n",
+            "public function $1(): ${2|string,int,bool,float,array,mixed|}",
+            "{",
+            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "}\n\n$3"
+        ],
+        "description": "Getter and Setter whitout 'get' prefix"
+    },
     "Function": {
         "prefix": "fn",
         "scope": "php",
         "body": [
-            "public function $1($2): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "public function $1($2): ${3|void,string,int,bool,float,array,never,mixed,static,self|}",
             "{",
             "\t$4",
             "}"
@@ -143,7 +143,7 @@
         "prefix": "st",
         "scope": "php",
         "body": [
-            "public static function $1($2): ${3:self}",
+            "public static function $1($2): ${3:static}",
             "{",
             "\t$4",
             "}"
@@ -154,7 +154,7 @@
         "prefix": "prf",
         "scope": "php",
         "body": [
-            "private function $1($2): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "private function $1($2): ${3|void,string,int,bool,float,array,never,mixed,static,self|}",
             "{",
             "\t$4",
             "}"
@@ -232,22 +232,22 @@
     "Private readonly property": {
         "prefix": "prr",
         "scope": "php",
-        "body": "private readonly ${1|void,string,int,bool,float,array,never,mixed|} $$2;",
+        "body": "private readonly ${1|string,int,bool,float,array,mixed|} $$2;",
         "description": "New PHP private readonly property"
     },
     "Private property": {
         "prefix": "pv",
         "scope": "php",
-        "body": "private ${1|void,string,int,bool,float,array,never,mixed|} $$2;",
+        "body": "private ${1|string,int,bool,float,array,mixed|} $$2;",
         "description": "New PHP private readonly property"
     },
     "Public readonly property": {
         "prefix": "pbr",
         "scope": "php",
-        "body": "public readonly ${1|void,string,int,bool,float,array,never,mixed|} $$2;",
+        "body": "public readonly ${1|string,int,bool,float,array,mixed|} $$2;",
         "description": "Public readonly property"
     },
-    "Symfony Controller with annotations": {
+    "Symfony Controller with PHP annotations": {
         "prefix": "controllerAnnotated",
         "body": [
             "<?php\n",
@@ -256,7 +256,7 @@
             "use Symfony\\Component\\HttpFoundation\\Response;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
             "use Symfony\\Component\\Routing\\Annotation\\Route;\n",
-            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5:GET}\") */",
+            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5|GET,POST,PUT,DELETE,PATCH|}\") */",
             "class ${TM_FILENAME_BASE} extends AbstractController",
             "{",
             "\tpublic function __invoke(Request \\$request): Response",
@@ -265,9 +265,9 @@
             "\t}",
             "}",
         ],
-        "description": "Symfony Controller with annotations"
+        "description": "Symfony Controller with PHP annotations"
     },
-    "Symfony Controller with annotations and return Json": {
+    "Symfony Controller with PHP annotations and return Json": {
         "prefix": "controllerAnnotatedJson",
         "body": [
             "<?php\n",
@@ -276,7 +276,7 @@
             "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
             "use Symfony\\Component\\Routing\\Annotation\\Route;\n",
-            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5:GET}\") */",
+            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5|GET,POST,PUT,DELETE,PATCH|}\") */",
             "class ${TM_FILENAME_BASE} extends AbstractController",
             "{",
             "\tpublic function __invoke(Request \\$request): JsonResponse",
@@ -285,7 +285,7 @@
             "\t}",
             "}",
         ],
-        "description": "Symfony Controller with annotations and return Json"
+        "description": "Symfony Controller with PHP annotations and return Json"
     },
     "Symfony Controller with PHP attributes": {
         "prefix": "controller",
@@ -296,7 +296,7 @@
             "use Symfony\\Component\\HttpFoundation\\Response;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
             "use Symfony\\Component\\Routing\\Annotation\\Route;",
-            "\n#[Route('$3', methods: '${4:GET}')]",
+            "\n#[Route('$3', methods: '${4|GET,POST,PUT,DELETE,PATCH|}')]",
             "class Controller extends AbstractController",
             "{",
             "\tpublic function __invoke(Request \\$request): Response",
@@ -316,7 +316,7 @@
             "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
             "use Symfony\\Component\\Routing\\Annotation\\Route;",
-            "\n#[Route('$3', methods: '${4:GET}')]",
+            "\n#[Route('$3', methods: '${4|GET,POST,PUT,DELETE,PATCH|}')]",
             "class Controller extends AbstractController",
             "{",
             "\tpublic function __invoke(Request \\$request): JsonResponse",
@@ -337,10 +337,10 @@
             "use Symfony\\Component\\OptionsResolver\\OptionsResolver;",
             "\nclass ${TM_FILENAME_BASE} extends AbstractType",
             "{",
-            "\tpublic function buildForm(FormBuilderInterface \\$builder, array \\$options): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "\tpublic function buildForm(FormBuilderInterface \\$builder, array \\$options): void",
             "\t{",
             "\t}\n",
-            "\tpublic function configureOptions(OptionsResolver \\$resolver): ${3|void,string,int,bool,float,array,never,mixed|}",
+            "\tpublic function configureOptions(OptionsResolver \\$resolver): void",
             "\t{",
             "\t\t\\$resolver->setDefaults([",
             "\t\t\t'allow_extra_fields' => true,",
@@ -384,10 +384,26 @@
             "#[ORM\\Entity]",
             "class ${TM_FILENAME_BASE}",
             "{",
-            "\tpublic function __construct($4) {}",
+            "\t$4",
             "}"
         ],
         "description": "Symfony Doctrine Entity class with PHP attributes"
+    },
+    "Symfony Doctrine Entity class with PHP annotations": {
+        "prefix": "entity",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "use Doctrine\\ORM\\Mapping as ORM;\n",
+            "/**",
+            " * @ORM\\Entity",
+            " */",
+            "class ${TM_FILENAME_BASE}",
+            "{",
+            "\t$4",
+            "}"
+        ],
+        "description": "Symfony Doctrine Entity class with PHP annotations"
     },
     "Symfony Doctrine Column with PHP attributes": {
         "prefix": "col",
