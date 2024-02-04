@@ -1,7 +1,7 @@
 {
   "name": "php-better-snippets",
   "displayName": "PHP Better Snippets",
-  "description": "This extension provide PHP Snippets for optimize your development time and improve dx with vscode",
+  "description": "This extension provides code snippets for PHP and Symfony framework, enabling you to code faster and be more productive.",
   "version": "0.0.1",
   "author": {
     "name": "victordev",
