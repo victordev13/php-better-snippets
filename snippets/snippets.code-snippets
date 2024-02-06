@@ -19,7 +19,7 @@
         "scope": "php",
         "prefix": "ex",
         "body": [
-            "public function execute($1): ${2|void,string,int,bool,float,array,never,mixed,static,self|}",
+            "public function execute($1): ${2|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
             "{",
             "\t$3",
             "}"
@@ -41,7 +41,7 @@
         "scope": "php",
         "prefix": "inv",
         "body": [
-            "public function __invoke($1): ${2|void,string,int,bool,float,array,never,mixed,static,self|}",
+            "public function __invoke($1): ${2|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
             "{",
             "\t$3",
             "}"
@@ -55,7 +55,7 @@
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
             "class ${TM_FILENAME_BASE}",
             "{",
-            "\tpublic function execute($3): ${4|void,string,int,bool,float,array,never,mixed,static,self|}",
+            "\tpublic function execute($3): ${4|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
             "\t{",
             "\t}",
             "}"
@@ -66,7 +66,7 @@
         "prefix": "set",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}($2 $${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
             "{",
             "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
             "\treturn $$this;",
@@ -78,7 +78,7 @@
         "prefix": "get",
         "scope": "php",
         "body": [
-            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,float,array,mixed|}",
+            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
             "\treturn $$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -89,12 +89,12 @@
         "prefix": "sg",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,float,array,mixed|} $${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
             "{",
             "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
             "\treturn $$this;",
             "}\n",
-            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,float,array,mixed|}",
+            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
             "\treturn $$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -105,7 +105,7 @@
         "prefix": "wget",
         "scope": "php",
         "body": [
-            "public function ${1/(.)/${1:/downcase}/}(): ${2|string,int,bool,float,array,mixed|}",
+            "public function ${1/(.)/${1:/downcase}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
             "\treturn $$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -116,12 +116,12 @@
         "prefix": "wsg",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,float,array,mixed|} $${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
             "{",
             "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
             "\treturn $$this;",
             "}\n",
-            "public function $1(): ${2|string,int,bool,float,array,mixed|}",
+            "public function $1(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
             "\treturn $$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -132,7 +132,7 @@
         "prefix": "fnc",
         "scope": "php",
         "body": [
-            "public function $1($2): ${3|void,string,int,bool,float,array,never,mixed,static,self|}",
+            "public function $1($2): ${3|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
             "{",
             "\t$4",
             "}"
@@ -143,7 +143,7 @@
         "prefix": "fn",
         "scope": "php",
         "body": [
-            "fn ($2): ${3|void,string,int,bool,float,array,never,mixed|} => $4",
+            "fn ($2) => $3",
         ],
         "description": "Create a new PHP anonymous function"
     },
@@ -162,7 +162,7 @@
         "prefix": "prf",
         "scope": "php",
         "body": [
-            "private function $1($2): ${3|void,string,int,bool,float,array,never,mixed,static,self|}",
+            "private function $1($2): ${3|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
             "{",
             "\t$4",
             "}"
@@ -240,25 +240,25 @@
     "Private property": {
         "prefix": "pv",
         "scope": "php",
-        "body": "private ${1|string,int,bool,float,array,mixed|} $$2;",
+        "body": "private ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
         "description": "New PHP private property"
     },
     "Public property": {
         "prefix": "pp",
         "scope": "php",
-        "body": "public ${1|string,int,bool,float,array,mixed|} $$2;",
+        "body": "public ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
         "description": "New PHP public property"
     },
     "Private readonly property": {
         "prefix": "pvr",
         "scope": "php",
-        "body": "private readonly ${1|string,int,bool,float,array,mixed|} $$2;",
+        "body": "private readonly ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
         "description": "New PHP private readonly property"
     },
     "Public readonly property": {
         "prefix": "pbr",
         "scope": "php",
-        "body": "public readonly ${1|string,int,bool,float,array,mixed|} $$2;",
+        "body": "public readonly ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
         "description": "Public readonly property"
     },
     "Symfony Controller with PHP annotations": {
