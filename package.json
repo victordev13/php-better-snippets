@@ -2,7 +2,7 @@
   "name": "php-better-snippets",
   "displayName": "PHP Better Snippets",
   "description": "This extension provides code snippets for PHP and Symfony framework, enabling you to code faster and be more productive.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "victordev",
     "url": "https://github.com/victordev13"
@@ -11,7 +11,7 @@
   "icon": "./images/icon.png",
   "keywords": ["php", "snippets", "php snippets", "symfony", "php functions"],
   "engines": {
-    "vscode": "^1.86.0"
+    "vscode": "^1.79.0"
   },
   "categories": [
     "Snippets"
@@ -22,5 +22,8 @@
         "path": "./snippets/snippets.code-snippets"
       }
     ]
+  },
+  "repository": {
+    "url": "https://github.com/victordev13/php-better-snippets"
   }
 }
