@@ -132,9 +132,9 @@
         "prefix": "fnc",
         "scope": "php",
         "body": [
-            "public function $1($2): ${3|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
+            "${1|public|protected|private|} function $2($3): ${4|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
             "{",
-            "\t$4",
+            "\t$5",
             "}"
         ],
         "description": "Create a new PHP function"
@@ -200,9 +200,9 @@
         "prefix": "is",
         "scope": "php",
         "body": [
-            "public function is${1/(.)/${1:/capitalize}/}(): bool",
+            "${1|public|protected|private|} function is${2/(.)/${1:/capitalize}/}(): bool",
             "{",
-            "\treturn $2;",
+            "\treturn $3;",
             "}\n\n"
         ],
         "description": "Create a new PHP function to return boolean if is something"
@@ -240,25 +240,25 @@
     "Private property": {
         "prefix": "pv",
         "scope": "php",
-        "body": "private ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
+        "body": "${1|private|protected|public} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
         "description": "New PHP private property"
     },
     "Public property": {
         "prefix": "pp",
         "scope": "php",
-        "body": "public ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
+        "body": "${1|public|private|protected} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
         "description": "New PHP public property"
     },
     "Private readonly property": {
         "prefix": "pvr",
         "scope": "php",
-        "body": "private readonly ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
+        "body": "${1|private|protected|public} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
         "description": "New PHP private readonly property"
     },
     "Public readonly property": {
         "prefix": "pbr",
         "scope": "php",
-        "body": "public readonly ${1|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$2;",
+        "body": "${1|public|private|protected|} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
         "description": "Public readonly property"
     },
     "Symfony Controller with PHP annotations": {
