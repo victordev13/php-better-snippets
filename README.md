@@ -10,7 +10,10 @@ The snippets follow the fluent interfaces and Type declarations standard.
 
 ### PHP Snippets:
 
- - `php`: New PHP Class
+ - `php`: PHP open tag
+ - `phpc`: New PHP Class
+ - `phprc`: New readonly PHP Class
+ - `phpac`: New abstract PHP Class
  - `#`: PHP Attribute
  - `ex`: New 'execute' function
  - `__`: PHP Constructor
@@ -36,19 +39,30 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `pv`: New PHP private property
  - `pvr`: New PHP private readonly property
  - `pbr`: Public readonly property
+ - `?`: PHP ternary conditional
+ - `c`: New PHP Constant
 
 ### Symfony Snippets:
 
- - `controllerAnnotated`: Symfony Controller with PHP annotations
- - `controllerAnnotatedJson`: Symfony Controller with PHP annotations and return Json
- - `controller`: Symfony Controller with PHP attributes and return Json
- - `controllerJson`: Symfony Controller with PHP attributes and return Json
+ - `controller`: Symfony Controller (annotations)
+ - `controller`: Symfony Controller and return Json (attributes)
+ - `controllerJson`: Symfony Controller and return Json (annotations)
+ - `controllerJson`: Symfony Controller and return Json (attributes)
  - `form`: Symfony Form file
- - `repo`: Symfony Doctrine repository
- - `entity`: Symfony Doctrine Entity class with PHP attributes
- - `entity`: Symfony Doctrine Entity class with PHP annotations
- - `col`: Symfony Doctrine Column with PHP attributes
- - `orm`: Import doctrine mapping annotation
+ - `ormRepo`: Symfony Doctrine ORM repository
+ - `orm`: Import doctrine ORM mapping annotation
+ - `ormEntity`: Symfony Doctrine ORM Entity class (annotations)
+ - `ormEntity`: Symfony Doctrine ORM Entity class (attributes)
+ - `ormCol`: Symfony Doctrine ORM Column (annotations)
+ - `ormCol`: Symfony Doctrine ORM Column (attributes)
+ - `ormId`: Symfony Doctrine ORM Id Column (annotations)
+ - `ormId`: Symfony Doctrine ORM Id Column (attributes)
+ - `ormManyTo`: Symfony Doctrine ORM Many To[One|Many] Relation (annotations)
+ - `ormManyTo`: Symfony Doctrine ORM Many To[One|Many] Relation (attributes)
+ - `ormOneTo`: Symfony Doctrine ORM One To[One|Many] Relation (annotations)
+ - `ormOneTo`: Symfony Doctrine ORM One To[One|Many] Relation (attributes)
+ - `ormJoinCol`: Symfony Doctrine ORM Relation Join Column (annotations)
+ - `ormJoinCol`: Symfony Doctrine ORM Relation Join Column (attributes)
  - `test`: PHPUnit Test class
 
 ### About namespace generation:
@@ -60,6 +74,8 @@ Example:
   
 If your composer.json has a namespace prefix defined that differs from the folder structure, remember to adjust the generated namespace.
 
+## Release notes:
+See [./CHANGELOG.md](./CHANGELOG.md)
 ---
 
 By Brazilian PHP Developer 🐘

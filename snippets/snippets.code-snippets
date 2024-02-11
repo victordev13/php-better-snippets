@@ -1,6 +1,11 @@
 {
-    "New PHP Class": {
+    "PHP open tag": {
         "prefix": "php",
+        "body": "<?php",
+        "description": "PHP open tag"
+    },
+    "New PHP Class": {
+        "prefix": "phpc",
         "body": [
             "<?php\n",
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
@@ -8,6 +13,26 @@
             "{\n$3}\n"
         ],
         "description": "New PHP Class"
+    },
+    "New PHP readonly Class": {
+        "prefix": "phprc",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "readonly class ${TM_FILENAME_BASE}",
+            "{\n$3}\n"
+        ],
+        "description": "New readonly PHP Class"
+    },
+    "New PHP abstract Class": {
+        "prefix": "phpac",
+        "body": [
+            "<?php\n",
+            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "abstract class ${TM_FILENAME_BASE}",
+            "{\n$3}\n"
+        ],
+        "description": "New abstract PHP Class"
     },
     "PHP Attribute": {
         "prefix": "#",
@@ -30,9 +55,9 @@
         "scope": "php",
         "prefix": "__",
         "body": [
-            "public function __construct($1)",
+            "${1|public,protected,private|} function __construct($2)",
             "{",
-            "\t$2",
+            "\t$3",
             "}"
         ],
         "description": "PHP Constructor"
@@ -66,10 +91,10 @@
         "prefix": "set",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$${1/(.)/${1:/downcase}/}): self",
             "{",
-            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
-            "\treturn $$this;",
+            "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
+            "\treturn \\$this;",
             "}\n",
         ],
         "description": "Property Setter"
@@ -80,7 +105,7 @@
         "body": [
             "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
-            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
         ],
         "description": "Property Getter"
@@ -91,48 +116,48 @@
         "body": [
             "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
             "{",
-            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
-            "\treturn $$this;",
+            "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
+            "\treturn \\$this;",
             "}\n",
             "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
-            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
         ],
         "description": "Getter and Setter"
     },
-    "Getter whitout prefix": {
+    "Getter without prefix": {
         "prefix": "wget",
         "scope": "php",
         "body": [
             "public function ${1/(.)/${1:/downcase}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
-            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
         ],
         "description": "Create a new PHP property setter function"
     },
-    "Getter and Setter whitout 'get' prefix": {
+    "Getter and Setter without 'get' prefix": {
         "prefix": "wsg",
         "scope": "php",
         "body": [
             "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
             "{",
-            "\t$$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
-            "\treturn $$this;",
+            "\t\\$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
+            "\treturn \\$this;",
             "}\n",
             "public function $1(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
             "{",
-            "\treturn $$this->${1/(.)/${1:/downcase}/};",
+            "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
         ],
-        "description": "Getter and Setter whitout 'get' prefix"
+        "description": "Getter and Setter without 'get' prefix"
     },
     "Function": {
         "prefix": "fnc",
         "scope": "php",
         "body": [
-            "${1|public|protected|private|} function $2($3): ${4|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
+            "${1|public,protected,private|} function $2($3): ${4|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
             "{",
             "\t$5",
             "}"
@@ -200,7 +225,7 @@
         "prefix": "is",
         "scope": "php",
         "body": [
-            "${1|public|protected|private|} function is${2/(.)/${1:/capitalize}/}(): bool",
+            "${1|public,protected,private|} function is${2/(.)/${1:/capitalize}/}(): bool",
             "{",
             "\treturn $3;",
             "}\n\n"
@@ -240,29 +265,41 @@
     "Private property": {
         "prefix": "pv",
         "scope": "php",
-        "body": "${1|private|protected|public} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
+        "body": "${1|private,protected,public|} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
         "description": "New PHP private property"
     },
     "Public property": {
         "prefix": "pp",
         "scope": "php",
-        "body": "${1|public|private|protected} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
+        "body": "${1|public,private,protected|} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
         "description": "New PHP public property"
     },
     "Private readonly property": {
         "prefix": "pvr",
         "scope": "php",
-        "body": "${1|private|protected|public} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
+        "body": "${1|private,protected,public|} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
         "description": "New PHP private readonly property"
     },
     "Public readonly property": {
         "prefix": "pbr",
         "scope": "php",
-        "body": "${1|public|private|protected|} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $$3;",
+        "body": "${1|public,private,protected|} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
         "description": "Public readonly property"
     },
-    "Symfony Controller with PHP annotations": {
-        "prefix": "controllerAnnotated",
+    "PHP ternary conditional": {
+        "prefix": "?",
+        "scope": "php",
+        "body": "$1 ? $2 : $3",
+        "description": "PHP ternary conditional"
+    },
+    "PHP constant": {
+        "prefix": "c",
+        "body": "${1|public,private,protected|} const ${2/(.*)/${1:/upcase}/} = $3;",
+        "scope": "php",
+        "description": "PHP constant"
+    },
+    "Symfony Controller (annotations)": {
+        "prefix": "controller",
         "body": [
             "<?php\n",
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
@@ -275,14 +312,14 @@
             "{",
             "\tpublic function __invoke(Request \\$request): Response",
             "\t{",
-            "\t\treturn \\$this->render('$6')",
+            "\t\treturn \\$this->render('$6');",
             "\t}",
             "}",
         ],
-        "description": "Symfony Controller with PHP annotations"
+        "description": "Symfony Controller (annotations)"
     },
-    "Symfony Controller with PHP annotations and return Json": {
-        "prefix": "controllerAnnotatedJson",
+    "Symfony Controller and return Json (annotations)": {
+        "prefix": "controllerJson",
         "body": [
             "<?php\n",
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
@@ -299,9 +336,9 @@
             "\t}",
             "}",
         ],
-        "description": "Symfony Controller with PHP annotations and return Json"
+        "description": "Symfony Controller and return Json (annotations)"
     },
-    "Symfony Controller with PHP attributes": {
+    "Symfony Controller (attributes)": {
         "prefix": "controller",
         "body": [
             "<?php\n",
@@ -319,9 +356,9 @@
             "\t}",
             "}",
         ],
-        "description": "Symfony Controller with PHP attributes and return Json"
+        "description": "Symfony Controller and return Json (attributes)"
     },
-    "Symfony Controller with PHP attributes and return Json": {
+    "Symfony Controller and return Json (attributes)": {
         "prefix": "controllerJson",
         "body": [
             "<?php\n",
@@ -339,7 +376,7 @@
             "\t}",
             "}",
         ],
-        "description": "Symfony Controller with PHP attributes and return Json"
+        "description": "Symfony Controller and return Json (attributes)"
     },
     "Symfony Form file": {
         "prefix": "form",
@@ -365,8 +402,8 @@
         ],
         "description": "Symfony Form file"
     },
-    "Symfony Doctrine repository": {
-        "prefix": "repo",
+    "Symfony Doctrine ORM repository": {
+        "prefix": "ormRepo",
         "body": [
             "<?php\n",
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
@@ -387,10 +424,10 @@
             "\t}",
             "}"
         ],
-        "descriptions": "Symfony Doctrine repository"
+        "descriptions": "Symfony Doctrine ORM repository"
     },
-    "Symfony Doctrine Entity class with PHP attributes": {
-        "prefix": "entity",
+    "Symfony Doctrine ORM Entity class (attributes)": {
+        "prefix": "ormEntity",
         "body": [
             "<?php\n",
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
@@ -401,10 +438,10 @@
             "\t$4",
             "}"
         ],
-        "description": "Symfony Doctrine Entity class with PHP attributes"
+        "description": "Symfony Doctrine ORM Entity class (attributes)"
     },
-    "Symfony Doctrine Entity class with PHP annotations": {
-        "prefix": "entity",
+    "Symfony Doctrine ORM Entity class (annotations)": {
+        "prefix": "ormEntity",
         "body": [
             "<?php\n",
             "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
@@ -417,19 +454,95 @@
             "\t$4",
             "}"
         ],
-        "description": "Symfony Doctrine Entity class with PHP annotations"
+        "description": "Symfony Doctrine ORM Entity class (annotations)"
     },
-    "Symfony Doctrine Column with PHP attributes": {
-        "prefix": "col",
+    "Symfony Doctrine ORM Column (attributes)": {
+        "prefix": "ormCol",
         "scope": "php",
         "body": "#[ORM\\Column]",
-        "description": "Symfony Doctrine Column with PHP attributes"
+        "description": "Symfony Doctrine ORM Column (attributes)"
     },
-    "Import doctrine mapping annotation": {
+    "Symfony Doctrine ORM Column (annotations)": {
+        "prefix": "ormCol",
+        "scope": "php",
+        "body": [
+            "/**"
+            " * @ORM\\Column(name=\"$1\", type=\"$2\")",
+            " */",
+        ],
+        "description": "Symfony Doctrine ORM Column (annotations)"
+    },
+    "Symfony Doctrine ORM auto generated id column (annotations)": {
+        "prefix": "ormId",
+        "scope": "php",
+        "body": [
+            "/**",
+            " * @ORM\\Id",
+            " * @ORM\\Column(name=\"${1:id}\"$2)",
+            " * @ORM\\GeneratedValue(strategy=\"AUTO\")",
+            " */",
+        ],
+        "description": "Symfony Doctrine ORM auto generated id column (annotations)"
+    },
+    "Symfony Doctrine ORM auto generated id column (attributes)": {
+        "prefix": "ormId",
+        "scope": "php",
+        "body": [
+            "#[ORM\\Id]",
+            "#[ORM\\GeneratedValue]",
+            "#[ORM\\Column(name: '${1:id}'$2)]",
+        ],
+        "description": "Symfony Doctrine ORM auto generated id column (attributes)"
+    },
+    "Symfony Doctrine ORM Many To[One|Many] Relation (attributes)": {
+        "prefix": "ormManyTo",
+        "scope": "php",
+        "body": "#[ORM\\ManyTo${1|Many,One|}(targetEntity: $2::class, cascade: ['${3|all,persist,remove|}'])]",
+        "description": "Symfony Doctrine ORM Many To[One|Many] Relation (attributes)"
+    },
+    "Symfony Doctrine ORM Many To[One|Many] Relation (annotations)": {
+        "prefix": "ormManyTo",
+        "scope": "php",
+        "body": [
+            "/**",
+            " * @ORM\\ManyTo${1|Many,One|}(targetEntity=$2::class, cascade={\"${3|all,persist,remove|}\"})",
+            " */",
+        ],
+        "description": "Symfony Doctrine ORM Many To[One|Many] Relation (annotations)"
+    },
+    "Symfony Doctrine ORM One To[One|Many] Relation (attributes)": {
+        "prefix": "ormOneTo",
+        "scope": "php",
+        "body": "#[ORM\\OneTo${1|Many,One|}(targetEntity: $2::class, mappedBy: '$3', cascade: ['${4|all,persist,remove|}'])]",
+        "description": "Symfony Doctrine ORM One To[One|Many] Relation (attributes)"
+    },
+    "Symfony Doctrine ORM One To[One|Many] Relation (annotations)": {
+        "prefix": "ormOneTo",
+        "scope": "php",
+        "body": [
+            "/**",
+            " * @ORM\\OneTo${1|Many,One|}(targetEntity=$2::class, mappedBy=\"$3\", cascade={\"${4|all,persist,remove|}\"})",
+            " */",
+        ],
+        "description": "Symfony Doctrine ORM One To[One|Many] Relation (annotations)"
+    },
+    "Symfony Doctrine ORM Relation Join Column (annotations)": {
+        "prefix": "ormJoinCol",
+        "scope": "php",
+        "body": "@ORM\\JoinColumn(name=\"$1\", referencedColumnName=\"${2:id}\")",
+        "description": "Symfony Doctrine ORM Relation Join Column (annotations)"
+    },
+    "Symfony Doctrine ORM Relation Join Column (attributes)": {
+        "prefix": "ormJoinCol",
+        "scope": "php",
+        "body": "#[ORM\\JoinColumn(name: '$1', referencedColumnName: '${2:id}')]",
+        "description": "Symfony Doctrine ORM Relation Join Column (attributes)"
+    },
+    "Import Doctrine ORM mapping annotation": {
         "prefix": "orm",
         "scope": "php",
         "body": "use Doctrine\\ORM\\Mapping as ORM;",
-        "description": "Import doctrine mapping annotation"
+        "description": "Import Doctrine ORM mapping annotation"
     },
     "PHPUnit Test class": {
         "prefix": "test",
