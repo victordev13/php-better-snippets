@@ -8,7 +8,7 @@
         "prefix": "phpc",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "class ${TM_FILENAME_BASE}",
             "{\n$3}\n"
         ],
@@ -18,7 +18,7 @@
         "prefix": "phprc",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "readonly class ${TM_FILENAME_BASE}",
             "{\n$3}\n"
         ],
@@ -28,7 +28,7 @@
         "prefix": "phpac",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "abstract class ${TM_FILENAME_BASE}",
             "{\n$3}\n"
         ],
@@ -44,7 +44,7 @@
         "scope": "php",
         "prefix": "ex",
         "body": [
-            "public function execute($1): ${2|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
+            "public function execute($1): ${2|$PHP_FUNCTION_RETURN_TYPE|}",
             "{",
             "\t$3",
             "}"
@@ -66,7 +66,7 @@
         "scope": "php",
         "prefix": "inv",
         "body": [
-            "public function __invoke($1): ${2|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
+            "public function __invoke($1): ${2|$PHP_FUNCTION_RETURN_TYPE|}",
             "{",
             "\t$3",
             "}"
@@ -77,10 +77,10 @@
         "prefix": "service",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "class ${TM_FILENAME_BASE}",
             "{",
-            "\tpublic function execute($3): ${4|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
+            "\tpublic function execute($3): ${4|$PHP_FUNCTION_RETURN_TYPE|}",
             "\t{",
             "\t}",
             "}"
@@ -91,7 +91,7 @@
         "prefix": "set",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} \\$${1/(.)/${1:/downcase}/}): self",
             "{",
             "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
             "\treturn \\$this;",
@@ -103,7 +103,7 @@
         "prefix": "get",
         "scope": "php",
         "body": [
-            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
+            "public function get${1/(.)/${1:/capitalize}/}(): ${2|$PHP_VARIABLE_TYPE|}",
             "{",
             "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -114,12 +114,12 @@
         "prefix": "sg",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} $${1/(.)/${1:/downcase}/}): self",
             "{",
             "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
             "\treturn \\$this;",
             "}\n",
-            "public function get${1/(.)/${1:/capitalize}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
+            "public function get${1/(.)/${1:/capitalize}/}(): ${2|$PHP_VARIABLE_TYPE|}",
             "{",
             "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -130,7 +130,7 @@
         "prefix": "wget",
         "scope": "php",
         "body": [
-            "public function ${1/(.)/${1:/downcase}/}(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
+            "public function ${1/(.)/${1:/downcase}/}(): ${2|$PHP_VARIABLE_TYPE|}",
             "{",
             "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -141,12 +141,12 @@
         "prefix": "wsg",
         "scope": "php",
         "body": [
-            "public function set${1/(.)/${1:/capitalize}/}(${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} $${1/(.)/${1:/downcase}/}): self",
+            "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} $${1/(.)/${1:/downcase}/}): self",
             "{",
             "\t\\$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
             "\treturn \\$this;",
             "}\n",
-            "public function $1(): ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|}",
+            "public function $1(): ${2|$PHP_VARIABLE_TYPE|}",
             "{",
             "\treturn \\$this->${1/(.)/${1:/downcase}/};",
             "}\n\n$3"
@@ -157,7 +157,7 @@
         "prefix": "fnc",
         "scope": "php",
         "body": [
-            "${1|public,protected,private|} function $2($3): ${4|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
+            "${1|public,protected,private|} function $2($3): ${4|$PHP_FUNCTION_RETURN_TYPE|}",
             "{",
             "\t$5",
             "}"
@@ -187,7 +187,7 @@
         "prefix": "prf",
         "scope": "php",
         "body": [
-            "private function $1($2): ${3|void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self|}",
+            "private function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
             "{",
             "\t$4",
             "}"
@@ -198,7 +198,7 @@
         "prefix": "name",
         "scope": "php",
         "body": [
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
         ],
         "description": "PHP Namespace"
     },
@@ -236,7 +236,7 @@
         "prefix": "interface",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "interface ${TM_FILENAME_BASE}",
             "{\n    $3\n}\n"
         ],
@@ -246,7 +246,7 @@
         "prefix": "enum",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "enum ${TM_FILENAME_BASE}",
             "{\n    $3\n}\n"
         ],
@@ -256,7 +256,7 @@
         "prefix": "bnum",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "enum ${TM_FILENAME_BASE}: ${3|string,int|}",
             "{\n    case $4\n}\n"
         ],
@@ -265,25 +265,25 @@
     "Private property": {
         "prefix": "pv",
         "scope": "php",
-        "body": "${1|private,protected,public|} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
+        "body": "${1|private,protected,public|} ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
         "description": "New PHP private property"
     },
     "Public property": {
         "prefix": "pp",
         "scope": "php",
-        "body": "${1|public,private,protected|} ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
+        "body": "${1|public,private,protected|} ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
         "description": "New PHP public property"
     },
     "Private readonly property": {
         "prefix": "pvr",
         "scope": "php",
-        "body": "${1|private,protected,public|} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
+        "body": "${1|private,protected,public|} readonly ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
         "description": "New PHP private readonly property"
     },
     "Public readonly property": {
         "prefix": "pbr",
         "scope": "php",
-        "body": "${1|public,private,protected|} readonly ${2|string,int,bool,true,false,null,float,array,iterable,callable,object,mixed|} \\$$3;",
+        "body": "${1|public,private,protected|} readonly ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
         "description": "Public readonly property"
     },
     "PHP ternary conditional": {
@@ -298,11 +298,11 @@
         "scope": "php",
         "description": "PHP constant"
     },
-    "Symfony Controller (annotations)": {
+    "Symfony Controller (anno:tations)": {
         "prefix": "controller",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
             "use Symfony\\Component\\HttpFoundation\\Response;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
@@ -322,7 +322,7 @@
         "prefix": "controllerJson",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
             "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
@@ -342,7 +342,7 @@
         "prefix": "controller",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
             "use Symfony\\Component\\HttpFoundation\\Response;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
@@ -362,7 +362,7 @@
         "prefix": "controllerJson",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
             "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
             "use Symfony\\Component\\HttpFoundation\\Request;",
@@ -382,7 +382,7 @@
         "prefix": "form",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Symfony\\Component\\Form\\AbstractType;",
             "use Symfony\\Component\\Form\\FormBuilderInterface;",
             "use Symfony\\Component\\OptionsResolver\\OptionsResolver;",
@@ -406,7 +406,7 @@
         "prefix": "ormRepo",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository;",
             "use Doctrine\\Persistence\\ManagerRegistry;\n",
             "/**",
@@ -430,7 +430,7 @@
         "prefix": "ormEntity",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Doctrine\\ORM\\Mapping as ORM;\n",
             "#[ORM\\Entity]",
             "class ${TM_FILENAME_BASE}",
@@ -444,7 +444,7 @@
         "prefix": "ormEntity",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use Doctrine\\ORM\\Mapping as ORM;\n",
             "/**",
             " * @ORM\\Entity",
@@ -548,7 +548,7 @@
         "prefix": "test",
         "body": [
             "<?php\n",
-            "namespace ${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g};\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
             "use PHPUnit\\Framework\\TestCase;\n",
             "class ${TM_FILENAME_BASE} extends TestCase",
             "{\n$3}"

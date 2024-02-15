@@ -23,6 +23,9 @@
       }
     ]
   },
+  "scripts": {
+    "vscode:prepublish": "./replace-custom-and-generate.sh"
+  },
   "repository": {
     "url": "https://github.com/victordev13/php-better-snippets"
   }
