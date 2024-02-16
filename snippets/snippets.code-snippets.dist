@@ -298,6 +298,22 @@
         "scope": "php",
         "description": "PHP constant"
     },
+    "PHP throw new Exception": {
+        "prefix": "throw",
+        "scope": "php",
+        "body": "throw new ${1|$PHP_POSSIBLE_EXCEPTIONS|}('$2');",
+        "description": "PHP throw new Exception"
+    },
+    "New PHP exception class": {
+        "prefix": "phpex",
+        "body": [
+            "<?php\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+            "class ${TM_FILENAME_BASE} extends ${1|$PHP_POSSIBLE_EXCEPTIONS|}",
+            "{\n$3}\n"
+        ],
+        "description": "New PHP exception class"
+    },
     "Symfony Controller (anno:tations)": {
         "prefix": "controller",
         "body": [
