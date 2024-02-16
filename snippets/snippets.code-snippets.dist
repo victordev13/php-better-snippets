@@ -314,7 +314,7 @@
         ],
         "description": "New PHP exception class"
     },
-    "Symfony Controller (anno:tations)": {
+    "Symfony Controller (annotations)": {
         "prefix": "controller",
         "body": [
             "<?php\n",
