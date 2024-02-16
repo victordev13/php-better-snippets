@@ -4,7 +4,7 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
-## [0.1.1] - 2024-02-14
+## [0.1.1] - 2024-02-15
 
 ### Added
   - new snippets:
