@@ -63,8 +63,9 @@
     "prefix": "ormCol",
     "scope": "php",
     "body": [
-      "/**"" * @ORM\\Column(name=\"$1\", type=\"$2\")",
-      " */",
+      "/**",
+      " * @ORM\\Column(name=\"$1\", type=\"$2\")",
+      " */"
     ],
     "description": "Symfony Doctrine ORM Column (annotations)"
   },
@@ -76,7 +77,7 @@
       " * @ORM\\Id",
       " * @ORM\\Column(name=\"${1:id}\"$2)",
       " * @ORM\\GeneratedValue(strategy=\"AUTO\")",
-      " */",
+      " */"
     ],
     "description": "Symfony Doctrine ORM auto generated id column (annotations)"
   },
@@ -86,7 +87,7 @@
     "body": [
       "#[ORM\\Id]",
       "#[ORM\\GeneratedValue]",
-      "#[ORM\\Column(name: '${1:id}'$2)]",
+      "#[ORM\\Column(name: '${1:id}'$2)]"
     ],
     "description": "Symfony Doctrine ORM auto generated id column (attributes)"
   },
@@ -102,14 +103,14 @@
     "body": [
       "/**",
       " * @ORM\\ManyTo${1|Many,One|}(targetEntity=$2::class, cascade={\"${3|all,persist,remove|}\"})",
-      " */",
+      " */"
     ],
     "description": "Symfony Doctrine ORM Many To[One|Many] Relation (annotations)"
   },
   "Symfony Doctrine ORM One To[One|Many] Relation (attributes)": {
     "prefix": "ormOneTo",
     "scope": "php",
-    "body": "#[ORM\\OneTo${1|Many,One|}(targetEntity: $2::class, mappedBy: '$3', cascade: ['${4|all,persist,remove|}'])]",
+    "body": "#[ORM\\OneTo${1|Many,One|}(targetEntity: $2::class, ${3|mappedBy,inversedBy|}: '$4', cascade: ['${5|all,persist,remove|}'])]",
     "description": "Symfony Doctrine ORM One To[One|Many] Relation (attributes)"
   },
   "Symfony Doctrine ORM One To[One|Many] Relation (annotations)": {
@@ -117,8 +118,8 @@
     "scope": "php",
     "body": [
       "/**",
-      " * @ORM\\OneTo${1|Many,One|}(targetEntity=$2::class, mappedBy=\"$3\", cascade={\"${4|all,persist,remove|}\"})",
-      " */",
+      " * @ORM\\OneTo${1|Many,One|}(targetEntity=$2::class, ${3|mappedBy,inversedBy|}=\"$4\", cascade={\"${5|all,persist,remove|}\"})",
+      " */"
     ],
     "description": "Symfony Doctrine ORM One To[One|Many] Relation (annotations)"
   },
