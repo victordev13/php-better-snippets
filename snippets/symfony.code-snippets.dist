@@ -1,0 +1,117 @@
+{
+    "Symfony Controller (annotations)": {
+        "prefix": "controller",
+        "body": [
+            "<?php\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\Response;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;\n",
+            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5|GET,POST,PUT,DELETE,PATCH|}\") */",
+            "class ${TM_FILENAME_BASE} extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): Response",
+            "\t{",
+            "\t\treturn \\$this->render('$6');",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Controller (annotations)"
+    },
+    "Symfony Controller and return Json (annotations)": {
+        "prefix": "controllerJson",
+        "body": [
+            "<?php\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;\n",
+            "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5|GET,POST,PUT,DELETE,PATCH|}\") */",
+            "class ${TM_FILENAME_BASE} extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): JsonResponse",
+            "\t{",
+            "\t\treturn \\$this->json([]);",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Controller and return Json (annotations)"
+    },
+    "Symfony Controller (attributes)": {
+        "prefix": "controller",
+        "body": [
+            "<?php\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\Response;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;",
+            "\n#[Route('$3', methods: '${4|GET,POST,PUT,DELETE,PATCH|}')]",
+            "class Controller extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): Response",
+            "\t{",
+            "\t\treturn \\$this->render('$5');",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Controller and return Json (attributes)"
+    },
+    "Symfony Controller and return Json (attributes)": {
+        "prefix": "controllerJson",
+        "body": [
+            "<?php\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+            "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+            "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
+            "use Symfony\\Component\\HttpFoundation\\Request;",
+            "use Symfony\\Component\\Routing\\Annotation\\Route;",
+            "\n#[Route('$3', methods: '${4|GET,POST,PUT,DELETE,PATCH|}')]",
+            "class Controller extends AbstractController",
+            "{",
+            "\tpublic function __invoke(Request \\$request): JsonResponse",
+            "\t{",
+            "\t\treturn \\$this->json([]);",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Controller and return Json (attributes)"
+    },
+    "Symfony Form file": {
+        "prefix": "form",
+        "body": [
+            "<?php\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+            "use Symfony\\Component\\Form\\AbstractType;",
+            "use Symfony\\Component\\Form\\FormBuilderInterface;",
+            "use Symfony\\Component\\OptionsResolver\\OptionsResolver;",
+            "\nclass ${TM_FILENAME_BASE} extends AbstractType",
+            "{",
+            "\tpublic function buildForm(FormBuilderInterface \\$builder, array \\$options): void",
+            "\t{",
+            "\t}\n",
+            "\tpublic function configureOptions(OptionsResolver \\$resolver): void",
+            "\t{",
+            "\t\t\\$resolver->setDefaults([",
+            "\t\t\t'allow_extra_fields' => true,",
+            "\t\t\t\/\/ 'data_class' => ,",
+            "\t\t]);",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Form file"
+    },
+    "PHPUnit Test class": {
+        "prefix": "test",
+        "body": [
+            "<?php\n",
+            "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+            "use PHPUnit\\Framework\\TestCase;\n",
+            "class ${TM_FILENAME_BASE} extends TestCase",
+            "{\n$3}"
+        ],
+        "description": "PHPUnit Test class"
+    }
+}
