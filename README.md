@@ -14,6 +14,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `phpc`: New PHP Class
  - `phprc`: New readonly PHP Class
  - `phpac`: New abstract PHP Class
+ - `trait`: New PHP Trait
  - `#`: PHP Attribute
  - `ex`: New 'execute' function
  - `__`: PHP Constructor
@@ -50,6 +51,8 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `controller`: Symfony Controller and return Json (attributes)
  - `controllerJson`: Symfony Controller and return Json (annotations)
  - `controllerJson`: Symfony Controller and return Json (attributes)
+ - `route`: Symfony Route attribute
+ - `route`: Symfony Route annotation
  - `form`: Symfony Form file
  - `ormRepo`: Symfony Doctrine ORM repository
  - `orm`: Import doctrine ORM mapping annotation

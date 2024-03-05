@@ -34,6 +34,16 @@
     ],
     "description": "New abstract PHP Class"
   },
+  "New PHP Trait": {
+    "prefix": "trait",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "trait ${TM_FILENAME_BASE}",
+      "{\n$3}\n"
+    ],
+    "description": "New PHP Trait"
+  },
   "PHP Attribute": {
     "prefix": "#",
     "body": "#[$1]",

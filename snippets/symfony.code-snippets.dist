@@ -79,6 +79,18 @@
         ],
         "description": "Symfony Controller and return Json (attributes)"
     },
+    "Symfony Route attribute": {
+        "prefix": "route",
+        "scope": "php",
+        "body": "#[Route('$1', name '$2', methods: '${3|GET,POST,PUT,DELETE,PATCH|}')]",
+        "description": "Symfony Route attribute"
+    },
+    "Symfony Route annotation": {
+        "prefix": "route",
+        "scope": "php",
+        "body": "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5|GET,POST,PUT,DELETE,PATCH|}\") */",
+        "description": "Symfony Route annotation"
+    },
     "Symfony Form file": {
         "prefix": "form",
         "body": [
