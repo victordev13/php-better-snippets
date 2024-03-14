@@ -116,7 +116,7 @@
       "public function get${1/(.)/${1:/capitalize}/}(): ${2|$PHP_VARIABLE_TYPE|}",
       "{",
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
-      "}\n\n$3"
+      "}"
     ],
     "description": "Property Getter"
   },
@@ -132,7 +132,7 @@
       "public function get${1/(.)/${1:/capitalize}/}(): ${2|$PHP_VARIABLE_TYPE|}",
       "{",
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
-      "}\n\n$3"
+      "}"
     ],
     "description": "Getter and Setter"
   },
@@ -143,7 +143,7 @@
       "public function ${1/(.)/${1:/downcase}/}(): ${2|$PHP_VARIABLE_TYPE|}",
       "{",
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
-      "}\n\n$3"
+      "}"
     ],
     "description": "Create a new PHP property setter function"
   },
@@ -159,7 +159,7 @@
       "public function $1(): ${2|$PHP_VARIABLE_TYPE|}",
       "{",
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
-      "}\n\n$3"
+      "}"
     ],
     "description": "Getter and Setter without 'get' prefix"
   },
