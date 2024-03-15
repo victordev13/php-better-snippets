@@ -319,5 +319,23 @@
       "{\n$3}\n"
     ],
     "description": "New PHP exception class"
+  },
+  "Access variable in $this": {
+    "prefix": "$t",
+    "body": "\\$this->$1",
+    "scope": "php",
+    "description": "Access variable in $this"
+  },
+  "Assign to variable in $this": {
+    "prefix": "$t=",
+    "body": "\\$this->$1 = $2;",
+    "scope": "php",
+    "description": "Assign to variable in $this"
+  },
+  "Start multiline Comment": {
+    "prefix": "*",
+    "body": "/** $1 **/",
+    "scope": "php",
+    "description": "Start multiline Comment"
   }
 }

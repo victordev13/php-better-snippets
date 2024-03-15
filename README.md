@@ -2,7 +2,7 @@
 
 Hi PHP Developers 👋!
 
-This extension provides code snippets for PHP and Symfony framework, enabling you to code faster and be more productive.
+This extension provides code snippets and boilerplates for PHP and Symfony framework, enabling you to code faster and be more productive.
 
 ## Features
 
