@@ -44,6 +44,9 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `c`: New PHP Constant
  - `throw`: PHP throw new Exception
  - `phpex`: New PHP exception class
+ -  `$t`: `$this-><name>`
+ -  `$t=`: `$this-><name> = </name>;`
+ -  `*`: `/** <your-code> **/`
 
 ### Symfony Snippets:
 
@@ -69,6 +72,17 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `ormJoinCol`: Symfony Doctrine ORM Relation Join Column (annotations)
  - `ormJoinCol`: Symfony Doctrine ORM Relation Join Column (attributes)
  - `test`: PHPUnit Test class
+ - `normalizer`: Symfony Custom Normalizer Class (^6.*)
+ - `normalizer`: Symfony Custom Normalizer Class (old versions)
+ - `denormalizer`: Symfony Custom Denormalizer Class (^6.4)
+ - `denormalizer`: Symfony Custom Denormalizer Class (old versions)
+ - `command`: Symfony Console Command (Symfony ^6.4)
+ - `command`: Symfony Console Command (Symfony from 5.X to 6.3)
+ - `command`: Symfony Console Command (Symfony old versions)
+ - `embedded`: Embedded (annotations)
+ - `embedded`: Embedded (attributes)
+ - `embeddable`: Embeddable (annotations)
+ - `embeddable`: Embeddable (attributes)
 
 ### About namespace generation:
 
