@@ -140,5 +140,37 @@
     "scope": "php",
     "body": "use Doctrine\\ORM\\Mapping as ORM;",
     "description": "Import Doctrine ORM mapping annotation"
+  },
+  "Embeddable (annotations)": {
+    "prefix": "embeddable",
+    "scope": "php",
+    "body": [
+      "/**",
+      " * @ORM\\Embeddable()",
+      " */"
+    ],
+    "description": "Embeddable (annotations)"
+  },
+  "Embeddable (attributes)": {
+    "prefix": "embeddable",
+    "scope": "php",
+    "body": "#[ORM\\Embeddable]",
+    "description": "Embeddable (attributes)"
+  },
+  "Embedded (annotations)": {
+    "prefix": "embedded",
+    "scope": "php",
+    "body": [
+     "/**",
+     " * @ORM\\Embedded(class=$1::class)",
+     " */"
+    ],
+    "description": "Embedded (annotations)"
+  },
+  "Embedded (attributes)": {
+    "prefix": "embedded",
+    "scope": "php",
+    "body": "#[ORM\\Embedded(class: $1::class)]",
+    "description": "Embedded (attributes)"
   }
 }
