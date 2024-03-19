@@ -145,7 +145,7 @@
         ],
         "description": "Symfony Custom Normalizer Class (old versions)"
     },
-    "Symfony Custom Normalizer Class (^6.*)": {
+    "Symfony Custom Normalizer Class (Symfony ^6.*)": {
         "prefix": "normalizer",
         "body": [
             "<?php\n",
@@ -175,10 +175,10 @@
             "\t}",
             "}"
         ],
-        "description": "Symfony Custom Normalizer Class (^6.4)"
+        "description": "Symfony Custom Normalizer Class (Symfony ^6.4)"
     },
 
-    "Symfony Custom Denormalizer Class (old versions)": {
+    "Symfony Custom Denormalizer Class (Symfony old versions)": {
         "prefix": "denormalizer",
         "body": [
             "<?php\n",
@@ -210,9 +210,9 @@
             "\t}",
             "}"
         ],
-        "description": "Symfony Custom Denormalizer Class (old versions)"
+        "description": "Symfony Custom Denormalizer Class (Symfony old versions)"
     },
-    "Symfony Custom Denormalizer Class (^6.4)": {
+    "Symfony Custom Denormalizer Class (Symfony ^6.4)": {
         "prefix": "denormalizer",
         "body": [
             "<?php\n",
@@ -241,7 +241,7 @@
             "\t}",
             "}"
         ],
-        "description": "Symfony Custom Denormalizer Class (^6.4)"
+        "description": "Symfony Custom Denormalizer Class (Symfony ^6.4)"
     },
 
     "Symfony Console Command (Symfony ^6.4)": {
