@@ -44,9 +44,9 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `c`: New PHP Constant
  - `throw`: PHP throw new Exception
  - `phpex`: New PHP exception class
- - `$t`: `$this-><name>`
- - `$t=`: `$this-><name> = </name>;`
- - `*`: `/** <your-code> **/`
+ - `$t`: Access variable in $this (`$this-><name>`)
+ - `$t=`: Assign to variable in $this (`$this-><name> = </name>;`)
+ - `*`: Start multiline Comment (`/** <your-code> **/`)
 
 ### Symfony Snippets:
 
