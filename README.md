@@ -44,9 +44,9 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `c`: New PHP Constant
  - `throw`: PHP throw new Exception
  - `phpex`: New PHP exception class
- -  `$t`: `$this-><name>`
- -  `$t=`: `$this-><name> = </name>;`
- -  `*`: `/** <your-code> **/`
+ - `$t`: `$this-><name>`
+ - `$t=`: `$this-><name> = </name>;`
+ - `*`: `/** <your-code> **/`
 
 ### Symfony Snippets:
 
@@ -54,11 +54,11 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `controller`: Symfony Controller and return Json (attributes)
  - `controllerJson`: Symfony Controller and return Json (annotations)
  - `controllerJson`: Symfony Controller and return Json (attributes)
- - `route`: Symfony Route attribute
- - `route`: Symfony Route annotation
+ - `route`: Symfony Route (attributes)
+ - `route`: Symfony Route (annotations)
  - `form`: Symfony Form file
  - `ormRepo`: Symfony Doctrine ORM repository
- - `orm`: Import doctrine ORM mapping annotation
+ - `orm`: Import Doctrine ORM Mapping class
  - `ormEntity`: Symfony Doctrine ORM Entity class (annotations)
  - `ormEntity`: Symfony Doctrine ORM Entity class (attributes)
  - `ormCol`: Symfony Doctrine ORM Column (annotations)

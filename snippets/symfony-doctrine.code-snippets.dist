@@ -135,11 +135,11 @@
     "body": "#[ORM\\JoinColumn(name: '$1', referencedColumnName: '${2:id}')]",
     "description": "Symfony Doctrine ORM Relation Join Column (attributes)"
   },
-  "Import Doctrine ORM mapping annotation": {
+  "Import Doctrine ORM Mapping class": {
     "prefix": "orm",
     "scope": "php",
     "body": "use Doctrine\\ORM\\Mapping as ORM;",
-    "description": "Import Doctrine ORM mapping annotation"
+    "description": "Import Doctrine ORM Mapping class"
   },
   "Embeddable (annotations)": {
     "prefix": "embeddable",
