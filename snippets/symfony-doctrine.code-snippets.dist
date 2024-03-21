@@ -1,0 +1,176 @@
+{
+  "Symfony Doctrine ORM repository": {
+    "prefix": "ormRepo",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "use Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository;",
+      "use Doctrine\\Persistence\\ManagerRegistry;\n",
+      "/**",
+      " * @extends ServiceEntityRepository<$3>",
+      " * @method $3|null find(\\$id, \\$lockMode = null, \\$lockVersion = null)",
+      " * @method $3|null findOneBy(array \\$criteria, array \\$orderBy = null)",
+      " * @method $3[]    findAll()",
+      " * @method $3[]    findBy(array \\$criteria, array \\$orderBy = null, \\$limit = null, \\$offset = null)",
+      " */",
+      "class ${TM_FILENAME_BASE} extends ServiceEntityRepository",
+      "{",
+      "\tpublic function __construct(ManagerRegistry \\$managerRegistry)",
+      "\t{",
+      "\t\tparent::__construct(\\$managerRegistry, $3::class);",
+      "\t}",
+      "}"
+    ],
+    "description": "Symfony Doctrine ORM repository"
+  },
+  "Symfony Doctrine ORM Entity class (attributes)": {
+    "prefix": "ormEntity",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "use Doctrine\\ORM\\Mapping as ORM;\n",
+      "#[ORM\\Entity]",
+      "class ${TM_FILENAME_BASE}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "description": "Symfony Doctrine ORM Entity class (attributes)"
+  },
+  "Symfony Doctrine ORM Entity class (annotations)": {
+    "prefix": "ormEntity",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "use Doctrine\\ORM\\Mapping as ORM;\n",
+      "/**",
+      " * @ORM\\Entity",
+      " */",
+      "class ${TM_FILENAME_BASE}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "description": "Symfony Doctrine ORM Entity class (annotations)"
+  },
+  "Symfony Doctrine ORM Column (attributes)": {
+    "prefix": "ormCol",
+    "scope": "php",
+    "body": "#[ORM\\Column]",
+    "description": "Symfony Doctrine ORM Column (attributes)"
+  },
+  "Symfony Doctrine ORM Column (annotations)": {
+    "prefix": "ormCol",
+    "scope": "php",
+    "body": [
+      "/**",
+      " * @ORM\\Column(name=\"$1\", type=\"$2\")",
+      " */"
+    ],
+    "description": "Symfony Doctrine ORM Column (annotations)"
+  },
+  "Symfony Doctrine ORM auto generated id column (annotations)": {
+    "prefix": "ormId",
+    "scope": "php",
+    "body": [
+      "/**",
+      " * @ORM\\Id",
+      " * @ORM\\Column(name=\"${1:id}\"$2)",
+      " * @ORM\\GeneratedValue(strategy=\"AUTO\")",
+      " */"
+    ],
+    "description": "Symfony Doctrine ORM auto generated id column (annotations)"
+  },
+  "Symfony Doctrine ORM auto generated id column (attributes)": {
+    "prefix": "ormId",
+    "scope": "php",
+    "body": [
+      "#[ORM\\Id]",
+      "#[ORM\\GeneratedValue]",
+      "#[ORM\\Column(name: '${1:id}'$2)]"
+    ],
+    "description": "Symfony Doctrine ORM auto generated id column (attributes)"
+  },
+  "Symfony Doctrine ORM Many To[One|Many] Relation (attributes)": {
+    "prefix": "ormManyTo",
+    "scope": "php",
+    "body": "#[ORM\\ManyTo${1|Many,One|}(targetEntity: $2::class, cascade: ['${3|all,persist,remove|}'])]",
+    "description": "Symfony Doctrine ORM Many To[One|Many] Relation (attributes)"
+  },
+  "Symfony Doctrine ORM Many To[One|Many] Relation (annotations)": {
+    "prefix": "ormManyTo",
+    "scope": "php",
+    "body": [
+      "/**",
+      " * @ORM\\ManyTo${1|Many,One|}(targetEntity=$2::class, cascade={\"${3|all,persist,remove|}\"})",
+      " */"
+    ],
+    "description": "Symfony Doctrine ORM Many To[One|Many] Relation (annotations)"
+  },
+  "Symfony Doctrine ORM One To[One|Many] Relation (attributes)": {
+    "prefix": "ormOneTo",
+    "scope": "php",
+    "body": "#[ORM\\OneTo${1|Many,One|}(targetEntity: $2::class, ${3|mappedBy,inversedBy|}: '$4', cascade: ['${5|all,persist,remove|}'])]",
+    "description": "Symfony Doctrine ORM One To[One|Many] Relation (attributes)"
+  },
+  "Symfony Doctrine ORM One To[One|Many] Relation (annotations)": {
+    "prefix": "ormOneTo",
+    "scope": "php",
+    "body": [
+      "/**",
+      " * @ORM\\OneTo${1|Many,One|}(targetEntity=$2::class, ${3|mappedBy,inversedBy|}=\"$4\", cascade={\"${5|all,persist,remove|}\"})",
+      " */"
+    ],
+    "description": "Symfony Doctrine ORM One To[One|Many] Relation (annotations)"
+  },
+  "Symfony Doctrine ORM Relation Join Column (annotations)": {
+    "prefix": "ormJoinCol",
+    "scope": "php",
+    "body": "@ORM\\JoinColumn(name=\"$1\", referencedColumnName=\"${2:id}\")",
+    "description": "Symfony Doctrine ORM Relation Join Column (annotations)"
+  },
+  "Symfony Doctrine ORM Relation Join Column (attributes)": {
+    "prefix": "ormJoinCol",
+    "scope": "php",
+    "body": "#[ORM\\JoinColumn(name: '$1', referencedColumnName: '${2:id}')]",
+    "description": "Symfony Doctrine ORM Relation Join Column (attributes)"
+  },
+  "Import Doctrine ORM Mapping class": {
+    "prefix": "orm",
+    "scope": "php",
+    "body": "use Doctrine\\ORM\\Mapping as ORM;",
+    "description": "Import Doctrine ORM Mapping class"
+  },
+  "Embeddable (annotations)": {
+    "prefix": "embeddable",
+    "scope": "php",
+    "body": [
+      "/**",
+      " * @ORM\\Embeddable()",
+      " */"
+    ],
+    "description": "Embeddable (annotations)"
+  },
+  "Embeddable (attributes)": {
+    "prefix": "embeddable",
+    "scope": "php",
+    "body": "#[ORM\\Embeddable]",
+    "description": "Embeddable (attributes)"
+  },
+  "Embedded (annotations)": {
+    "prefix": "embedded",
+    "scope": "php",
+    "body": [
+     "/**",
+     " * @ORM\\Embedded(class=$1::class)",
+     " */"
+    ],
+    "description": "Embedded (annotations)"
+  },
+  "Embedded (attributes)": {
+    "prefix": "embedded",
+    "scope": "php",
+    "body": "#[ORM\\Embedded(class: $1::class)]",
+    "description": "Embedded (attributes)"
+  }
+}

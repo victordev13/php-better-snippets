@@ -2,7 +2,7 @@
 
 Hi PHP Developers 👋!
 
-This extension provides code snippets for PHP and Symfony framework, enabling you to code faster and be more productive.
+This extension provides code snippets and boilerplates for PHP and Symfony framework, enabling you to code faster and be more productive.
 
 ## Features
 
@@ -14,6 +14,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `phpc`: New PHP Class
  - `phprc`: New readonly PHP Class
  - `phpac`: New abstract PHP Class
+ - `trait`: New PHP Trait
  - `#`: PHP Attribute
  - `ex`: New 'execute' function
  - `__`: PHP Constructor
@@ -43,6 +44,9 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `c`: New PHP Constant
  - `throw`: PHP throw new Exception
  - `phpex`: New PHP exception class
+ - `$t`: Access variable in $this (`$this-><name>`)
+ - `$t=`: Assign to variable in $this (`$this-><name> = </name>;`)
+ - `*`: Start multiline Comment (`/** <your-code> **/`)
 
 ### Symfony Snippets:
 
@@ -50,9 +54,11 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `controller`: Symfony Controller and return Json (attributes)
  - `controllerJson`: Symfony Controller and return Json (annotations)
  - `controllerJson`: Symfony Controller and return Json (attributes)
+ - `route`: Symfony Route (attributes)
+ - `route`: Symfony Route (annotations)
  - `form`: Symfony Form file
  - `ormRepo`: Symfony Doctrine ORM repository
- - `orm`: Import doctrine ORM mapping annotation
+ - `orm`: Import Doctrine ORM Mapping class
  - `ormEntity`: Symfony Doctrine ORM Entity class (annotations)
  - `ormEntity`: Symfony Doctrine ORM Entity class (attributes)
  - `ormCol`: Symfony Doctrine ORM Column (annotations)
@@ -66,6 +72,17 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `ormJoinCol`: Symfony Doctrine ORM Relation Join Column (annotations)
  - `ormJoinCol`: Symfony Doctrine ORM Relation Join Column (attributes)
  - `test`: PHPUnit Test class
+ - `normalizer`: Symfony Custom Normalizer Class (Symfony ^6.*)
+ - `normalizer`: Symfony Custom Normalizer Class (Symfony old versions)
+ - `denormalizer`: Symfony Custom Denormalizer Class (Symfony ^6.4)
+ - `denormalizer`: Symfony Custom Denormalizer Class (Symfony old versions)
+ - `command`: Symfony Console Command (Symfony ^6.4)
+ - `command`: Symfony Console Command (Symfony from 5.X to 6.3)
+ - `command`: Symfony Console Command (Symfony old versions)
+ - `embedded`: Embedded (annotations)
+ - `embedded`: Embedded (attributes)
+ - `embeddable`: Embeddable (annotations)
+ - `embeddable`: Embeddable (attributes)
 
 ### About namespace generation:
 
@@ -82,15 +99,8 @@ See [./CHANGELOG.md](./CHANGELOG.md)
 ---
 
 ## Contribution guide:
-
-To facilitate the creation of new snippets and maintenance of current ones, certain repeated code segments have been extracted into new variables. For instance, the regex that generates the namespace has been extracted into `$CUSTOM_NAMESPACE_REGEX`, which is then replaced during the extension generation (`vsce package`) by the bash script [`./replace-custom-and-generate.sh`](./replace-custom-and-generate.sh) executed in the `vscode:prepublish` script.
-
-The currently available variables are:
-  - `$CUSTOM_NAMESPACE_REGEX`
-  - `$PHP_VARIABLE_TYPE`
-  - `$PHP_FUNCTION_RETURN_TYPE`
-  - `$PHP_POSSIBLE_EXCEPTIONS`
+See [./CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
-By Brazilian PHP Developer 🐘
+By PHP Developer for PHP Developers 🐘

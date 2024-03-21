@@ -1,0 +1,341 @@
+{
+  "PHP open tag": {
+    "prefix": "php",
+    "body": "<?php",
+    "description": "PHP open tag"
+  },
+  "New PHP Class": {
+    "prefix": "phpc",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "class ${TM_FILENAME_BASE}",
+      "{\n$3}\n"
+    ],
+    "description": "New PHP Class"
+  },
+  "New readonly PHP Class": {
+    "prefix": "phprc",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "readonly class ${TM_FILENAME_BASE}",
+      "{\n$3}\n"
+    ],
+    "description": "New readonly PHP Class"
+  },
+  "New abstract PHP Class": {
+    "prefix": "phpac",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "abstract class ${TM_FILENAME_BASE}",
+      "{\n$3}\n"
+    ],
+    "description": "New abstract PHP Class"
+  },
+  "New PHP Trait": {
+    "prefix": "trait",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "trait ${TM_FILENAME_BASE}",
+      "{\n$3}\n"
+    ],
+    "description": "New PHP Trait"
+  },
+  "PHP Attribute": {
+    "prefix": "#",
+    "body": "#[$1]",
+    "scope": "php",
+    "description": "PHP Attribute"
+  },
+  "New 'execute' function": {
+    "scope": "php",
+    "prefix": "ex",
+    "body": [
+      "public function execute($1): ${2|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$3",
+      "}"
+    ],
+    "description": "New 'execute' function"
+  },
+  "PHP constructor": {
+    "scope": "php",
+    "prefix": "__",
+    "body": [
+      "${1|public,protected,private|} function __construct($2)",
+      "{",
+      "\t$3",
+      "}"
+    ],
+    "description": "PHP Constructor"
+  },
+  "PHP __invoke function": {
+    "scope": "php",
+    "prefix": "inv",
+    "body": [
+      "public function __invoke($1): ${2|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$3",
+      "}"
+    ],
+    "description": "PHP __invoke function"
+  },
+  "New PHP Service": {
+    "prefix": "service",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "class ${TM_FILENAME_BASE}",
+      "{",
+      "\tpublic function execute($3): ${4|$PHP_FUNCTION_RETURN_TYPE|}",
+      "\t{",
+      "\t}",
+      "}"
+    ],
+    "description": "New PHP Service with 'execute' method"
+  },
+  "Setter": {
+    "prefix": "set",
+    "scope": "php",
+    "body": [
+      "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} \\$${1/(.)/${1:/downcase}/}): self",
+      "{",
+      "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
+      "\treturn \\$this;",
+      "}\n"
+    ],
+    "description": "Property Setter"
+  },
+  "Getter": {
+    "prefix": "get",
+    "scope": "php",
+    "body": [
+      "public function get${1/(.)/${1:/capitalize}/}(): ${2|$PHP_VARIABLE_TYPE|}",
+      "{",
+      "\treturn \\$this->${1/(.)/${1:/downcase}/};",
+      "}"
+    ],
+    "description": "Property Getter"
+  },
+  "Getter and Setter": {
+    "prefix": "sg",
+    "scope": "php",
+    "body": [
+      "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} $${1/(.)/${1:/downcase}/}): self",
+      "{",
+      "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
+      "\treturn \\$this;",
+      "}\n",
+      "public function get${1/(.)/${1:/capitalize}/}(): ${2|$PHP_VARIABLE_TYPE|}",
+      "{",
+      "\treturn \\$this->${1/(.)/${1:/downcase}/};",
+      "}"
+    ],
+    "description": "Getter and Setter"
+  },
+  "Getter without prefix": {
+    "prefix": "wget",
+    "scope": "php",
+    "body": [
+      "public function ${1/(.)/${1:/downcase}/}(): ${2|$PHP_VARIABLE_TYPE|}",
+      "{",
+      "\treturn \\$this->${1/(.)/${1:/downcase}/};",
+      "}"
+    ],
+    "description": "Create a new PHP property setter function"
+  },
+  "Getter and Setter without 'get' prefix": {
+    "prefix": "wsg",
+    "scope": "php",
+    "body": [
+      "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} $${1/(.)/${1:/downcase}/}): self",
+      "{",
+      "\t\\$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
+      "\treturn \\$this;",
+      "}\n",
+      "public function $1(): ${2|$PHP_VARIABLE_TYPE|}",
+      "{",
+      "\treturn \\$this->${1/(.)/${1:/downcase}/};",
+      "}"
+    ],
+    "description": "Getter and Setter without 'get' prefix"
+  },
+  "Function": {
+    "prefix": "fnc",
+    "scope": "php",
+    "body": [
+      "${1|public,protected,private|} function $2($3): ${4|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$5",
+      "}"
+    ],
+    "description": "Create a new PHP function"
+  },
+  "Anonymous function": {
+    "prefix": "fn",
+    "scope": "php",
+    "body": "fn ($2) => $3",
+    "description": "Create a new PHP anonymous function"
+  },
+  "Static Function": {
+    "prefix": "st",
+    "scope": "php",
+    "body": [
+      "public static function $1($2): ${3:static}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "description": "Create a new PHP static function"
+  },
+  "Private Function": {
+    "prefix": "prf",
+    "scope": "php",
+    "body": [
+      "private function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "description": "Create a new PHP private function"
+  },
+  "PHP Namespace": {
+    "prefix": "name",
+    "scope": "php",
+    "body": "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+    "description": "PHP Namespace"
+  },
+  "jsonSerialize Function": {
+    "prefix": "json",
+    "scope": "php",
+    "body": [
+      "/** @return mixed[] */",
+      "public function jsonSerialize(): array",
+      "{",
+      "\treturn [",
+      "\t\t'$1' => \\$this->$1,",
+      "\t];",
+      "}"
+    ],
+    "description": "Create a new PHP jsonSerialize function"
+  },
+  "Current filename": {
+    "prefix": "fname",
+    "body": "${TM_FILENAME_BASE}",
+    "description": "Get current filename"
+  },
+  "Boolean method": {
+    "prefix": "is",
+    "scope": "php",
+    "body": [
+      "${1|public,protected,private|} function is${2/(.)/${1:/capitalize}/}(): bool",
+      "{",
+      "\treturn $3;",
+      "}\n\n"
+    ],
+    "description": "Create a new PHP function to return boolean if is something"
+  },
+  "PHP Interface": {
+    "prefix": "interface",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "interface ${TM_FILENAME_BASE}",
+      "{\n    $3\n}\n"
+    ],
+    "description": "New PHP interface"
+  },
+  "PHP Enum": {
+    "prefix": "enum",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "enum ${TM_FILENAME_BASE}",
+      "{\n    $3\n}\n"
+    ],
+    "description": "PHP Enum"
+  },
+  "PHP Backed Enum": {
+    "prefix": "bnum",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "enum ${TM_FILENAME_BASE}: ${3|string,int|}",
+      "{\n    case $4\n}\n"
+    ],
+    "description": "PHP Backed Enum"
+  },
+  "Private property": {
+    "prefix": "pv",
+    "scope": "php",
+    "body": "${1|private,protected,public|} ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
+    "description": "New PHP private property"
+  },
+  "Public property": {
+    "prefix": "pp",
+    "scope": "php",
+    "body": "${1|public,private,protected|} ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
+    "description": "New PHP public property"
+  },
+  "Private readonly property": {
+    "prefix": "pvr",
+    "scope": "php",
+    "body": "${1|private,protected,public|} readonly ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
+    "description": "New PHP private readonly property"
+  },
+  "Public readonly property": {
+    "prefix": "pbr",
+    "scope": "php",
+    "body": "${1|public,private,protected|} readonly ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
+    "description": "Public readonly property"
+  },
+  "PHP ternary conditional": {
+    "prefix": "?",
+    "scope": "php",
+    "body": "$1 ? $2 : $3",
+    "description": "PHP ternary conditional"
+  },
+  "PHP constant": {
+    "prefix": "c",
+    "body": "${1|public,private,protected|} const ${2/(.*)/${1:/upcase}/} = $3;",
+    "scope": "php",
+    "description": "PHP constant"
+  },
+  "PHP throw new Exception": {
+    "prefix": "throw",
+    "scope": "php",
+    "body": "throw new ${1|$PHP_POSSIBLE_EXCEPTIONS|}('$2');",
+    "description": "PHP throw new Exception"
+  },
+  "New PHP exception class": {
+    "prefix": "phpex",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "class ${TM_FILENAME_BASE} extends ${1|$PHP_POSSIBLE_EXCEPTIONS|}",
+      "{\n$3}\n"
+    ],
+    "description": "New PHP exception class"
+  },
+  "Access variable in $this": {
+    "prefix": "$t",
+    "body": "\\$this->$1",
+    "scope": "php",
+    "description": "Access variable in $this"
+  },
+  "Assign to variable in $this": {
+    "prefix": "$t=",
+    "body": "\\$this->$1 = $2;",
+    "scope": "php",
+    "description": "Assign to variable in $this"
+  },
+  "Start multiline Comment": {
+    "prefix": "*",
+    "body": "/** $1 **/",
+    "scope": "php",
+    "description": "Start multiline Comment"
+  }
+}

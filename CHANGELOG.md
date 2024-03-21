@@ -4,6 +4,34 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.2.1] - 2024-03-21
+
+### Added
+  - new snippets:
+    - PHP:
+      - `trait`: New PHP Trait
+      - `$t`: Access variable in $this (`$this-><name>`)
+      - `$t=`: Assign to variable in $this (`$this-><name> = </name>;`)
+      - `*`: Start multiline Comment (`/** <your-code> **/`)
+
+    - Symfony/Doctrine ORM:
+      - `normalizer`: Symfony Custom Normalizer Class (Symfony ^6.*)
+      - `normalizer`: Symfony Custom Normalizer Class (Symfony old versions)
+      - `denormalizer`: Symfony Custom Denormalizer Class (Symfony ^6.4)
+      - `denormalizer`: Symfony Custom Denormalizer Class (Symfony old versions)
+      - `command`: Symfony Console Command (Symfony ^6.4)
+      - `command`: Symfony Console Command (Symfony from 5.X to 6.3)
+      - `command`: Symfony Console Command (Symfony old versions)
+      - `embedded`: Embedded (annotations)
+      - `embedded`: Embedded (attributes)
+      - `embeddable`: Embeddable (annotations)
+      - `embeddable`: Embeddable (attributes)
+
+### Changed
+  - separate snippets into different files by context
+  - change `ormOneTo` to have `inversedBy` or `mappedBy` and not always require `mappedBy`
+  - remove new unnecessary blank lines after functions
+
 ## [0.1.1] - 2024-02-15
 
 ### Added
