@@ -4,6 +4,11 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.2.2] - 2024-04-10
+
+### Added
+ - new Symfony snippet `dd` alternative to default `dd` but with dump and die
+
 ## [0.2.1] - 2024-03-21
 
 ### Added

@@ -83,6 +83,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `embedded`: Embedded (attributes)
  - `embeddable`: Embeddable (annotations)
  - `embeddable`: Embeddable (attributes)
+ - `dd`: dd (alternative to dd function with dump and die)
 
 ### About namespace generation:
 

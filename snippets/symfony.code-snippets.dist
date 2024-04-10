@@ -328,5 +328,15 @@
             "{\n$3}"
         ],
         "description": "PHPUnit Test class"
+    },
+
+    "dd (alternative to dd function with dump and die)": {
+        "prefix": "dd",
+        "scope": "php",
+        "body": [
+            "dump($1);",
+            "die;"
+        ],
+        "description": "dd (alternative to dd function with dump and die)"
     }
 }
