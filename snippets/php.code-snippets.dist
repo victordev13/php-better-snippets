@@ -334,7 +334,7 @@
   },
   "Start multiline Comment": {
     "prefix": "*",
-    "body": "/** $1 **/",
+    "body": "/** $1 */",
     "scope": "php",
     "description": "Start multiline Comment"
   }

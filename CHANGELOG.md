@@ -4,6 +4,11 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.2.3] - 2024-04-16
+
+### Fixed
+ - removed extra `*` from end in `*` snippet (`/** **/` -> `/** */`)
+
 ## [0.2.2] - 2024-04-10
 
 ### Added
