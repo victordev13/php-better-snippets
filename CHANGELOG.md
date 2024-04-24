@@ -4,6 +4,11 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.2.4] - 2024-04-24
+
+### Fixed
+ - Controller snippets was using a fixed class name as "Controller", changed to use the file name instead.
+
 ## [0.2.3] - 2024-04-16
 
 ### Fixed
