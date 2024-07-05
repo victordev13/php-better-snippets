@@ -259,7 +259,7 @@
     "description": "PHP Enum"
   },
   "PHP Backed Enum": {
-    "prefix": "bnum",
+    "prefix": "benum",
     "body": [
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",

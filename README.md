@@ -35,7 +35,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `is`: Create a new PHP function to return boolean if is something
  - `interface`: New PHP interface
  - `enum`: PHP Enum
- - `bnum`: PHP Backed Enum
+ - `benum`: PHP Backed Enum
  - `pp`: New PHP public property
  - `pv`: New PHP private property
  - `pvr`: New PHP private readonly property
