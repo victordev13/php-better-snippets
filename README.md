@@ -1,4 +1,4 @@
-# PHP Better Snippets
+# PHP Better Snippets 🇧🇷
 
 Hi PHP Developers 👋!
 
@@ -27,6 +27,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `wsg`: Getter and Setter without 'get' prefix
  - `fn`: Create a new PHP anonymous function
  - `fnc`: Create a new PHP function
+ - `fnc`: Create a new PHP function without visibility
  - `st`: Create a new PHP static function
  - `prf`: Create a new PHP private function
  - `name`: PHP Namespace
@@ -47,6 +48,24 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `$t`: Access variable in $this (`$this-><name>`)
  - `$t=`: Assign to variable in $this (`$this-><name> = </name>;`)
  - `*`: Start multiline Comment (`/** <your-code> **/`)
+ - `pubf`: PHP public function
+ - `privf`: PHP private function
+ - `prof`: PHP protected function
+ - `pubsf`: PHP public static function
+ - `privsf`: PHP private static function
+ - `prosf`: PHP protected static function
+ - `apubf`: PHP abstract public function
+ - `aprivf`: PHP abstract private function
+ - `aprof`: PHP abstract protected function
+ - `pubp`: PHP public property
+ - `privp`: PHP private property
+ - `prop`: PHP protected property
+ - `pubrp`: PHP public readonly property
+ - `privrp`: PHP private readonly property
+ - `prorp`: PHP protected readonly property
+ - `pubsp`: PHP public static property
+ - `privsp`: PHP private static property
+ - `prosp`: PHP protected static property
 
 ### Symfony Snippets:
 

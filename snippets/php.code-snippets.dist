@@ -174,6 +174,17 @@
     ],
     "description": "Create a new PHP function"
   },
+  "Function without visibility": {
+    "prefix": "fnc",
+    "scope": "php",
+    "body": [
+      "function $2($3): ${4|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$5",
+      "}"
+    ],
+    "description": "Create a new PHP function without visibility"
+  },
   "Anonymous function": {
     "prefix": "fn",
     "scope": "php",
@@ -268,25 +279,25 @@
     ],
     "description": "PHP Backed Enum"
   },
-  "Private property": {
+  "Private property (old)": {
     "prefix": "pv",
     "scope": "php",
     "body": "${1|private,protected,public|} ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
     "description": "New PHP private property"
   },
-  "Public property": {
+  "Public property (old)": {
     "prefix": "pp",
     "scope": "php",
     "body": "${1|public,private,protected|} ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
     "description": "New PHP public property"
   },
-  "Private readonly property": {
+  "Private readonly property (old)": {
     "prefix": "pvr",
     "scope": "php",
     "body": "${1|private,protected,public|} readonly ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
     "description": "New PHP private readonly property"
   },
-  "Public readonly property": {
+  "Public readonly property (old)": {
     "prefix": "pbr",
     "scope": "php",
     "body": "${1|public,private,protected|} readonly ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
@@ -337,5 +348,143 @@
     "body": "/** $1 */",
     "scope": "php",
     "description": "Start multiline Comment"
+  },
+  "Public function": {
+    "prefix": "pubf",
+    "body": [
+      "public function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP public function"
+  },
+  "Private function": {
+    "prefix": "privf",
+    "body": [
+      "private function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP private function"
+  },
+  "Protected function": {
+    "prefix": "prof",
+    "body": [
+      "protected function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP protected function"
+  },
+  "Public static function": {
+    "prefix": "pubsf",
+    "body": [
+      "public static function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP public static function"
+  },
+  "Private static function": {
+    "prefix": "privsf",
+    "body": [
+      "private static function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP private static function"
+  },
+  "Protected static function": {
+    "prefix": "prosf",
+    "body": [
+      "protected static function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|}",
+      "{",
+      "\t$4",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP protected static function"
+  },
+  "Public abstract function": {
+    "prefix": "apubf",
+    "body": "abstract public function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|};",
+    "scope": "php",
+    "description": "PHP abstract public function"
+  },
+  "Private abstract function": {
+    "prefix": "aprivf",
+    "body": "abstract private function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|};",
+    "scope": "php",
+    "description": "PHP abstract private function"
+  },
+  "Protected abstract function": {
+    "prefix": "aprof",
+    "body": "abstract protected function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|};",
+    "scope": "php",
+    "description": "PHP abstract protected function"
+  },
+  "Public property": {
+    "prefix": "pubp",
+    "body": "public ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP public property"
+  },
+  "Private property": {
+    "prefix": "privp",
+    "body": "private ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP private property"
+  },
+  "Protected property": {
+    "prefix": "prop",
+    "body": "protected ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP protected property"
+  },
+  "Public readonly property": {
+    "prefix": "pubrp",
+    "body": "public readonly ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP public readonly property"
+  },
+  "Private readonly property": {
+    "prefix": "privrp",
+    "body": "private readonly ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP private readonly property"
+  },
+  "Protected readonly property": {
+    "prefix": "prorp",
+    "body": "protected readonly ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP protected readonly property"
+  },
+  "Public static property": {
+    "prefix": "pubsp",
+    "body": "public static ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP public static property"
+  },
+  "Private static property": {
+    "prefix": "privsp",
+    "body": "private static ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP private static property"
+  },
+  "Protected static property": {
+    "prefix": "prosp",
+    "body": "protected static ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
+    "scope": "php",
+    "description": "PHP protected static property"
   }
 }
