@@ -39,7 +39,10 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "./replace-custom-and-generate.sh"
+    "vscode:prepublish": "./replace-custom-and-generate.sh",
+    "pack": "vsce package",
+    "publish": "vsce package && vsce publish",
+    "publish:pre-relase": "vsce package --pre-release && vsce publish --pre-release"
   },
   "repository": {
     "url": "https://github.com/victordev13/php-better-snippets"
