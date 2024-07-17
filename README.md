@@ -55,7 +55,6 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `privsf`: PHP private static function
  - `prosf`: PHP protected static function
  - `apubf`: PHP abstract public function
- - `aprivf`: PHP abstract private function
  - `aprof`: PHP abstract protected function
  - `pubp`: PHP public property
  - `privp`: PHP private property

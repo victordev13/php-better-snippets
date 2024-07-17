@@ -421,12 +421,6 @@
     "scope": "php",
     "description": "PHP abstract public function"
   },
-  "Private abstract function": {
-    "prefix": "aprivf",
-    "body": "abstract private function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|};",
-    "scope": "php",
-    "description": "PHP abstract private function"
-  },
   "Protected abstract function": {
     "prefix": "aprof",
     "body": "abstract protected function $1($2): ${3|$PHP_FUNCTION_RETURN_TYPE|};",

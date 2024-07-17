@@ -19,7 +19,6 @@ All notable changes to the "php-better-snippets" extension will be documented in
   - `privsf`: PHP private static function
   - `prosf`: PHP protected static function
   - `apubf`: PHP abstract public function
-  - `aprivf`: PHP abstract private function
   - `aprof`: PHP abstract protected function
   - `pubp`: PHP public property
   - `privp`: PHP private property
