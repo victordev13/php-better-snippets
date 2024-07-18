@@ -4,7 +4,8 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
-## [0.3.0] - 2024-07-17
+## [0.3.1] - 2024-07-18
+## [0.3.0] - 2024-07-17 (Pré-release)
 
 ### Changed
  - `bnum` changed to `benum` (PHP Backed enum)
