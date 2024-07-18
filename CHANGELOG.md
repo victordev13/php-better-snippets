@@ -4,6 +4,33 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.3.1] - 2024-07-18
+## [0.3.0] - 2024-07-17 (Pré-release)
+
+### Changed
+ - `bnum` changed to `benum` (PHP Backed enum)
+
+### Added
+ - new snippets:
+  - `fnc`: Function without visibility
+  - `pubf`: PHP public function
+  - `privf`: PHP private function
+  - `prof`: PHP protected function
+  - `pubsf`: PHP public static function
+  - `privsf`: PHP private static function
+  - `prosf`: PHP protected static function
+  - `apubf`: PHP abstract public function
+  - `aprof`: PHP abstract protected function
+  - `pubp`: PHP public property
+  - `privp`: PHP private property
+  - `prop`: PHP protected property
+  - `pubrp`: PHP public readonly property
+  - `privrp`: PHP private readonly property
+  - `prorp`: PHP protected readonly property
+  - `pubsp`: PHP public static property
+  - `privsp`: PHP private static property
+  - `prosp`: PHP protected static property
+
 ## [0.2.4] - 2024-04-24
 
 ### Fixed
