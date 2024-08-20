@@ -43,6 +43,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `pbr`: Public readonly property
  - `?`: PHP ternary conditional
  - `c`: New PHP Constant
+ - `c`: New Typed PHP Constant
  - `throw`: PHP throw new Exception
  - `phpex`: New PHP exception class
  - `$t`: Access variable in $this (`$this-><name>`)
