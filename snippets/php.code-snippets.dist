@@ -4,7 +4,7 @@
     "body": "<?php",
     "description": "PHP open tag"
   },
-  "New PHP Class": {
+  "New file with PHP Class": {
     "prefix": "phpc",
     "body": [
       "<?php\n",
@@ -12,9 +12,9 @@
       "class ${TM_FILENAME_BASE}",
       "{\n$3}\n"
     ],
-    "description": "New PHP Class"
+    "description": "New file with PHP Class"
   },
-  "New readonly PHP Class": {
+  "New file with readonly PHP Class": {
     "prefix": "phprc",
     "body": [
       "<?php\n",
@@ -22,9 +22,19 @@
       "readonly class ${TM_FILENAME_BASE}",
       "{\n$3}\n"
     ],
-    "description": "New readonly PHP Class"
+    "description": "New file with readonly PHP Class"
   },
-  "New abstract PHP Class": {
+  "New file with final PHP Class": {
+    "prefix": "phpfc",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "final class ${TM_FILENAME_BASE}",
+      "{\n$3}\n"
+    ],
+    "description": "New file with final PHP Class"
+  },
+  "New file with abstract PHP Class": {
     "prefix": "phpac",
     "body": [
       "<?php\n",
@@ -32,7 +42,7 @@
       "abstract class ${TM_FILENAME_BASE}",
       "{\n$3}\n"
     ],
-    "description": "New abstract PHP Class"
+    "description": "New file with abstract PHP Class"
   },
   "New PHP Trait": {
     "prefix": "trait",
@@ -315,6 +325,12 @@
     "scope": "php",
     "description": "PHP constant"
   },
+  "PHP typed constant": {
+    "prefix": "c",
+    "body": "${1|public,private,protected|} ${2|string,int,bool,true,false,null,float,array,iterable|} const ${2/(.*)/${1:/upcase}/} = $3;",
+    "scope": "php",
+    "description": "PHP typed constant"
+  },
   "PHP throw new Exception": {
     "prefix": "throw",
     "scope": "php",
@@ -480,6 +496,38 @@
     "body": "protected static ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
     "scope": "php",
     "description": "PHP protected static property"
+  },
+  "New PHP Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "New PHP Class"
+  },
+  "New readonly PHP Class": {
+    "prefix": "rclass",
+    "body": [
+      "readonly class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "New readonly PHP Class"
+  },
+  "New final PHP Class": {
+    "prefix": "fclass",
+    "body": [
+      "final class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "New final PHP Class"
+  },
+  "New abstract PHP Class": {
+    "prefix": "abclass",
+    "body": [
+      "abstract class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "New abstract PHP Class"
   },
   "PHP public function test (for unit tests)": {
     "prefix": "pubtest",
