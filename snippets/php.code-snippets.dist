@@ -528,5 +528,16 @@
       "{\n\t$2\n}\n"
     ],
     "description": "New abstract PHP Class"
+  },
+  "PHP public function test (for unit tests)": {
+    "prefix": "pubtest",
+    "body": [
+      "public function test${1/(.)/${1:/capitalize}/}(): void",
+      "{",
+      "\t$2",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP public function test (for unit tests)"
   }
 }
