@@ -65,6 +65,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `pubsp`: PHP public static property
  - `privsp`: PHP private static property
  - `prosp`: PHP protected static property
+ - `pubtest`: PHP public function test (for unit tests)
 
 ### Symfony Snippets:
 
