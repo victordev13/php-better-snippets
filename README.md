@@ -11,11 +11,11 @@ The snippets follow the fluent interfaces and Type declarations standard.
 ### PHP Snippets:
 
  - `php`: PHP open tag
- - `phpc`: New file with PHP Class
- - `phprc`: New file with readonly PHP Class
- - `phpfc`: New file with final PHP Class
- - `phpac`: New file with abstract PHP Class
- - `trait`: New file with PHP Trait
+ - `phpc`: PHP Class with namespace
+ - `phprc`: Readonly PHP Class with namespace
+ - `phpfc`: Final PHP Class with namespace
+ - `phpac`: Abstract PHP Class with namespace
+ - `trait`: PHP Trait with namespace
  - `#`: PHP Attribute
  - `ex`: New 'execute' function
  - `__`: PHP Constructor
@@ -68,10 +68,10 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `privsp`: PHP private static property
  - `prosp`: PHP protected static property
  - `pubtest`: PHP public function test (for unit tests)
- - `class`: New PHP class
- - `rclass`: New readonly PHP Class
- - `fclass`: New final PHP Class
- - `abclass`: New abstract PHP Class
+ - `class`: PHP class
+ - `rclass`: Readonly PHP Class
+ - `fclass`: Final PHP Class
+ - `abclass`: Abstract PHP Class
 
 ### Symfony Snippets:
 

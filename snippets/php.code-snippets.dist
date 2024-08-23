@@ -4,7 +4,7 @@
     "body": "<?php",
     "description": "PHP open tag"
   },
-  "New file with PHP Class": {
+  "PHP Class with namespace": {
     "prefix": "phpc",
     "body": [
       "<?php\n",
@@ -12,9 +12,9 @@
       "class ${TM_FILENAME_BASE}",
       "{\n$3}\n"
     ],
-    "description": "New file with PHP Class"
+    "description": "PHP Class with namespace"
   },
-  "New file with readonly PHP Class": {
+  "Readonly PHP Class with namespace": {
     "prefix": "phprc",
     "body": [
       "<?php\n",
@@ -22,9 +22,9 @@
       "readonly class ${TM_FILENAME_BASE}",
       "{\n$3}\n"
     ],
-    "description": "New file with readonly PHP Class"
+    "description": "Readonly PHP Class with namespace"
   },
-  "New file with final PHP Class": {
+  "Final PHP Class with namespace": {
     "prefix": "phpfc",
     "body": [
       "<?php\n",
@@ -32,9 +32,9 @@
       "final class ${TM_FILENAME_BASE}",
       "{\n$3}\n"
     ],
-    "description": "New file with final PHP Class"
+    "description": "Final PHP Class with namespace"
   },
-  "New file with abstract PHP Class": {
+  "Abstract PHP Class with namespace": {
     "prefix": "phpac",
     "body": [
       "<?php\n",
@@ -42,7 +42,7 @@
       "abstract class ${TM_FILENAME_BASE}",
       "{\n$3}\n"
     ],
-    "description": "New file with abstract PHP Class"
+    "description": "Abstract PHP Class with namespace"
   },
   "New PHP Trait": {
     "prefix": "trait",
@@ -497,37 +497,37 @@
     "scope": "php",
     "description": "PHP protected static property"
   },
-  "New PHP Class": {
+  "PHP Class": {
     "prefix": "class",
     "body": [
       "class ${1:${TM_FILENAME_BASE}}",
       "{\n\t$2\n}\n"
     ],
-    "description": "New PHP Class"
+    "description": "PHP Class"
   },
-  "New readonly PHP Class": {
+  "Readonly PHP Class": {
     "prefix": "rclass",
     "body": [
       "readonly class ${1:${TM_FILENAME_BASE}}",
       "{\n\t$2\n}\n"
     ],
-    "description": "New readonly PHP Class"
+    "description": "Readonly PHP Class"
   },
-  "New final PHP Class": {
+  "Final PHP Class": {
     "prefix": "fclass",
     "body": [
       "final class ${1:${TM_FILENAME_BASE}}",
       "{\n\t$2\n}\n"
     ],
-    "description": "New final PHP Class"
+    "description": "Final PHP Class"
   },
-  "New abstract PHP Class": {
+  "Abstract PHP Class": {
     "prefix": "abclass",
     "body": [
       "abstract class ${1:${TM_FILENAME_BASE}}",
       "{\n\t$2\n}\n"
     ],
-    "description": "New abstract PHP Class"
+    "description": "Abstract PHP Class"
   },
   "PHP public function test (for unit tests)": {
     "prefix": "pubtest",
