@@ -155,7 +155,7 @@
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
       "}"
     ],
-    "description": "Create a new PHP property setter function"
+    "description": "PHP property setter function"
   },
   "Getter and Setter without 'get' prefix": {
     "prefix": "wsg",
@@ -182,7 +182,7 @@
       "\t$5",
       "}"
     ],
-    "description": "Create a new PHP function"
+    "description": "PHP function"
   },
   "Function without visibility": {
     "prefix": "fnc",
@@ -193,13 +193,13 @@
       "\t$5",
       "}"
     ],
-    "description": "Create a new PHP function without visibility"
+    "description": "PHP function without visibility"
   },
   "Anonymous function": {
     "prefix": "fn",
     "scope": "php",
     "body": "fn ($2) => $3",
-    "description": "Create a new PHP anonymous function"
+    "description": "PHP anonymous function"
   },
   "Static Function": {
     "prefix": "st",
@@ -210,7 +210,7 @@
       "\t$4",
       "}"
     ],
-    "description": "Create a new PHP static function"
+    "description": "PHP static function"
   },
   "Private Function": {
     "prefix": "prf",
@@ -221,7 +221,7 @@
       "\t$4",
       "}"
     ],
-    "description": "Create a new PHP private function"
+    "description": "PHP private function"
   },
   "PHP Namespace": {
     "prefix": "name",
@@ -241,7 +241,7 @@
       "\t];",
       "}"
     ],
-    "description": "Create a new PHP jsonSerialize function"
+    "description": "PHP jsonSerialize function"
   },
   "Current filename": {
     "prefix": "fname",
@@ -257,7 +257,7 @@
       "\treturn $3;",
       "}\n\n"
     ],
-    "description": "Create a new PHP function to return boolean if is something"
+    "description": "PHP function to return boolean if is something"
   },
   "PHP Interface": {
     "prefix": "interface",

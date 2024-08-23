@@ -24,17 +24,17 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `set`: Property Setter
  - `get`: Property Getter
  - `sg`: Getter and Setter
- - `wget`: Create a new PHP property setter function
+ - `wget`: PHP property setter function
  - `wsg`: Getter and Setter without 'get' prefix
- - `fn`: Create a new PHP anonymous function
- - `fnc`: Create a new PHP function
- - `fnc`: Create a new PHP function without visibility
- - `st`: Create a new PHP static function
- - `prf`: Create a new PHP private function
+ - `fn`: PHP anonymous function
+ - `fnc`: PHP function
+ - `fnc`: PHP function without visibility
+ - `st`: PHP static function
+ - `prf`: PHP private function
  - `name`: PHP Namespace
- - `json`: Create a new PHP jsonSerialize function
+ - `json`: PHP jsonSerialize function
  - `fname`: Get current filename
- - `is`: Create a new PHP function to return boolean if is something
+ - `is`: PHP function to return boolean if is something
  - `interface`: New PHP interface
  - `enum`: PHP Enum
  - `benum`: PHP Backed Enum
