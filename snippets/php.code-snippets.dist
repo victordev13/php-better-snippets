@@ -327,7 +327,7 @@
   },
   "PHP typed constant": {
     "prefix": "c",
-    "body": "${1|public,private,protected|} ${2|string,int,bool,true,false,null,float,array,iterable|} const ${2/(.*)/${1:/upcase}/} = $3;",
+    "body": "${1|public,private,protected|} ${2|string,int,bool,true,false,null,float,array,iterable|} const ${3/(.*)/${1:/upcase}/} = $4;",
     "scope": "php",
     "description": "PHP typed constant"
   },
