@@ -4,6 +4,21 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.4.0] - 2024-08-27
+### Changed
+ - Some snippets description are renamed
+ - Class snippets have been modified to focus on the body of the class
+
+### Added
+ - new snippets:
+  - `phpfc`: Final PHP Class with namespace
+  - `c`: New Typed PHP Constant
+  - `pubtest`: PHP public function test (for unit tests)
+  - `class`: PHP class
+  - `rclass`: Readonly PHP Class
+  - `fclass`: Final PHP Class
+  - `abclass`: Abstract PHP Class
+
 ## [0.3.1] - 2024-07-18
 ## [0.3.0] - 2024-07-17 (Pré-release)
 

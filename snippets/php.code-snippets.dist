@@ -4,35 +4,45 @@
     "body": "<?php",
     "description": "PHP open tag"
   },
-  "New PHP Class": {
+  "PHP Class with namespace": {
     "prefix": "phpc",
     "body": [
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "class ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
-    "description": "New PHP Class"
+    "description": "PHP Class with namespace"
   },
-  "New readonly PHP Class": {
+  "Readonly PHP Class with namespace": {
     "prefix": "phprc",
     "body": [
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "readonly class ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
-    "description": "New readonly PHP Class"
+    "description": "Readonly PHP Class with namespace"
   },
-  "New abstract PHP Class": {
+  "Final PHP Class with namespace": {
+    "prefix": "phpfc",
+    "body": [
+      "<?php\n",
+      "namespace $CUSTOM_NAMESPACE_REGEX;\n",
+      "final class ${TM_FILENAME_BASE}",
+      "{\n\t$3\n}\n"
+    ],
+    "description": "Final PHP Class with namespace"
+  },
+  "Abstract PHP Class with namespace": {
     "prefix": "phpac",
     "body": [
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "abstract class ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
-    "description": "New abstract PHP Class"
+    "description": "Abstract PHP Class with namespace"
   },
   "New PHP Trait": {
     "prefix": "trait",
@@ -40,7 +50,7 @@
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "trait ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
     "description": "New PHP Trait"
   },
@@ -145,7 +155,7 @@
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
       "}"
     ],
-    "description": "Create a new PHP property setter function"
+    "description": "PHP property setter function"
   },
   "Getter and Setter without 'get' prefix": {
     "prefix": "wsg",
@@ -172,7 +182,7 @@
       "\t$5",
       "}"
     ],
-    "description": "Create a new PHP function"
+    "description": "PHP function"
   },
   "Function without visibility": {
     "prefix": "fnc",
@@ -183,13 +193,13 @@
       "\t$5",
       "}"
     ],
-    "description": "Create a new PHP function without visibility"
+    "description": "PHP function without visibility"
   },
   "Anonymous function": {
     "prefix": "fn",
     "scope": "php",
     "body": "fn ($2) => $3",
-    "description": "Create a new PHP anonymous function"
+    "description": "PHP anonymous function"
   },
   "Static Function": {
     "prefix": "st",
@@ -200,7 +210,7 @@
       "\t$4",
       "}"
     ],
-    "description": "Create a new PHP static function"
+    "description": "PHP static function"
   },
   "Private Function": {
     "prefix": "prf",
@@ -211,7 +221,7 @@
       "\t$4",
       "}"
     ],
-    "description": "Create a new PHP private function"
+    "description": "PHP private function"
   },
   "PHP Namespace": {
     "prefix": "name",
@@ -231,7 +241,7 @@
       "\t];",
       "}"
     ],
-    "description": "Create a new PHP jsonSerialize function"
+    "description": "PHP jsonSerialize function"
   },
   "Current filename": {
     "prefix": "fname",
@@ -247,7 +257,7 @@
       "\treturn $3;",
       "}\n\n"
     ],
-    "description": "Create a new PHP function to return boolean if is something"
+    "description": "PHP function to return boolean if is something"
   },
   "PHP Interface": {
     "prefix": "interface",
@@ -314,6 +324,12 @@
     "body": "${1|public,private,protected|} const ${2/(.*)/${1:/upcase}/} = $3;",
     "scope": "php",
     "description": "PHP constant"
+  },
+  "PHP typed constant": {
+    "prefix": "c",
+    "body": "${1|public,private,protected|} ${2|string,int,bool,true,false,null,float,array,iterable|} const ${3/(.*)/${1:/upcase}/} = $4;",
+    "scope": "php",
+    "description": "PHP typed constant"
   },
   "PHP throw new Exception": {
     "prefix": "throw",
@@ -480,5 +496,48 @@
     "body": "protected static ${1|$PHP_VARIABLE_TYPE|} \\$$2;",
     "scope": "php",
     "description": "PHP protected static property"
+  },
+  "PHP Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "PHP Class"
+  },
+  "Readonly PHP Class": {
+    "prefix": "rclass",
+    "body": [
+      "readonly class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "Readonly PHP Class"
+  },
+  "Final PHP Class": {
+    "prefix": "fclass",
+    "body": [
+      "final class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "Final PHP Class"
+  },
+  "Abstract PHP Class": {
+    "prefix": "abclass",
+    "body": [
+      "abstract class ${1:${TM_FILENAME_BASE}}",
+      "{\n\t$2\n}\n"
+    ],
+    "description": "Abstract PHP Class"
+  },
+  "PHP public function test (for unit tests)": {
+    "prefix": "pubtest",
+    "body": [
+      "public function test${1/(.)/${1:/capitalize}/}(): void",
+      "{",
+      "\t$2",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP public function test (for unit tests)"
   }
 }
