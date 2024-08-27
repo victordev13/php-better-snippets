@@ -6,7 +6,8 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ## [0.4.0] - 2024-08-27
 ### Changed
-  Some snippets description are renamed
+ - Some snippets description are renamed
+ - Class snippets have been modified to focus on the body of the class
 
 ### Added
  - new snippets:
