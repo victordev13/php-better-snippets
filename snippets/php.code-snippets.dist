@@ -10,7 +10,7 @@
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "class ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
     "description": "PHP Class with namespace"
   },
@@ -20,7 +20,7 @@
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "readonly class ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
     "description": "Readonly PHP Class with namespace"
   },
@@ -30,7 +30,7 @@
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "final class ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
     "description": "Final PHP Class with namespace"
   },
@@ -40,7 +40,7 @@
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "abstract class ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
     "description": "Abstract PHP Class with namespace"
   },
@@ -50,7 +50,7 @@
       "<?php\n",
       "namespace $CUSTOM_NAMESPACE_REGEX;\n",
       "trait ${TM_FILENAME_BASE}",
-      "{\n$3}\n"
+      "{\n\t$3\n}\n"
     ],
     "description": "New PHP Trait"
   },
