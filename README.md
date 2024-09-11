@@ -24,7 +24,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `set`: Property Setter
  - `get`: Property Getter
  - `sg`: Getter and Setter
- - `wget`: PHP property setter function
+ - `wget`: Getter without 'get' prefix
  - `wsg`: Getter and Setter without 'get' prefix
  - `fn`: PHP anonymous function
  - `fnc`: PHP function

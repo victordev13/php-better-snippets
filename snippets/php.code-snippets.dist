@@ -146,7 +146,7 @@
     ],
     "description": "Getter and Setter"
   },
-  "Getter without prefix": {
+  "Getter without 'get' prefix": {
     "prefix": "wget",
     "scope": "php",
     "body": [
@@ -155,7 +155,7 @@
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
       "}"
     ],
-    "description": "PHP property setter function"
+    "description": "Getter without 'get' prefix"
   },
   "Getter and Setter without 'get' prefix": {
     "prefix": "wsg",

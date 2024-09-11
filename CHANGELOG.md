@@ -4,6 +4,10 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.4.1] - 2024-09-11
+### Fixed
+  - description of `wget` snippet
+
 ## [0.4.0] - 2024-08-27
 ### Changed
  - Some snippets description are renamed
