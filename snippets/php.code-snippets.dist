@@ -49,7 +49,7 @@
     "body": [
       "<?php\n",
       "namespace ${3:$CUSTOM_NAMESPACE_REGEX};\n",
-      "trait ${TM_FILENAME_BASE}",
+      "trait ${4:$TM_FILENAME_BASE}",
       "{\n\t$5\n}\n"
     ],
     "description": "New PHP Trait"
@@ -342,8 +342,8 @@
     "body": [
       "<?php\n",
       "namespace ${3:$CUSTOM_NAMESPACE_REGEX};\n",
-      "class ${4:$TM_FILENAME_BASE} extends ${1|$PHP_POSSIBLE_EXCEPTIONS|}",
-      "{\n$5}\n"
+      "class ${4:$TM_FILENAME_BASE} extends ${5|$PHP_POSSIBLE_EXCEPTIONS|}",
+      "{\n$6}\n"
     ],
     "description": "New PHP exception class"
   },
