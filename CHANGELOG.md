@@ -4,6 +4,11 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.5.0] - 2024-11-12
+### Changed
+  - Focus on the namespace to be able to edit it if necessary
+  - Support more root directories to generate namespace
+
 ## [0.4.1] - 2024-09-11
 ### Fixed
   - description of `wget` snippet
