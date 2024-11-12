@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CUSTOM_NAMESPACE_REGEX='${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g}'
+CUSTOM_NAMESPACE_REGEX='${TM_DIRECTORY/(?:.*[\\/\\\\])(?:src|tests|test|testes|app|Src|App|Test|Tests|Testes)[\\/\\\\]([^\\/\\\\]*)[\\/\\\\]?|[\\/\\\\]([^\\/\\\\]*)/$1\\$2/g}'
 PHP_VARIABLE_TYPE='string,int,bool,true,false,null,float,array,iterable,callable,object,mixed'
 PHP_FUNCTION_RETURN_TYPE='void,string,int,bool,true,false,null,float,array,iterable,callable,object,never,mixed,static,self'
 PHP_POSSIBLE_EXCEPTIONS='\\Exception,\\BadFunctionCallException,\\BadMethodCallException,\\DomainException,\\InvalidArgumentException,\\LengthException,\\LogicException,\\OutOfBoundsException,\\OutOfRangeException,\\OverflowException,\\RangeException,\\RuntimeException,\\UnderflowException,\\UnexpectedValueException'
