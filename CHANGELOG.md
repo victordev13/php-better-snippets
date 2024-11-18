@@ -4,6 +4,10 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.5.1] - 2024-11-18
+### Fixed
+  - incorrect parameters order at `service`
+
 ## [0.5.0] - 2024-11-12
 ### Changed
   - Focus on the namespace to be able to edit it if necessary

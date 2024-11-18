@@ -100,7 +100,7 @@
       "namespace ${3:$CUSTOM_NAMESPACE_REGEX};\n",
       "class ${4:$TM_FILENAME_BASE}",
       "{",
-      "\tpublic function execute($3): ${4|$PHP_FUNCTION_RETURN_TYPE|}",
+      "\tpublic function execute($5): ${6|$PHP_FUNCTION_RETURN_TYPE|}",
       "\t{",
       "\t}",
       "}"
