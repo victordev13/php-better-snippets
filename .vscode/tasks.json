@@ -5,7 +5,7 @@
 			"type": "npm",
 			"script": "vscode:prepublish",
 			"label": "build",
-			"detail": "./replace-custom-and-generate.sh"
+			"detail": "./build.sh"
 		}
 	]
 }

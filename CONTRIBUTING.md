@@ -1,6 +1,8 @@
 # Contribution guide:
 
-To facilitate the creation of new snippets and maintenance of current ones, certain repeated code segments have been extracted into new variables. For instance, the regex that generates the namespace has been extracted into `$CUSTOM_NAMESPACE_REGEX`, which is then replaced during the extension generation (`vsce package`) by the bash script [`./replace-custom-and-generate.sh`](./replace-custom-and-generate.sh) executed in the `vscode:prepublish` script.
+To simplify the creation of new snippets and the maintenance of existing ones, certain repeated code segments have been refactored into new variables. For example, the regex used to generate the namespace has been extracted into $CUSTOM_NAMESPACE_REGEX. This variable is replaced during the extension packaging process (vsce package) by the bash script [./build.sh](./build.sh), which is executed in the `vscode:prepublish` script.
+
+The custom variables are defined in [`./custom-variables.json`](./custom-variables.json) and be replaced automatically by [`./build.sh`](./build.sh)
 
 The currently available variables are:
   - `$CUSTOM_NAMESPACE_REGEX`
