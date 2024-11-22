@@ -39,7 +39,8 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "./replace-custom-and-generate.sh",
+    "build": "./build.sh",
+    "vscode:prepublish": "./build.sh",
     "pack": "vsce package",
     "publish": "vsce package && vsce publish",
     "publish:pre-release": "vsce package --pre-release && vsce publish --pre-release"
