@@ -1,0 +1,144 @@
+{
+  // Asymmetric-visibility
+  "[8.4] Public private(set) property": {
+    "prefix": "pubp",
+    "body": "public ${1|private,protected|}(set) ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
+    "scope": "php",
+    "description": "[PHP 8.4] Public private(set) property"
+  },
+
+  "[8.4] Public protected(set) property": {
+    "prefix": "pubp",
+    "body": "public ${1|protected,private|}(set) ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
+    "scope": "php",
+    "description": "[PHP 8.4] Public protected(set) property"
+  },
+
+  "[8.4] Protected private(set) property": {
+    "prefix": "prop",
+    "body": "protected private(set) ${2|$PHP_VARIABLE_TYPE|} \\$$3;",
+    "scope": "php",
+    "description": "[PHP 8.4] Protected private(set) property"
+  },
+
+  // Property hooks
+  "[8.4] Public property (with get)": {
+    "prefix": "pubp",
+    "body": [
+      "public ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tget {",
+      "\t\t${3:return \\$this->$2};",
+      "\t}",
+      "}"
+    ],
+    "scope": "php",
+    "description": "[PHP 8.4] Public property (with get)"
+  },
+  "[8.4] Public property (with set)": {
+    "prefix": "pubp",
+    "body": [
+      "public ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tset {",
+      "\t\t${3:\\$this->$2 = \\$value};",
+      "\t}",
+      "}"
+    ],
+    "scope": "php",
+    "description": "[PHP 8.4] Public property (with set)"
+  },
+  "[8.4] Public property (with get/set)": {
+    "prefix": "pubp",
+    "body": [
+      "public ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tget {",
+      "\t\t${3:return \\$this->$2};",
+      "\t}",
+      "\tset {",
+      "\t\t${4:\\$this->$2 = \\$value};",
+      "\t}",
+      "}"
+    ],
+    "scope": "php",
+    "description": "[PHP 8.4] Public property (with get/set)"
+  },
+
+  "[8.4] Protected property (with get)": {
+    "prefix": "prop",
+    "body": [
+      "protected ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tget {",
+      "\t\t${3:return \\$this->$2};",
+      "\t}",
+      "}"
+    ],
+    "scope": "php",
+    "description": "[PHP 8.4] Protected property (with get)"
+  },
+  "[8.4] Protected property (with set)": {
+    "prefix": "prop",
+    "body": [
+      "protected ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tset {",
+      "\t\t${3:\\$this->$2 = \\$value};",
+      "\t}",
+      "}"
+    ],
+    "scope": "php",
+    "description": "[PHP 8.4] Protected property (with set)"
+  },
+  "[8.4] Protected property (with get/set)": {
+    "scope": "php",
+    "prefix": "prop",
+    "body": [
+      "protected ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tget {",
+      "\t\t${3:return \\$this->$2};",
+      "\t}",
+      "\tset {",
+      "\t\t${4:\\$this->$2 = \\$value};",
+      "\t}",
+      "}"
+    ],
+    "description": "[PHP 8.4] Protected property (with get/set)"
+  },
+
+  "[8.4] Private property (with get)": {
+    "prefix": "privp",
+    "body": [
+      "private ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tget {",
+      "\t\t${3:return \\$this->$2};",
+      "\t}",
+      "}"
+    ],
+    "scope": "php",
+    "description": "[PHP 8.4] Private property (with get)"
+  },
+  "[8.4] Private property (with set)": {
+    "prefix": "privp",
+    "body": [
+      "private ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tset {",
+      "\t\t${3:\\$this->$2 = \\$value};",
+      "\t}",
+      "}"
+    ],
+    "scope": "php",
+    "description": "[PHP 8.4] Private property (with set)"
+  },
+  "[8.4] Private property (with get/set)": {
+    "scope": "php",
+    "prefix": "privp",
+    "body": [
+      "private ${1|$PHP_VARIABLE_TYPE|} \\$$2 {",
+      "\tget {",
+      "\t\t${3:return \\$this->$2};",
+      "\t}",
+      "\tset {",
+      "\t\t${4:\\$this->$2 = \\$value};",
+      "\t}",
+      "}"
+    ],
+    "description": "[PHP 8.4] Private property (with get/set)"
+  }
+}

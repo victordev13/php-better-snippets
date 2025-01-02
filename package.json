@@ -31,6 +31,9 @@
         "path": "./snippets/php.code-snippets"
       },
       {
+        "path": "./snippets/php8.4.code-snippets"
+      },
+      {
         "path": "./snippets/symfony.code-snippets"
       },
       {
