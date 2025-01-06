@@ -59,7 +59,19 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `apubf`: PHP abstract public function
  - `aprof`: PHP abstract protected function
  - `pubp`: PHP public property
+ - `pubp`: [PHP 8.4] Public private(set) property ([asymmetric visibility](https://www.php.net/manual/en/language.oop5.visibility.php#language.oop5.visibility-members-aviz))
+ - `pubp`: [PHP 8.4] Public protected(set) property ([asymmetric visibility](https://www.php.net/manual/en/language.oop5.visibility.php#language.oop5.visibility-members-aviz))
+ - `prop`: [PHP 8.4] Protected private(set) property ([asymmetric visibility](https://www.php.net/manual/en/language.oop5.visibility.php#language.oop5.visibility-members-aviz))
+ - `prop`: [PHP 8.4] Protected property (with get) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
+ - `prop`: [PHP 8.4] Protected property (with set) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
+ - `prop`: [PHP 8.4] Protected property (with get/set) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
+ - `pubp`: [PHP 8.4] Public property (with get) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
+ - `pubp`: [PHP 8.4] Public property (with set) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
+ - `pubp`: [PHP 8.4] Public property (with get/set) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
  - `privp`: PHP private property
+ - `privp`: [PHP 8.4] Private property (with get) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
+ - `privp`: [PHP 8.4] Private property (with set) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
+ - `privp`: [PHP 8.4] Private property (with get/set) ([property hooks](https://www.php.net/manual/en/language.oop5.property-hooks.php))
  - `prop`: PHP protected property
  - `pubrp`: PHP public readonly property
  - `privrp`: PHP private readonly property
