@@ -4,7 +4,7 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
-## [0.6.0] - 2025-01-06
+## [0.6.0] - 2025-01-07
 ### Added
  - `pubp`: [PHP 8.4] Public private(set) property
  - `pubp`: [PHP 8.4] Public protected(set) property
