@@ -1,5 +1,5 @@
 {
   "files.associations": {
-    "*.code-snippets.dist": "snippets"
+    "*.code-snippets.dist": "jsonc"
   }
 }

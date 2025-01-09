@@ -23,6 +23,9 @@ replace() {
 for snippetFile in ${snippets_files[*]}; do
   cp $snippetFile.dist $snippetFile
 
+  # remove comments
+  sed -i '/\/\//d' $snippetFile
+
   for var in "${!variables_list[@]}"; do
     replace "$snippetFile" "$var" "${variables_list[$var]}"
   done

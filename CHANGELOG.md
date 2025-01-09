@@ -4,6 +4,22 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ---
 
+## [0.7.0] - 2025-01-08 (Release)
+## [0.6.0] - 2025-01-07 (Pré-Release)
+### Added
+ - `pubp`: [PHP 8.4] Public private(set) property
+ - `pubp`: [PHP 8.4] Public protected(set) property
+ - `prop`: [PHP 8.4] Protected private(set) property
+ - `pubp`: [PHP 8.4] Public property (with get)
+ - `pubp`: [PHP 8.4] Public property (with set)
+ - `pubp`: [PHP 8.4] Public property (with get/set)
+ - `prop`: [PHP 8.4] Protected property (with get)
+ - `prop`: [PHP 8.4] Protected property (with set)
+ - `prop`: [PHP 8.4] Protected property (with get/set)
+ - `privp`: [PHP 8.4] Private property (with get)
+ - `privp`: [PHP 8.4] Private property (with set)
+ - `privp`: [PHP 8.4] Private property (with get/set)
+
 ## [0.5.1] - 2024-11-18
 ### Fixed
   - incorrect parameters order at `service`
