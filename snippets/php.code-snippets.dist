@@ -73,7 +73,7 @@
   },
   "PHP constructor": {
     "scope": "php",
-    "prefix": "__",
+    "prefix": ["__", "pubc"],
     "body": [
       "${1|public,protected,private|} function __construct($2)",
       "{",
@@ -84,7 +84,7 @@
   },
   "PHP __invoke function": {
     "scope": "php",
-    "prefix": "inv",
+    "prefix": ["inv", "pubinv"],
     "body": [
       "public function __invoke($1): ${2|$PHP_FUNCTION_RETURN_TYPE|}",
       "{",
@@ -230,7 +230,7 @@
     "description": "PHP Namespace"
   },
   "jsonSerialize Function": {
-    "prefix": "json",
+    "prefix": ["json", "pubjson"],
     "scope": "php",
     "body": [
       "/** @return mixed[] */",
@@ -249,7 +249,7 @@
     "description": "Get current filename"
   },
   "Boolean method": {
-    "prefix": "is",
+    "prefix": ["is", "pubis"],
     "scope": "php",
     "body": [
       "${1|public,protected,private|} function is${2/(.)/${1:/capitalize}/}(): bool",
@@ -327,7 +327,7 @@
   },
   "PHP typed constant": {
     "prefix": "c",
-    "body": "${1|public,private,protected|} ${2|string,int,bool,true,false,null,float,array,iterable|} const ${3/(.*)/${1:/upcase}/} = $4;",
+    "body": "${1|public,private,protected|} const ${2|string,int,bool,true,false,null,float,array,iterable|} ${3/(.*)/${1:/upcase}/} = $4;",
     "scope": "php",
     "description": "PHP typed constant"
   },
@@ -539,5 +539,52 @@
     ],
     "scope": "php",
     "description": "PHP public function test (for unit tests)"
+  },
+  "PHP match expression": {
+    "prefix": "match",
+    "body": [
+      "match ($1) {",
+      "\t$2 => $3,",
+      "\t$4 => $5,",
+      "\tdefault => $6",
+      "}"
+    ],
+    "scope": "php",
+    "description": "PHP match expression"
+  },
+  "PHP match assignment": {
+    "prefix": "matchvar",
+    "body": [
+      "\\$$1 = match ($2) {",
+      "\t$3 => $4,",
+      "\t$5 => $6,",
+      "\tdefault => $7",
+      "};"
+    ],
+    "scope": "php",
+    "description": "PHP match expression with variable assignment"
+  },
+  "PHP match return": {
+    "prefix": "returnmatch",
+    "body": [
+      "return match ($1) {",
+      "\t$2 => $3,",
+      "\t$4 => $5,",
+      "\tdefault => $6",
+      "};"
+    ],
+    "scope": "php",
+    "description": "PHP match expression with return statement"
+  },
+  "Public __toString": {
+    "prefix": ["pubtostring", "tostring"],
+    "scope": "php",
+    "body": [
+      "public function __toString(): string",
+      "{",
+      "\treturn $1;",
+      "}"
+    ],
+    "description": "Public __toString method"
   }
 }
