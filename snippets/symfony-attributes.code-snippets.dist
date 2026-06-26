@@ -1,0 +1,50 @@
+{
+    "Symfony AsCommand Attribute": {
+        "prefix": "asCommand",
+        "scope": "php",
+        "body": "#[AsCommand(name: '${1:app:command}', description: '${2:Command description}')]",
+        "description": "Symfony AsCommand attribute"
+    },
+    "Symfony IsGranted Attribute": {
+        "prefix": "isGranted",
+        "scope": "php",
+        "body": "#[IsGranted('${1:ROLE_USER}')]",
+        "description": "Symfony IsGranted attribute"
+    },
+    "Symfony IsCsrfTokenValid check": {
+        "prefix": "isCsrfTokenValid",
+        "scope": "php",
+        "body": "\\$this->isCsrfTokenValid('${1:token_id}', \\$${2:token})",
+        "description": "Symfony IsCsrfTokenValid check"
+    },
+    "Symfony Autowire Attribute": {
+        "prefix": "autowire",
+        "scope": "php",
+        "body": "#[Autowire(service: '${1:service.id}')]",
+        "description": "Symfony Autowire attribute (service)"
+    },
+    "Symfony Autowire Attribute (param)": {
+        "prefix": "autowireParam",
+        "scope": "php",
+        "body": "#[Autowire(param: '${1:parameter.name}')]",
+        "description": "Symfony Autowire attribute (parameter)"
+    },
+    "Symfony Autowire Attribute (env)": {
+        "prefix": "autowireEnv",
+        "scope": "php",
+        "body": "#[Autowire(env: '${1:ENV_VAR}')]",
+        "description": "Symfony Autowire attribute (environment variable)"
+    },
+    "Symfony When Attribute": {
+        "prefix": "when",
+        "scope": "php",
+        "body": "#[When(env: '${1|prod,dev,test|}')]",
+        "description": "Symfony When attribute"
+    },
+    "Symfony AsTaggedItem Attribute": {
+        "prefix": "asTaggedItem",
+        "scope": "php",
+        "body": "#[AsTaggedItem('${1:tag}', priority: ${2:0})]",
+        "description": "Symfony AsTaggedItem attribute"
+    }
+}

@@ -37,6 +37,15 @@
         "path": "./snippets/symfony.code-snippets"
       },
       {
+        "path": "./snippets/symfony-attributes.code-snippets"
+      },
+      {
+        "path": "./snippets/symfony-messenger.code-snippets"
+      },
+      {
+        "path": "./snippets/symfony-scheduler.code-snippets"
+      },
+      {
         "path": "./snippets/symfony-doctrine.code-snippets"
       }
     ]

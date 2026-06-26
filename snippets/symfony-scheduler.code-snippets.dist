@@ -1,0 +1,55 @@
+{
+    "Symfony Scheduler Cron Task (AsCronTask)": {
+        "prefix": "cronTask",
+        "body": [
+            "<?php\n",
+            "namespace ${3:$CUSTOM_NAMESPACE_REGEX};\n",
+            "use Symfony\\Component\\Scheduler\\Attribute\\AsCronTask;\n",
+            "#[AsCronTask('${4:0 0 * * *}')]",
+            "class ${5:$TM_FILENAME_BASE}",
+            "{",
+            "\tpublic function __invoke(): void",
+            "\t{",
+            "\t\t$6",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Scheduler Cron Task (AsCronTask)"
+    },
+    "Symfony Scheduler Periodic Task (AsPeriodicTask)": {
+        "prefix": "periodicTask",
+        "body": [
+            "<?php\n",
+            "namespace ${3:$CUSTOM_NAMESPACE_REGEX};\n",
+            "use Symfony\\Component\\Scheduler\\Attribute\\AsPeriodicTask;\n",
+            "#[AsPeriodicTask(frequency: '${4:1 day}')]",
+            "class ${5:$TM_FILENAME_BASE}",
+            "{",
+            "\tpublic function __invoke(): void",
+            "\t{",
+            "\t\t$6",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Scheduler Periodic Task (AsPeriodicTask)"
+    },
+    "Symfony Scheduler Schedule Provider (AsSchedule)": {
+        "prefix": "scheduleProvider",
+        "body": [
+            "<?php\n",
+            "namespace ${3:$CUSTOM_NAMESPACE_REGEX};\n",
+            "use Symfony\\Component\\Scheduler\\Attribute\\AsSchedule;",
+            "use Symfony\\Component\\Scheduler\\Schedule;",
+            "use Symfony\\Component\\Scheduler\\ScheduleProviderInterface;\n",
+            "#[AsSchedule('${4:default}')]",
+            "class ${5:$TM_FILENAME_BASE} implements ScheduleProviderInterface",
+            "{",
+            "\tpublic function getSchedule(): Schedule",
+            "\t{",
+            "\t\treturn new Schedule();",
+            "\t}",
+            "}"
+        ],
+        "description": "Symfony Scheduler Schedule Provider (AsSchedule)"
+    }
+}

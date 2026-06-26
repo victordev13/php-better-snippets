@@ -116,6 +116,19 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `command`: Symfony Console Command (Symfony ^6.4)
  - `command`: Symfony Console Command (Symfony from 5.X to 6.3)
  - `command`: Symfony Console Command (Symfony old versions)
+ - `asCommand`: Symfony AsCommand attribute
+ - `asMessageHandler`: Symfony Messenger AsMessageHandler attribute
+ - `asMessage`: Symfony Messenger AsMessage attribute
+ - `message`: Symfony Messenger Message class (readonly)
+ - `messageHandler`: Symfony Messenger Message Handler class
+ - `cronTask`: Symfony Scheduler AsCronTask
+ - `periodicTask`: Symfony Scheduler AsPeriodicTask
+ - `scheduleProvider`: Symfony Scheduler Schedule Provider (AsSchedule)
+ - `isGranted`: Symfony Security IsGranted attribute
+ - `isCsrfTokenValid`: Symfony Security IsCsrfTokenValid attribute
+ - `autowire`: Symfony DI Autowire attribute
+ - `when`: Symfony DI When attribute
+ - `asTaggedItem`: Symfony DI AsTaggedItem attribute
  - `embedded`: Embedded (annotations)
  - `embedded`: Embedded (attributes)
  - `embeddable`: Embeddable (annotations)
