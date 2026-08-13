@@ -8,6 +8,10 @@ This extension provides code snippets and boilerplates for PHP and Symfony frame
 
 The snippets follow the fluent interfaces and Type declarations standard.
 
+## Extension Settings
+
+- `phpBetterSnippets.enableSymfonySnippets` (boolean, default `true`): controls whether the Symfony-related snippets (controllers, Doctrine, Messenger, Scheduler, Symfony attributes) are suggested. Set it to `false` if you only work with plain PHP projects and want a shorter suggestion list.
+
 ### PHP Snippets:
 
  - `php`: PHP open tag

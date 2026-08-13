@@ -6,12 +6,21 @@ import symfonyDoctrine from '../snippets/symfony-doctrine.snippets.json';
 import symfonyMessenger from '../snippets/symfony-messenger.snippets.json';
 import symfonyScheduler from '../snippets/symfony-scheduler.snippets.json';
 
+export type SnippetArea = 'php' | 'symfony';
+
 export interface SnippetDefinition {
   name: string;
   prefix: string | string[];
   body: string[];
   description: string;
   scope?: string;
+  area: SnippetArea;
+}
+
+type RawSnippetDefinition = Omit<SnippetDefinition, 'area'>;
+
+function withArea(definitions: RawSnippetDefinition[], area: SnippetArea): SnippetDefinition[] {
+  return definitions.map((definition) => ({ ...definition, area }));
 }
 
 /**
@@ -31,11 +40,11 @@ export const NAMESPACE_MARKER_PATTERN = /\$\{(\d+):\$PHP_RESOLVED_NAMESPACE\}/g;
  * adicionar/editar um snippet, edite o `.snippets.json` correspondente — não este arquivo.
  */
 export const snippets: SnippetDefinition[] = [
-  ...(php as SnippetDefinition[]),
-  ...(php84 as SnippetDefinition[]),
-  ...(symfony as SnippetDefinition[]),
-  ...(symfonyAttributes as SnippetDefinition[]),
-  ...(symfonyDoctrine as SnippetDefinition[]),
-  ...(symfonyMessenger as SnippetDefinition[]),
-  ...(symfonyScheduler as SnippetDefinition[])
+  ...withArea(php as RawSnippetDefinition[], 'php'),
+  ...withArea(php84 as RawSnippetDefinition[], 'php'),
+  ...withArea(symfony as RawSnippetDefinition[], 'symfony'),
+  ...withArea(symfonyAttributes as RawSnippetDefinition[], 'symfony'),
+  ...withArea(symfonyDoctrine as RawSnippetDefinition[], 'symfony'),
+  ...withArea(symfonyMessenger as RawSnippetDefinition[], 'symfony'),
+  ...withArea(symfonyScheduler as RawSnippetDefinition[], 'symfony')
 ];

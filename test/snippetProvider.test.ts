@@ -1,6 +1,6 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { TextDocument } from 'vscode';
-import { Uri } from 'vscode';
+import { Uri, workspace } from 'vscode';
 import customVariables from '../custom-variables.json';
 import { snippets } from '../src/snippets';
 
@@ -12,6 +12,13 @@ import { resolveNamespace } from '../src/namespaceResolver';
 import { PhpSnippetProvider } from '../src/snippetProvider';
 
 const mockedResolveNamespace = vi.mocked(resolveNamespace);
+const mockedGetConfiguration = vi.mocked(workspace.getConfiguration);
+
+function stubConfig(overrides: Record<string, unknown> = {}): void {
+  mockedGetConfiguration.mockReturnValue({
+    get: (key: string, defaultValue?: unknown) => (key in overrides ? overrides[key] : defaultValue)
+  } as never);
+}
 
 function fakeDocument(): TextDocument {
   return { uri: Uri.file('/workspace/src/Service/Foo.php') } as unknown as TextDocument;
@@ -35,8 +42,13 @@ function namespaceTabstopOf(prefix: string): string {
 }
 
 describe('PhpSnippetProvider', () => {
+  beforeEach(() => {
+    stubConfig();
+  });
+
   afterEach(() => {
     mockedResolveNamespace.mockReset();
+    mockedGetConfiguration.mockReset();
   });
 
   it('produces one completion item per prefix across all snippet definitions', () => {
@@ -116,5 +128,28 @@ describe('PhpSnippetProvider', () => {
     for (const prefix of multiPrefixDefinition!.prefix as string[]) {
       expect(items.some((i) => i.filterText === prefix)).toBe(true);
     }
+  });
+
+  it('omits Symfony snippets when phpBetterSnippets.enableSymfonySnippets is false', () => {
+    stubConfig({ enableSymfonySnippets: false });
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+
+    const expectedCount = snippets
+      .filter((d) => d.area === 'php')
+      .reduce((sum, d) => sum + (Array.isArray(d.prefix) ? d.prefix.length : 1), 0);
+    expect(items.length).toBe(expectedCount);
+    expect(items.some((i) => i.filterText === 'controller')).toBe(false);
+    expect(items.some((i) => i.filterText === 'phpc')).toBe(true);
+  });
+
+  it('keeps Symfony snippets when phpBetterSnippets.enableSymfonySnippets is true (default)', () => {
+    stubConfig({ enableSymfonySnippets: true });
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+
+    expect(items.some((i) => i.filterText === 'controller')).toBe(true);
   });
 });

@@ -29,6 +29,18 @@
   "activationEvents": [
     "onLanguage:php"
   ],
+  "contributes": {
+    "configuration": {
+      "title": "PHP Better Snippets",
+      "properties": {
+        "phpBetterSnippets.enableSymfonySnippets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Symfony-related snippets (controllers, Doctrine, Messenger, Scheduler, attributes, etc.). Disable this if you only work with plain PHP projects."
+        }
+      }
+    }
+  },
   "scripts": {
     "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node16",
     "watch": "npm run compile -- --watch",

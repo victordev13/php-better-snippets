@@ -36,5 +36,6 @@ export class SnippetString {
 }
 
 export const workspace = {
-  getWorkspaceFolder: vi.fn()
+  getWorkspaceFolder: vi.fn(),
+  getConfiguration: vi.fn()
 };

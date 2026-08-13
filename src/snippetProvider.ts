@@ -42,9 +42,16 @@ function buildCompletionItem(
 export class PhpSnippetProvider implements vscode.CompletionItemProvider {
   provideCompletionItems(document: vscode.TextDocument): vscode.CompletionItem[] {
     const namespace = resolveNamespace(document.uri);
+    const symfonySnippetsEnabled = vscode.workspace
+      .getConfiguration('phpBetterSnippets')
+      .get<boolean>('enableSymfonySnippets', true);
     const items: vscode.CompletionItem[] = [];
 
     for (const definition of snippets) {
+      if (definition.area === 'symfony' && !symfonySnippetsEnabled) {
+        continue;
+      }
+
       const prefixes = Array.isArray(definition.prefix) ? definition.prefix : [definition.prefix];
       for (const prefix of prefixes) {
         items.push(buildCompletionItem(definition, prefix, namespace));
