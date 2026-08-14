@@ -73,18 +73,18 @@ function loadPsr4Rules(composerJsonPath: string): Psr4Rule[] {
     composerCache.set(composerJsonPath, { mtimeMs: stat.mtimeMs, rules });
     return rules;
   } catch {
-    // composer.json inexistente, ilegível ou inválido: trata stat/leitura/parse
-    // como um único domínio de falha e não resolve nenhuma regra.
+    // Missing, unreadable, or invalid composer.json: treats stat/read/parse
+    // as a single failure domain and resolves no rules.
     return [];
   }
 }
 
 /**
- * Resolve o namespace PHP real do diretório de um arquivo, com base no
- * mapeamento PSR-4 (autoload/autoload-dev) do composer.json mais próximo.
- * Retorna undefined se não houver composer.json ou nenhuma entrada PSR-4
- * cobrir o arquivo — quem chama decide o que fazer nesse caso (ex.: deixar
- * o tab-stop vazio para edição manual).
+ * Resolves the real PHP namespace for a file's directory, based on the
+ * PSR-4 mapping (autoload/autoload-dev) of the nearest composer.json.
+ * Returns undefined if there's no composer.json or no PSR-4 entry covers
+ * the file — the caller decides what to do in that case (e.g. leaving
+ * the tab-stop empty for manual editing).
  */
 export function resolveNamespace(fileUri: vscode.Uri): string | undefined {
   if (fileUri.scheme !== 'file') {

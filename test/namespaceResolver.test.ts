@@ -25,8 +25,8 @@ describe('resolveNamespace', () => {
 
   beforeEach(() => {
     root = fs.mkdtempSync(path.join(os.tmpdir(), 'pbs-namespace-'));
-    // Limita a subida de diretórios ao próprio tmpdir de teste, para não
-    // acidentalmente encontrar um composer.json real na máquina.
+    // Bounds the directory walk-up to the test's own tmpdir, so it doesn't
+    // accidentally find a real composer.json on the machine.
     vi.mocked(workspace.getWorkspaceFolder).mockReturnValue({ uri: Uri.file(root) } as never);
   });
 
@@ -117,9 +117,9 @@ describe('resolveNamespace', () => {
     expect(resolveNamespace(file)).toBe('App\\Service');
 
     writeComposerJson(root, { autoload: { 'psr-4': { 'Renamed\\': 'src/' } } });
-    // Sem invalidar, o cache (por mtime) pode ou não já ter percebido a
-    // mudança dependendo da resolução do relógio do FS — força a invalidação
-    // explícita, que é o caminho usado pelo FileSystemWatcher em produção.
+    // Without invalidating, the mtime-based cache may or may not have
+    // already noticed the change depending on the FS clock resolution —
+    // force explicit invalidation, the path used by FileSystemWatcher in production.
     invalidateComposerCache(path.join(root, 'composer.json'));
 
     expect(resolveNamespace(file)).toBe('Renamed\\Service');

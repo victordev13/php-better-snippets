@@ -24,18 +24,18 @@ function withArea(definitions: RawSnippetDefinition[], area: SnippetArea): Snipp
 }
 
 /**
- * Marcador presente no body de snippets que geram `namespace`.
- * O namespace é sempre auto-preenchido pelo provider a partir do
- * composer.json/PSR-4 (ou deixado como string vazia se não resolver), então
- * o cursor nunca deve parar nele. Snippets sem este marcador passam pelo
- * provider sem qualquer alteração de namespace.
+ * Marker present in the body of snippets that generate `namespace`.
+ * The namespace is always auto-filled by the provider from
+ * composer.json/PSR-4 (or left as an empty string if it can't be resolved),
+ * so the cursor should never stop on it. Snippets without this marker go
+ * through the provider without any namespace substitution.
  */
 export const NAMESPACE_MARKER = '$PHP_RESOLVED_NAMESPACE';
 
 /**
- * Única fonte de verdade de todos os snippets da extensão, um arquivo JSON por área
- * em `snippets/` (mesma divisão dos antigos `snippets/*.code-snippets`). Para
- * adicionar/editar um snippet, edite o `.snippets.json` correspondente — não este arquivo.
+ * Single source of truth for all of the extension's snippets, one JSON file per
+ * area in `snippets/` (same split as the former `snippets/*.code-snippets`). To
+ * add/edit a snippet, edit the matching `.snippets.json` — not this file.
  */
 export const snippets: SnippetDefinition[] = [
   ...withArea(php as RawSnippetDefinition[], 'php'),
