@@ -64,9 +64,11 @@
     "body": [
       "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} \\$${1/(.)/${1:/downcase}/}): self",
       "{",
-      "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
+      "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};",
+      "",
       "\treturn \\$this;",
-      "}\n"
+      "}",
+      ""
     ],
     "description": "Property Setter",
     "scope": "php"
@@ -89,9 +91,11 @@
     "body": [
       "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} $${1/(.)/${1:/downcase}/}): self",
       "{",
-      "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};\n",
+      "\t\\$this->${1/(.)/${1:/downcase}/} = \\$${1/(.)/${1:/downcase}/};",
+      "",
       "\treturn \\$this;",
-      "}\n",
+      "}",
+      "",
       "public function get${1/(.)/${1:/capitalize}/}(): ${2|$PHP_VARIABLE_TYPE|}",
       "{",
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
@@ -118,9 +122,11 @@
     "body": [
       "public function set${1/(.)/${1:/capitalize}/}(${2|$PHP_VARIABLE_TYPE|} $${1/(.)/${1:/downcase}/}): self",
       "{",
-      "\t\\$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};\n",
+      "\t\\$this->${1/(.)/${1:/downcase}/} = $${1/(.)/${1:/downcase}/};",
+      "",
       "\treturn \\$this;",
-      "}\n",
+      "}",
+      "",
       "public function $1(): ${2|$PHP_VARIABLE_TYPE|}",
       "{",
       "\treturn \\$this->${1/(.)/${1:/downcase}/};",
@@ -222,7 +228,9 @@
       "${1|public,protected,private|} function is${2/(.)/${1:/capitalize}/}(): bool",
       "{",
       "\treturn $3;",
-      "}\n\n"
+      "}",
+      "",
+      ""
     ],
     "description": "PHP function to return boolean if is something",
     "scope": "php"

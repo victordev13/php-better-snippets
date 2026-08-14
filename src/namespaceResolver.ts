@@ -41,14 +41,14 @@ function findNearestComposerJson(fileDir: string, boundary: string): string | un
 }
 
 function loadPsr4Rules(composerJsonPath: string): Psr4Rule[] {
-  const stat = fs.statSync(composerJsonPath);
-  const cached = composerCache.get(composerJsonPath);
-  if (cached && cached.mtimeMs === stat.mtimeMs) {
-    return cached.rules;
-  }
-
-  const rules: Psr4Rule[] = [];
   try {
+    const stat = fs.statSync(composerJsonPath);
+    const cached = composerCache.get(composerJsonPath);
+    if (cached && cached.mtimeMs === stat.mtimeMs) {
+      return cached.rules;
+    }
+
+    const rules: Psr4Rule[] = [];
     const raw = fs.readFileSync(composerJsonPath, 'utf8');
     const json = JSON.parse(raw);
     const composerDir = path.dirname(composerJsonPath);
@@ -69,12 +69,14 @@ function loadPsr4Rules(composerJsonPath: string): Psr4Rule[] {
         }
       }
     }
-  } catch {
-    // composer.json inválido ou ilegível: nenhuma regra resolvida.
-  }
 
-  composerCache.set(composerJsonPath, { mtimeMs: stat.mtimeMs, rules });
-  return rules;
+    composerCache.set(composerJsonPath, { mtimeMs: stat.mtimeMs, rules });
+    return rules;
+  } catch {
+    // composer.json inexistente, ilegível ou inválido: trata stat/leitura/parse
+    // como um único domínio de falha e não resolve nenhuma regra.
+    return [];
+  }
 }
 
 /**
@@ -107,7 +109,14 @@ export function resolveNamespace(fileUri: vscode.Uri): string | undefined {
   let best: Psr4Rule | undefined;
   for (const rule of rules) {
     const isAncestor = fileDir === rule.baseDir || fileDir.startsWith(rule.baseDir + path.sep);
-    if (isAncestor && (!best || rule.baseDir.length > best.baseDir.length)) {
+    if (!isAncestor) {
+      continue;
+    }
+    if (
+      !best ||
+      rule.baseDir.length > best.baseDir.length ||
+      (rule.baseDir.length === best.baseDir.length && rule.prefix.length > best.prefix.length)
+    ) {
       best = rule;
     }
   }

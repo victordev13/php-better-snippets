@@ -3,7 +3,7 @@
     "name": "Symfony Route attribute",
     "prefix": "route",
     "body": [
-      "#[Route('$1', name '$2', methods: '${3|GET,POST,PUT,DELETE,PATCH|}')]"
+      "#[Route('$1', name: '$2', methods: ['${3|GET,POST,PUT,DELETE,PATCH|}'])]"
     ],
     "description": "Symfony Route attribute",
     "scope": "php"
@@ -12,7 +12,7 @@
     "name": "Symfony Route annotation",
     "prefix": "route",
     "body": [
-      "/** @Route(path=\"$3\", name=\"$4\", methods=\"${5|GET,POST,PUT,DELETE,PATCH|}\") */"
+      "/** @Route(path=\"$1\", name=\"$2\", methods={\"${3|GET,POST,PUT,DELETE,PATCH|}\"}) */"
     ],
     "description": "Symfony Route annotation",
     "scope": "php"
