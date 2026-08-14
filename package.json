@@ -33,7 +33,7 @@
     "configuration": {
       "title": "PHP Better Snippets",
       "properties": {
-        "phpBetterSnippets.enableSymfonySnippets": {
+        "php-better-snippets.enable-symfony-snippets": {
           "type": "boolean",
           "default": true,
           "description": "Enable Symfony-related snippets (controllers, Doctrine, Messenger, Scheduler, attributes, etc.). Disable this if you only work with plain PHP projects."

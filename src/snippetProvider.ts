@@ -44,8 +44,8 @@ export class PhpSnippetProvider implements vscode.CompletionItemProvider {
   provideCompletionItems(document: vscode.TextDocument): vscode.CompletionItem[] {
     const namespace = resolveNamespace(document.uri);
     const symfonySnippetsEnabled = vscode.workspace
-      .getConfiguration('phpBetterSnippets')
-      .get<boolean>('enableSymfonySnippets', true);
+      .getConfiguration('php-better-snippets')
+      .get<boolean>('enable-symfony-snippets', true);
     const items: vscode.CompletionItem[] = [];
 
     for (const definition of snippets) {

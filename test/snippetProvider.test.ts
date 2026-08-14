@@ -124,8 +124,8 @@ describe('PhpSnippetProvider', () => {
     }
   });
 
-  it('omits Symfony snippets when phpBetterSnippets.enableSymfonySnippets is false', () => {
-    stubConfig({ enableSymfonySnippets: false });
+  it('omits Symfony snippets when php-better-snippets.enable-symfony-snippets is false', () => {
+    stubConfig({ 'enable-symfony-snippets': false });
     mockedResolveNamespace.mockReturnValue(undefined);
 
     const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
@@ -138,8 +138,8 @@ describe('PhpSnippetProvider', () => {
     expect(items.some((i) => i.filterText === 'phpc')).toBe(true);
   });
 
-  it('keeps Symfony snippets when phpBetterSnippets.enableSymfonySnippets is true (default)', () => {
-    stubConfig({ enableSymfonySnippets: true });
+  it('keeps Symfony snippets when php-better-snippets.enable-symfony-snippets is true (default)', () => {
+    stubConfig({ 'enable-symfony-snippets': true });
     mockedResolveNamespace.mockReturnValue(undefined);
 
     const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
