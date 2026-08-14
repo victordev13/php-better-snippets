@@ -1,6 +1,8 @@
 .vscode/**
 .vscode-test/**
+.claude/**
 .gitignore
+CLAUDE.md
 vsc-extension-quickstart.md
 src/**
 snippets/**
