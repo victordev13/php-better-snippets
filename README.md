@@ -31,7 +31,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
  - `prf`: Private function
  - `json` / `pubjson`: `jsonSerialize` function
  - `fname`: Current filename
- - `is` / `pubis`: Boolean method
+ - `is`: Boolean method
  - `pv`: Private property (old)
  - `pp`: Public property (old)
  - `pvr`: Private readonly property (old)

@@ -221,8 +221,7 @@
   {
     "name": "Boolean method",
     "prefix": [
-      "is",
-      "pubis"
+      "is"
     ],
     "body": [
       "${1|public,protected,private|} function is${2/(.)/${1:/capitalize}/}(): bool",
