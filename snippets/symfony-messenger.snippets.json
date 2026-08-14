@@ -23,7 +23,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${4:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "readonly class ${3:$TM_FILENAME_BASE}",
       "{",
@@ -41,7 +41,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${5:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "use Symfony\\Component\\Messenger\\Attribute\\AsMessageHandler;",
       "use ${2:App\\\\Message\\\\Message};",

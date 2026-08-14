@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import customVariables from '../custom-variables.json';
-import { snippets, NAMESPACE_MARKER_PATTERN, SnippetDefinition } from './snippets';
+import { snippets, NAMESPACE_MARKER, SnippetDefinition } from './snippets';
 import { resolveNamespace } from './namespaceResolver';
 
 const SUBSTITUTABLE_VARIABLES = ['PHP_VARIABLE_TYPE', 'PHP_FUNCTION_RETURN_TYPE', 'PHP_POSSIBLE_EXCEPTIONS'] as const;
@@ -19,9 +19,10 @@ function buildSnippetText(definition: SnippetDefinition, namespace: string | und
     }
   }
 
-  text = text.replace(NAMESPACE_MARKER_PATTERN, (_match, tabstopNum: string) =>
-    namespace !== undefined ? `\${${tabstopNum}:${escapeSnippetDefaultText(namespace)}}` : `$${tabstopNum}`
-  );
+  if (text.includes(NAMESPACE_MARKER)) {
+    const replacement = namespace !== undefined ? escapeSnippetDefaultText(namespace) : '';
+    text = text.split(NAMESPACE_MARKER).join(replacement);
+  }
 
   return text;
 }

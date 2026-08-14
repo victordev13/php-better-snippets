@@ -24,15 +24,13 @@ function withArea(definitions: RawSnippetDefinition[], area: SnippetArea): Snipp
 }
 
 /**
- * Marcador presente no body de snippets que geram `namespace`, sempre como o
- * tabstop de maior número do snippet (o namespace é auto-preenchido, então não deve
- * ser o primeiro foco ao expandir — os demais parâmetros vêm antes). O número varia
- * por snippet, por isso o marcador é uma regex que captura esse número; o provider
- * resolve o namespace real via composer.json/PSR-4 e substitui o marcador por um
- * placeholder no mesmo tabstop (ou o deixa vazio se não resolver). Snippets sem este
- * marcador passam pelo provider sem qualquer alteração de namespace.
+ * Marcador presente no body de snippets que geram `namespace`.
+ * O namespace é sempre auto-preenchido pelo provider a partir do
+ * composer.json/PSR-4 (ou deixado como string vazia se não resolver), então
+ * o cursor nunca deve parar nele. Snippets sem este marcador passam pelo
+ * provider sem qualquer alteração de namespace.
  */
-export const NAMESPACE_MARKER_PATTERN = /\$\{(\d+):\$PHP_RESOLVED_NAMESPACE\}/g;
+export const NAMESPACE_MARKER = '$PHP_RESOLVED_NAMESPACE';
 
 /**
  * Única fonte de verdade de todos os snippets da extensão, um arquivo JSON por área

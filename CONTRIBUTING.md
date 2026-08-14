@@ -43,9 +43,9 @@ The currently available variables are:
 
 ## Dynamic namespace
 
-Any snippet body containing a marker of the form `${N:$PHP_RESOLVED_NAMESPACE}` (matched at completion time via `NAMESPACE_MARKER_PATTERN` in `src/snippets.ts`) has that marker replaced by the real namespace of the target file, resolved from the project's `composer.json` PSR-4/`autoload-dev` PSR-4 mappings (`src/namespaceResolver.ts`). If no `composer.json` is found or no PSR-4 entry covers the file, the tab-stop is left empty for manual editing — there is no fallback to a folder-based heuristic. Snippets without this marker are unaffected by namespace resolution.
+Any snippet body containing the literal text `$PHP_RESOLVED_NAMESPACE` (the `NAMESPACE_MARKER` constant in `src/snippets.ts`) has every occurrence replaced by the real namespace of the target file, resolved from the project's `composer.json` PSR-4/`autoload-dev` PSR-4 mappings (`src/namespaceResolver.ts`). If no `composer.json` is found or no PSR-4 entry covers the file, the marker is replaced with an empty string for manual editing — there is no fallback to a folder-based heuristic. Snippets without this marker are unaffected by namespace resolution.
 
-Since the namespace is auto-filled, it should never be the first thing the cursor lands on. The marker's tabstop number (`N`) must always be the **highest** number used in that snippet's body — number every other tabstop `$1`, `$2`, ... in the order they should be filled, and put the namespace marker last. For example, a snippet with a class name and a body placeholder uses `${1:$TM_FILENAME_BASE}` / `$2` for those, and `${3:$PHP_RESOLVED_NAMESPACE}` for the namespace, even though the `namespace` line appears earlier in the generated code — tabstop order follows the numbers, not the text position.
+The marker is **not** a tabstop, so the cursor never lands on the namespace — write it as plain text (`$PHP_RESOLVED_NAMESPACE`, no `${N:...}` wrapper). Number the snippet's other tabstops (`$1`, `$2`, ...) in the order they should be filled, without reserving a number for the namespace at all.
 
 ## Tests
 

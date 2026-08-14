@@ -163,7 +163,7 @@ The namespace is dynamically resolved at runtime based on the project's `compose
 
 If no `composer.json` exists or no PSR-4 entry covers the file, the namespace field in the snippet is left empty for manual editing — there is no fallback to folder-based heuristics.
 
-Since the namespace is filled in automatically, it's never where the cursor lands first when a snippet expands — it's always the last tab stop, after every other parameter (class name, method body, etc.), so you can just start typing.
+Since the namespace is filled in automatically, the cursor never stops there when a snippet expands — it's inserted as plain text (or left empty, for manual editing, when it can't be resolved), so tabbing through the snippet only visits the parameters you actually need to fill in (class name, method body, etc.).
 
 ## Release notes:
 See [./CHANGELOG.md](./CHANGELOG.md)

@@ -605,7 +605,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "class ${1:$TM_FILENAME_BASE}",
       "{",
@@ -621,7 +621,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "readonly class ${1:$TM_FILENAME_BASE}",
       "{",
@@ -637,7 +637,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "final class ${1:$TM_FILENAME_BASE}",
       "{",
@@ -653,7 +653,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "abstract class ${1:$TM_FILENAME_BASE}",
       "{",
@@ -669,7 +669,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "trait ${1:$TM_FILENAME_BASE}",
       "{",
@@ -685,7 +685,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${4:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "class ${1:$TM_FILENAME_BASE}",
       "{",
@@ -701,7 +701,7 @@
     "prefix": "name",
     "scope": "php",
     "body": [
-      "namespace ${1:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       ""
     ],
     "description": "PHP Namespace"
@@ -712,7 +712,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "interface ${1:$TM_FILENAME_BASE}",
       "{",
@@ -728,7 +728,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "enum ${1:$TM_FILENAME_BASE}",
       "{",
@@ -744,7 +744,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${4:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "enum ${1:$TM_FILENAME_BASE}: ${2|string,int|}",
       "{",
@@ -760,7 +760,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${4:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "class ${1:$TM_FILENAME_BASE} extends ${2|$PHP_POSSIBLE_EXCEPTIONS|}",
       "{",

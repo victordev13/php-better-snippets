@@ -156,7 +156,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "use Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository;",
       "use Doctrine\\Persistence\\ManagerRegistry;",
@@ -184,7 +184,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "use Doctrine\\ORM\\Mapping as ORM;",
       "",
@@ -202,7 +202,7 @@
     "body": [
       "<?php",
       "",
-      "namespace ${3:$PHP_RESOLVED_NAMESPACE};",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
       "",
       "use Doctrine\\ORM\\Mapping as ORM;",
       "",
