@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { TextDocument } from 'vscode';
-import { Uri, workspace } from 'vscode';
+import { Position, Range, Uri, workspace } from 'vscode';
 import customVariables from '../custom-variables.json';
 import { snippets } from '../src/snippets';
 
@@ -20,8 +20,14 @@ function stubConfig(overrides: Record<string, unknown> = {}): void {
   } as never);
 }
 
+const fakePosition = new Position(3, 2);
+const fakeWordRange = new Range(new Position(3, 0), new Position(3, 2));
+
 function fakeDocument(): TextDocument {
-  return { uri: Uri.file('/workspace/src/Service/Foo.php') } as unknown as TextDocument;
+  return {
+    uri: Uri.file('/workspace/src/Service/Foo.php'),
+    getWordRangeAtPosition: () => fakeWordRange
+  } as unknown as TextDocument;
 }
 
 function findDefinition(prefix: string) {
@@ -53,7 +59,7 @@ describe('PhpSnippetProvider', () => {
     );
     mockedResolveNamespace.mockReturnValue(undefined);
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
 
     expect(items.length).toBe(expectedCount);
   });
@@ -61,7 +67,7 @@ describe('PhpSnippetProvider', () => {
   it('fills the namespace with the resolved namespace, escaped, as plain text (no tabstop)', () => {
     mockedResolveNamespace.mockReturnValue('App\\Service');
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
     const item = items.find((i) => i.filterText === 'phpc')!;
     const text = (item.insertText as { value: string }).value;
 
@@ -72,7 +78,7 @@ describe('PhpSnippetProvider', () => {
   it('leaves the namespace empty, with no tabstop, when it cannot be resolved', () => {
     mockedResolveNamespace.mockReturnValue(undefined);
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
     const item = items.find((i) => i.filterText === 'phpc')!;
     const text = (item.insertText as { value: string }).value;
 
@@ -84,7 +90,7 @@ describe('PhpSnippetProvider', () => {
     expect(hasNamespaceMarker('service')).toBe(true);
     mockedResolveNamespace.mockReturnValue('App\\Service');
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
     const item = items.find((i) => i.filterText === 'service')!;
     const text = (item.insertText as { value: string }).value;
 
@@ -95,7 +101,7 @@ describe('PhpSnippetProvider', () => {
   it('substitutes custom variables from custom-variables.json', () => {
     mockedResolveNamespace.mockReturnValue(undefined);
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
     const item = items.find((i) => i.filterText === 'service')!;
     const text = (item.insertText as { value: string }).value;
 
@@ -103,10 +109,19 @@ describe('PhpSnippetProvider', () => {
     expect(text).not.toContain('$PHP_FUNCTION_RETURN_TYPE');
   });
 
+  it('sets each item range to the word being typed, so only the prefix gets replaced', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
+    const item = items.find((i) => i.filterText === 'get')!;
+
+    expect(item.range).toBe(fakeWordRange);
+  });
+
   it('leaves snippets without the namespace marker untouched', () => {
     mockedResolveNamespace.mockReturnValue('App\\Service');
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
     const item = items.find((i) => i.filterText === 'php')!;
     const text = (item.insertText as { value: string }).value;
 
@@ -118,7 +133,7 @@ describe('PhpSnippetProvider', () => {
     const multiPrefixDefinition = snippets.find((d) => Array.isArray(d.prefix) && d.prefix.length > 1);
     expect(multiPrefixDefinition).toBeDefined();
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
     for (const prefix of multiPrefixDefinition!.prefix as string[]) {
       expect(items.some((i) => i.filterText === prefix)).toBe(true);
     }
@@ -128,7 +143,7 @@ describe('PhpSnippetProvider', () => {
     stubConfig({ 'enable-symfony-snippets': false });
     mockedResolveNamespace.mockReturnValue(undefined);
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
 
     const expectedCount = snippets
       .filter((d) => d.area === 'php')
@@ -142,7 +157,7 @@ describe('PhpSnippetProvider', () => {
     stubConfig({ 'enable-symfony-snippets': true });
     mockedResolveNamespace.mockReturnValue(undefined);
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument());
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
 
     expect(items.some((i) => i.filterText === 'controller')).toBe(true);
   });

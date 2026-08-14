@@ -15,11 +15,26 @@ export enum CompletionItemKind {
   Snippet = 27
 }
 
+export class Position {
+  constructor(
+    public readonly line: number,
+    public readonly character: number
+  ) {}
+}
+
+export class Range {
+  constructor(
+    public readonly start: Position,
+    public readonly end: Position
+  ) {}
+}
+
 export class CompletionItem {
   detail?: string;
   insertText?: unknown;
   filterText?: string;
   sortText?: string;
+  range?: Range;
 
   constructor(
     public label: string,
