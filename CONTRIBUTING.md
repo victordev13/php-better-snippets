@@ -19,6 +19,21 @@ npm run publish:pre-release    # publish as a pre-release
 
 Press `F5` in VS Code to open an Extension Development Host and try out the snippets live (`.vscode/launch.json` already runs `vscode:prepublish` as a `preLaunchTask`).
 
+A `Makefile` wraps the same commands under shorter, memorable targets (`make build`, `make test`, `make watch`, ...) — use whichever you prefer.
+
+## Releasing
+
+`scripts/release.js` (invoked via `npm run release -- <bump>` or `make release-patch` / `make release-minor` / `make release-major` / `make release VERSION=x.y.z`) automates a release:
+
+1. Bumps `package.json`'s `version` (accepts `patch`, `minor`, `major`, or an explicit `x.y.z`).
+2. Moves the `## [Unreleased]` section of `CHANGELOG.md` under a new `## [x.y.z] - YYYY-MM-DD` heading, resetting `Unreleased` to empty. The `Unreleased` section must already contain your entries — the script aborts if it's empty or missing.
+3. Runs `tsc --noEmit`, the test suite, and `npm run compile` to make sure the release actually builds.
+4. Commits `package.json`, `package-lock.json`, and `CHANGELOG.md`, and creates a `vX.Y.Z` git tag.
+
+It refuses to run on a dirty working tree (unless you pass `--no-git`, which skips the commit/tag and only touches the files). It never pushes or publishes — after it finishes, push manually (`git push && git push origin vX.Y.Z`) and run `npm run pack`/`npm run publish` when you're ready.
+
+So before releasing: add your changes under `## [Unreleased]` in `CHANGELOG.md` as you go, then run `npm run release -- patch` (or `minor`/`major`) when you're ready to cut a version.
+
 ## Adding or editing a snippet
 
 Snippets live in `snippets/*.snippets.json`, one file per area:

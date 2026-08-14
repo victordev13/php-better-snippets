@@ -30,7 +30,10 @@ npm run vscode:prepublish      # roda compile (dispara automaticamente antes de 
 npm run pack                   # gera o pacote .vsix (vsce package)
 npm run publish                # empacota e publica no Marketplace
 npm run publish:pre-release    # publica como pre-release
+npm run release -- patch       # bump de versão + CHANGELOG.md + build + commit/tag (ver scripts/release.js)
 ```
+
+Um `Makefile` na raiz espelha esses comandos em alvos curtos (`make build`, `make test`, `make release-patch`, `make release VERSION=x.y.z`, etc.), puramente como atalho — a lógica real fica nos scripts `npm`.
 
 Suíte de testes unitários com **vitest** em `test/`: `namespaceResolver.test.ts` (resolução PSR-4, monorepo, cache por mtime e invalidação) e `snippetProvider.test.ts` (substituição de custom-variables, substituição/omissão do marcador de namespace, snippets sem marcador, toggle de `enableSymfonySnippets`). Como `vscode` não existe como módulo real em runtime Node, `vitest.config.ts` faz alias de `vscode` para `test/mocks/vscode.ts` (mock mínimo de `Uri`, `CompletionItem`, `SnippetString`, `workspace.getWorkspaceFolder`, `workspace.getConfiguration`). Além disso, testar manualmente: F5 no VS Code (`.vscode/launch.json` já roda `vscode:prepublish` como `preLaunchTask`) abre uma janela de Extension Development Host.
 
@@ -44,4 +47,4 @@ Suíte de testes unitários com **vitest** em `test/`: `namespaceResolver.test.t
 
 - `README.md`: lista completa e atualizada de todos os prefixos de snippets disponíveis e a seção "About namespace generation" (explica a resolução via PSR-4) — deve ser mantida em sincronia ao adicionar/remover/renomear snippets.
 - `CONTRIBUTING.md`: explica onde editar snippets (`snippets/*.snippets.json`), as variáveis customizadas (`$PHP_VARIABLE_TYPE`, etc.) e o mecanismo de namespace dinâmico.
-- `CHANGELOG.md`: notas de release.
+- `CHANGELOG.md`: notas de release; mantém sempre uma seção `## [Unreleased]` no topo (populada manualmente a cada mudança) que `scripts/release.js` move para `## [x.y.z] - YYYY-MM-DD` ao rodar `npm run release`.
