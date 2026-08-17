@@ -46,3 +46,23 @@ export const snippets: SnippetDefinition[] = [
   ...withArea(symfonyMessenger as RawSnippetDefinition[], 'symfony'),
   ...withArea(symfonyScheduler as RawSnippetDefinition[], 'symfony')
 ];
+
+/**
+ * Non-word characters (anything outside [A-Za-z0-9_]) that *start* a snippet
+ * prefix. VS Code only invokes a CompletionItemProvider automatically while
+ * typing word characters, so prefixes like `*` or `#` need to be registered as
+ * trigger characters or they never surface a suggestion.
+ *
+ * Only the first character counts: a symbol further into the prefix (the `=` of
+ * `$t=`) is typed with the suggestion session already open, and registering it
+ * would pop the widget open after every unrelated `=` in the file.
+ */
+export const NON_WORD_TRIGGER_CHARACTERS: string[] = [
+  ...new Set(
+    snippets
+      .flatMap((definition) => (Array.isArray(definition.prefix) ? definition.prefix : [definition.prefix]))
+      .map((prefix) => prefix.charAt(0))
+      .filter((char) => !/[A-Za-z0-9_]/.test(char))
+      .sort()
+  )
+];

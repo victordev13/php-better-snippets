@@ -7,7 +7,7 @@ help: ## show this help
 install: ## install dependencies
 	npm install
 
-build: ## build the project
+build: clean ## build the project
 	npm run compile
 
 watch: ## npm run watch

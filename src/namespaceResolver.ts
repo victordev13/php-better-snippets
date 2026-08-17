@@ -115,6 +115,8 @@ export function resolveNamespace(fileUri: vscode.Uri): string | undefined {
     if (
       !best ||
       rule.baseDir.length > best.baseDir.length ||
+      // Same base directory mapped under two PSR-4 prefixes: prefer the
+      // longer one, since it's the more specific namespace for this file.
       (rule.baseDir.length === best.baseDir.length && rule.prefix.length > best.prefix.length)
     ) {
       best = rule;
