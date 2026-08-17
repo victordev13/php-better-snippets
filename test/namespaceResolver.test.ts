@@ -138,4 +138,12 @@ describe('resolveNamespace', () => {
 
     expect(readFileSync.mock.calls.length).toBe(callsAfterFirstResolve);
   });
+
+  it('resolves via autoload psr-4 with nested directory', () => {
+    writeComposerJson(root, { autoload: { 'psr-4': { 'App\\': 'src/App/' } } });
+    const fileDir = mkdirs(root, 'src', 'App', 'Service');
+    const file = Uri.file(path.join(fileDir, 'Foo.php'));
+
+    expect(resolveNamespace(file)).toBe('App\\Service');
+  });
 });
