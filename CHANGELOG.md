@@ -6,6 +6,26 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-08-17
+
+### Added
+ - Namespaces are now generated dynamically from the project's `composer.json` PSR-4/`autoload-dev` mapping instead of a folder-name heuristic. If no `composer.json` is found or no PSR-4 entry covers the file, the namespace is left empty for manual editing.
+ - New setting `php-better-snippets.enable-symfony-snippets` (default `true`) to disable all Symfony-related snippets for plain PHP projects.
+ - new snippets:
+   - `match`: PHP `match` expression
+   - `matchvar`: PHP `match` assignment
+   - `returnmatch`: PHP `match` return
+   - `pubtostring` / `tostring`: Public `__toString`
+   - Symfony attributes: `asCommand`, `isGranted`, `isCsrfTokenValid`, `autowire`, `autowireParam`, `autowireEnv`, `when`, `asTaggedItem`
+   - Symfony Messenger: `asMessageHandler`, `asMessage`, `message`, `messageHandler`
+   - Symfony Scheduler: `cronTask`, `periodicTask`, `scheduleProvider`
+ - new prefix aliases: `pubc` (for `__`), `pubinv` (for `inv`), `pubjson` (for `json`)
+
+### Changed
+ - All snippets are now served at runtime by a single `CompletionItemProvider` (`src/snippetProvider.ts`), replacing the declarative `contributes.snippets`/`.code-snippets`/`.dist`/`build.sh` mechanism. Snippet sources moved to `snippets/*.snippets.json`, one JSON file per area.
+ - The namespace is no longer a tabstop — it's auto-inserted as plain text (or left empty), so the cursor never stops on it and only visits parameters that actually need filling.
+ - `Route` attribute/annotation snippets fixed to produce valid PHP (`name:` argument, `methods` as an array) and to number their tabstops starting at `$1`.
+
 ## [0.7.0] - 2025-01-08 (Release)
 ## [0.6.0] - 2025-01-07 (Pré-Release)
 ### Added
