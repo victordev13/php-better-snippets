@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Symfony Messenger AsMessageHandler attribute",
+    "prefix": "asMessageHandler",
+    "body": [
+      "#[AsMessageHandler]"
+    ],
+    "description": "Symfony Messenger AsMessageHandler attribute",
+    "scope": "php"
+  },
+  {
+    "name": "Symfony Messenger AsMessage attribute",
+    "prefix": "asMessage",
+    "body": [
+      "#[AsMessage('${1:async}')]"
+    ],
+    "description": "Symfony Messenger AsMessage attribute",
+    "scope": "php"
+  },
+  {
+    "name": "Symfony Messenger Message class (readonly)",
+    "prefix": "message",
+    "body": [
+      "<?php",
+      "",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
+      "",
+      "readonly class ${3:$TM_FILENAME_BASE}",
+      "{",
+      "\tpublic function __construct(",
+      "\t\tpublic ${1|$PHP_VARIABLE_TYPE|} \\$${2:value},",
+      "\t) {",
+      "\t}",
+      "}"
+    ],
+    "description": "Symfony Messenger Message class (readonly)"
+  },
+  {
+    "name": "Symfony Messenger Message Handler class",
+    "prefix": "messageHandler",
+    "body": [
+      "<?php",
+      "",
+      "namespace $PHP_RESOLVED_NAMESPACE;",
+      "",
+      "use Symfony\\Component\\Messenger\\Attribute\\AsMessageHandler;",
+      "use ${2:App\\\\Message\\\\Message};",
+      "",
+      "#[AsMessageHandler]",
+      "class ${1:$TM_FILENAME_BASE}",
+      "{",
+      "\tpublic function __invoke(${3:Message} \\$message): void",
+      "\t{",
+      "\t\t$4",
+      "\t}",
+      "}"
+    ],
+    "description": "Symfony Messenger Message Handler class"
+  }
+]
