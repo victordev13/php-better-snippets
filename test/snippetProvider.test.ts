@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { TextDocument } from 'vscode';
-import { Position, Range, Uri, workspace } from 'vscode';
+import { CompletionTriggerKind, Position, Range, Uri, workspace } from 'vscode';
 import customVariables from '../custom-variables.json';
 import { snippets } from '../src/snippets';
 
@@ -26,8 +26,43 @@ const fakeWordRange = new Range(new Position(3, 0), new Position(3, 2));
 function fakeDocument(): TextDocument {
   return {
     uri: Uri.file('/workspace/src/Service/Foo.php'),
-    getWordRangeAtPosition: () => fakeWordRange
+    getWordRangeAtPosition: () => fakeWordRange,
+    lineAt: () => ({ text: '' })
   } as unknown as TextDocument;
+}
+
+/**
+ * Simulates typing a symbol-based prefix (e.g. "*", "#"): no word under the
+ * cursor, so getWordRangeAtPosition returns undefined and the provider has to
+ * fall back to matching the line's text against each snippet's own prefix.
+ */
+function fakeSymbolDocument(lineText: string): TextDocument {
+  return {
+    uri: Uri.file('/workspace/src/Service/Foo.php'),
+    getWordRangeAtPosition: () => undefined,
+    lineAt: () => ({ text: lineText })
+  } as unknown as TextDocument;
+}
+
+/**
+ * Simulates typing a prefix that mixes a symbol with word characters (e.g.
+ * "$t"): getWordRangeAtPosition only ever covers the trailing word part
+ * ("t"), never the leading symbol ("$").
+ */
+function fakeMixedPrefixDocument(lineText: string, wordRange: Range): TextDocument {
+  return {
+    uri: Uri.file('/workspace/src/Service/Foo.php'),
+    getWordRangeAtPosition: () => wordRange,
+    lineAt: () => ({ text: lineText })
+  } as unknown as TextDocument;
+}
+
+/**
+ * Simulates an invocation with nothing typed (Ctrl+Space on an empty line):
+ * no word under the cursor and no text before it, so every snippet is offered.
+ */
+function fakeEmptyLineDocument(): TextDocument {
+  return fakeSymbolDocument('');
 }
 
 function findDefinition(prefix: string) {
@@ -59,7 +94,7 @@ describe('PhpSnippetProvider', () => {
     );
     mockedResolveNamespace.mockReturnValue(undefined);
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeEmptyLineDocument(), new Position(0, 0));
 
     expect(items.length).toBe(expectedCount);
   });
@@ -115,7 +150,120 @@ describe('PhpSnippetProvider', () => {
     const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
     const item = items.find((i) => i.filterText === 'get')!;
 
-    expect(item.range).toBe(fakeWordRange);
+    expect(item.range).toEqual(fakeWordRange);
+  });
+
+  it('clips the range at the cursor, so completing mid-word does not eat the rest of the identifier', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    // Cursor right after "get" inside "getName": the word range spans the whole
+    // identifier, but only the part before the cursor may be replaced.
+    const wholeWord = new Range(new Position(0, 0), new Position(0, 7));
+    const document = fakeMixedPrefixDocument('getName', wholeWord);
+    const position = new Position(0, 3);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(document, position);
+    const item = items.find((i) => i.filterText === 'get')!;
+
+    expect(item.range).toEqual(new Range(new Position(0, 0), position));
+  });
+
+  it('does not offer symbol-prefixed snippets while a word is being typed', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    // Typing word characters also reports triggerKind Invoke, and an item with
+    // an empty range is never filtered out by VS Code — so symbol prefixes must
+    // be dropped here instead of relying on the editor's filtering.
+    const wordRangeForGet = new Range(new Position(0, 0), new Position(0, 3));
+    const document = fakeMixedPrefixDocument('get', wordRangeForGet);
+    const position = new Position(0, 3);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(document, position, undefined, {
+      triggerKind: CompletionTriggerKind.Invoke
+    } as never);
+
+    expect(items.some((i) => i.filterText === 'get')).toBe(true);
+    for (const symbolPrefix of ['*', '#', '?', '$t', '$t=']) {
+      expect(items.some((i) => i.filterText === symbolPrefix)).toBe(false);
+    }
+  });
+
+  it('only suggests symbol-prefixed snippets matching what was actually typed, e.g. "*" not "#"', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    const document = fakeSymbolDocument('*');
+    const position = new Position(0, 1);
+    const items = new PhpSnippetProvider().provideCompletionItems(
+      document,
+      position,
+      undefined,
+      { triggerKind: CompletionTriggerKind.TriggerCharacter, triggerCharacter: '*' } as never
+    );
+
+    expect(items.some((i) => i.filterText === '*')).toBe(true);
+    expect(items.some((i) => i.filterText === '#')).toBe(false);
+    expect(items.some((i) => i.filterText === '?')).toBe(false);
+  });
+
+  it('sets the range of a symbol-prefixed item to the already-typed symbol, so it gets replaced instead of duplicated', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    const document = fakeSymbolDocument('#');
+    const position = new Position(0, 1);
+    const items = new PhpSnippetProvider().provideCompletionItems(
+      document,
+      position,
+      undefined,
+      { triggerKind: CompletionTriggerKind.TriggerCharacter, triggerCharacter: '#' } as never
+    );
+    const item = items.find((i) => i.filterText === '#')!;
+
+    expect(item.range).toEqual(new Range(new Position(0, 0), new Position(0, 1)));
+  });
+
+  it('does not show a symbol snippet when what was typed does not match its prefix', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    const document = fakeSymbolDocument('#');
+    const position = new Position(0, 1);
+    // The trigger character claims "*", but the line actually has "#" typed;
+    // matching is based on the line's text, not the reported trigger character.
+    const items = new PhpSnippetProvider().provideCompletionItems(document, position, undefined, {
+      triggerKind: CompletionTriggerKind.TriggerCharacter,
+      triggerCharacter: '*'
+    } as never);
+
+    expect(items.some((i) => i.filterText === '*')).toBe(false);
+    expect(items.some((i) => i.filterText === '#')).toBe(true);
+  });
+
+  it('does not duplicate the leading symbol when completing a mixed prefix like "$t"', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    // getWordRangeAtPosition only covers the word part ("t"), not the "$".
+    const wordRangeForT = new Range(new Position(0, 1), new Position(0, 2));
+    const document = fakeMixedPrefixDocument('$t', wordRangeForT);
+    const position = new Position(0, 2);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(document, position, undefined, {
+      triggerKind: CompletionTriggerKind.TriggerCharacter,
+      triggerCharacter: 't'
+    } as never);
+    const item = items.find((i) => i.filterText === '$t')!;
+
+    expect(item.range).toEqual(new Range(new Position(0, 0), new Position(0, 2)));
+  });
+
+  it('shows every snippet, including symbol-prefixed ones, on a manual invoke with nothing typed', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeEmptyLineDocument(), new Position(0, 0), undefined, {
+      triggerKind: CompletionTriggerKind.Invoke
+    } as never);
+
+    expect(items.some((i) => i.filterText === '*')).toBe(true);
+    expect(items.some((i) => i.filterText === '#')).toBe(true);
+    expect(items.some((i) => i.filterText === 'get')).toBe(true);
   });
 
   it('leaves snippets without the namespace marker untouched', () => {
@@ -128,22 +276,28 @@ describe('PhpSnippetProvider', () => {
     expect(text).toBe('<?php');
   });
 
-  it('creates a separate completion item per prefix for multi-prefix snippets', () => {
+  it('creates a separate completion item per prefix for multi-prefix snippets, each inserting the shared body', () => {
     mockedResolveNamespace.mockReturnValue(undefined);
     const multiPrefixDefinition = snippets.find((d) => Array.isArray(d.prefix) && d.prefix.length > 1);
     expect(multiPrefixDefinition).toBeDefined();
 
     const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
-    for (const prefix of multiPrefixDefinition!.prefix as string[]) {
-      expect(items.some((i) => i.filterText === prefix)).toBe(true);
-    }
+    const texts = (multiPrefixDefinition!.prefix as string[]).map((prefix) => {
+      const item = items.find((i) => i.filterText === prefix);
+      expect(item).toBeDefined();
+      expect(item!.detail).toBe(multiPrefixDefinition!.description);
+      return (item!.insertText as { value: string }).value;
+    });
+
+    // Every alias of the same definition must produce the exact same body.
+    expect(new Set(texts).size).toBe(1);
   });
 
   it('omits Symfony snippets when php-better-snippets.enable-symfony-snippets is false', () => {
     stubConfig({ 'enable-symfony-snippets': false });
     mockedResolveNamespace.mockReturnValue(undefined);
 
-    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeEmptyLineDocument(), new Position(0, 0));
 
     const expectedCount = snippets
       .filter((d) => d.area === 'php')

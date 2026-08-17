@@ -15,6 +15,12 @@ export enum CompletionItemKind {
   Snippet = 27
 }
 
+export enum CompletionTriggerKind {
+  Invoke = 0,
+  TriggerCharacter = 1,
+  TriggerForIncompleteCompletions = 2
+}
+
 export class Position {
   constructor(
     public readonly line: number,
@@ -52,5 +58,10 @@ export class SnippetString {
 
 export const workspace = {
   getWorkspaceFolder: vi.fn(),
-  getConfiguration: vi.fn()
+  getConfiguration: vi.fn(),
+  createFileSystemWatcher: vi.fn()
+};
+
+export const languages = {
+  registerCompletionItemProvider: vi.fn()
 };
