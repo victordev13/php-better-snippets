@@ -6,7 +6,7 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ## [Unreleased]
 
-## [1.0.0] - 2026-08-17
+## [1.0.1] - 2026-08-17
 
 ### Added
  - Namespaces are now generated dynamically from the project's `composer.json` PSR-4/`autoload-dev` mapping instead of a folder-name heuristic. If no `composer.json` is found or no PSR-4 entry covers the file, the namespace is left empty for manual editing.
