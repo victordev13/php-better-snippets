@@ -6,6 +6,13 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-08-17
+
+### Fixed
+ - `PhpSnippetProvider` now sets `CompletionItem.range` explicitly. Without it, VS Code guessed the replacement range on its own and could leave the whole inserted snippet selected instead of focusing the first tabstop (affected `get`, `is`, `privp`, `sg`, `wsg`, and others).
+ - Prefixes made of non-word characters (e.g. `*`, `#`, `?`, `$t`) never triggered a suggestion, since VS Code only auto-invokes a `CompletionItemProvider` while typing word characters by default. The provider is now also registered with those characters as trigger characters.
+ - Typing a symbol-based prefix (e.g. `*` or `#`) used to list every symbol-prefixed snippet unfiltered and duplicate the already-typed symbol instead of replacing it (e.g. `*` → `*/** */`, `#` → `##[]`). The provider now matches the text before the cursor against each snippet's own prefix to filter correctly and anchor the replacement range.
+
 ## [1.0.1] - 2026-08-17
 
 ### Added
