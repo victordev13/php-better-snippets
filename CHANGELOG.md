@@ -6,6 +6,10 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-08-25
+
+- release
+
 ## [1.0.2] - 2026-08-17
 
 ### Fixed

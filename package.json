@@ -2,7 +2,7 @@
   "name": "php-better-snippets",
   "displayName": "PHP Better Snippets",
   "description": "This extension provides code snippets for PHP and Symfony framework, enabling you to code faster and be more productive.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": {
     "name": "victordev",
     "url": "https://github.com/victordev13"
@@ -47,7 +47,7 @@
     "vscode:prepublish": "npm run compile",
     "test": "vitest run",
     "test:watch": "vitest",
-    "release": "node scripts/release.js && npm install",
+    "release": "node scripts/release.js",
     "pack": "vsce package",
     "publish": "vsce package && vsce publish",
     "publish:pre-release": "vsce package --pre-release && vsce publish --pre-release"
