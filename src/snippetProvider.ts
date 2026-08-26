@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import customVariables from '../custom-variables.json';
 import { snippets, NAMESPACE_MARKER, SnippetDefinition } from './snippets';
 import { resolveNamespace } from './namespaceResolver';
+import { computeUseInsertion } from './useStatementInserter';
 
 const SUBSTITUTABLE_VARIABLES = ['PHP_VARIABLE_TYPE', 'PHP_FUNCTION_RETURN_TYPE', 'PHP_POSSIBLE_EXCEPTIONS'] as const;
 
@@ -34,7 +35,9 @@ function buildCompletionItem(
   definition: SnippetDefinition,
   prefix: string,
   namespace: string | undefined,
-  range: vscode.Range
+  range: vscode.Range,
+  documentText: string | undefined,
+  autoImportsEnabled: boolean
 ): vscode.CompletionItem {
   const item = new vscode.CompletionItem(prefix, vscode.CompletionItemKind.Snippet);
   item.insertText = new vscode.SnippetString(buildSnippetText(definition, namespace));
@@ -42,6 +45,27 @@ function buildCompletionItem(
   item.filterText = prefix;
   item.sortText = prefix;
   item.range = range;
+
+  // Handle requiredUse: generate additionalTextEdits for missing use statements
+  if (autoImportsEnabled && definition.requiredUse && documentText) {
+    const requiredUses = Array.isArray(definition.requiredUse)
+      ? definition.requiredUse
+      : [definition.requiredUse];
+
+    const edits: vscode.TextEdit[] = [];
+    for (const requiredUse of requiredUses) {
+      const insertion = computeUseInsertion(documentText, requiredUse);
+      if (insertion) {
+        const position = new vscode.Position(insertion.line, insertion.character);
+        edits.push(vscode.TextEdit.insert(position, insertion.text));
+      }
+    }
+
+    if (edits.length > 0) {
+      item.additionalTextEdits = edits;
+    }
+  }
+
   return item;
 }
 
@@ -81,9 +105,9 @@ export class PhpSnippetProvider implements vscode.CompletionItemProvider {
     context: vscode.CompletionContext = { triggerKind: vscode.CompletionTriggerKind.Invoke, triggerCharacter: undefined }
   ): vscode.CompletionItem[] {
     const namespace = resolveNamespace(document.uri);
-    const symfonySnippetsEnabled = vscode.workspace
-      .getConfiguration('php-better-snippets')
-      .get<boolean>('enable-symfony-snippets', true);
+    const config = vscode.workspace.getConfiguration('php-better-snippets');
+    const symfonySnippetsEnabled = config.get<boolean>('enable-symfony-snippets', true);
+    const autoImportsEnabled = config.get<boolean>('enable-auto-imports', true);
     // Without an explicit range, VS Code falls back to its own guess of what
     // to replace, which can end up covering more than the typed prefix and
     // leaves the inserted snippet fully selected instead of focused on the
@@ -96,6 +120,7 @@ export class PhpSnippetProvider implements vscode.CompletionItemProvider {
     // snippet would show up unfiltered and its already-typed prefix would be
     // duplicated instead of replaced.
     const textBeforeCursor = document.lineAt(position.line).text.slice(0, position.character);
+    const documentText = document.getText();
     const items: vscode.CompletionItem[] = [];
 
     for (const definition of snippets) {
@@ -133,7 +158,7 @@ export class PhpSnippetProvider implements vscode.CompletionItemProvider {
           }
         }
 
-        items.push(buildCompletionItem(definition, prefix, namespace, range));
+        items.push(buildCompletionItem(definition, prefix, namespace, range, documentText, autoImportsEnabled));
       }
     }
 

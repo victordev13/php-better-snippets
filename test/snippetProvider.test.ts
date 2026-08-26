@@ -23,11 +23,12 @@ function stubConfig(overrides: Record<string, unknown> = {}): void {
 const fakePosition = new Position(3, 2);
 const fakeWordRange = new Range(new Position(3, 0), new Position(3, 2));
 
-function fakeDocument(): TextDocument {
+function fakeDocument(content = ''): TextDocument {
   return {
     uri: Uri.file('/workspace/src/Service/Foo.php'),
     getWordRangeAtPosition: () => fakeWordRange,
-    lineAt: () => ({ text: '' })
+    lineAt: () => ({ text: '' }),
+    getText: () => content
   } as unknown as TextDocument;
 }
 
@@ -36,11 +37,12 @@ function fakeDocument(): TextDocument {
  * cursor, so getWordRangeAtPosition returns undefined and the provider has to
  * fall back to matching the line's text against each snippet's own prefix.
  */
-function fakeSymbolDocument(lineText: string): TextDocument {
+function fakeSymbolDocument(lineText: string, content = ''): TextDocument {
   return {
     uri: Uri.file('/workspace/src/Service/Foo.php'),
     getWordRangeAtPosition: () => undefined,
-    lineAt: () => ({ text: lineText })
+    lineAt: () => ({ text: lineText }),
+    getText: () => content
   } as unknown as TextDocument;
 }
 
@@ -49,11 +51,12 @@ function fakeSymbolDocument(lineText: string): TextDocument {
  * "$t"): getWordRangeAtPosition only ever covers the trailing word part
  * ("t"), never the leading symbol ("$").
  */
-function fakeMixedPrefixDocument(lineText: string, wordRange: Range): TextDocument {
+function fakeMixedPrefixDocument(lineText: string, wordRange: Range, content = ''): TextDocument {
   return {
     uri: Uri.file('/workspace/src/Service/Foo.php'),
     getWordRangeAtPosition: () => wordRange,
-    lineAt: () => ({ text: lineText })
+    lineAt: () => ({ text: lineText }),
+    getText: () => content
   } as unknown as TextDocument;
 }
 
@@ -61,8 +64,8 @@ function fakeMixedPrefixDocument(lineText: string, wordRange: Range): TextDocume
  * Simulates an invocation with nothing typed (Ctrl+Space on an empty line):
  * no word under the cursor and no text before it, so every snippet is offered.
  */
-function fakeEmptyLineDocument(): TextDocument {
-  return fakeSymbolDocument('');
+function fakeEmptyLineDocument(content = ''): TextDocument {
+  return fakeSymbolDocument('', content);
 }
 
 function findDefinition(prefix: string) {
@@ -314,5 +317,72 @@ describe('PhpSnippetProvider', () => {
     const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(), fakePosition);
 
     expect(items.some((i) => i.filterText === 'controller')).toBe(true);
+  });
+
+  it('adds additionalTextEdits for a snippet with requiredUse when the use is missing', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+    // Document without the required use statement
+    const documentContent = '<?php\n\nnamespace App\\Entity;\n\nclass Foo {}';
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(documentContent), fakePosition);
+    // Find a snippet with requiredUse (e.g., embeddable)
+    const item = items.find((i) => i.filterText === 'embeddable');
+
+    expect(item).toBeDefined();
+    if (item) {
+      expect(item.additionalTextEdits).toBeDefined();
+      expect(item.additionalTextEdits!.length).toBeGreaterThan(0);
+      // Check that the edit contains the use statement
+      const editText = item.additionalTextEdits![0].newText;
+      expect(editText).toContain('use Doctrine\\ORM\\Mapping as ORM;');
+    }
+  });
+
+  it('does not add additionalTextEdits for a snippet with requiredUse when the use already exists', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+    // Document with the required use statement already present
+    const documentContent = `<?php
+
+namespace App\\Entity;
+
+use Doctrine\\ORM\\Mapping as ORM;
+
+class Foo {}`;
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(documentContent), fakePosition);
+    const item = items.find((i) => i.filterText === 'embeddable');
+
+    expect(item).toBeDefined();
+    if (item) {
+      // Should not have additionalTextEdits when the use already exists
+      expect(item.additionalTextEdits).toBeUndefined();
+    }
+  });
+
+  it('does not add additionalTextEdits when php-better-snippets.enable-auto-imports is false', () => {
+    stubConfig({ 'enable-auto-imports': false });
+    mockedResolveNamespace.mockReturnValue(undefined);
+    const documentContent = '<?php\n\nnamespace App\\Entity;\n\nclass Foo {}';
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(documentContent), fakePosition);
+    const item = items.find((i) => i.filterText === 'embeddable');
+
+    expect(item).toBeDefined();
+    if (item) {
+      expect(item.additionalTextEdits).toBeUndefined();
+    }
+  });
+
+  it('does not add additionalTextEdits for a snippet without requiredUse', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+    const documentContent = '<?php\n\nclass Foo {}';
+
+    const items = new PhpSnippetProvider().provideCompletionItems(fakeDocument(documentContent), fakePosition);
+    const item = items.find((i) => i.filterText === 'php');
+
+    expect(item).toBeDefined();
+    if (item) {
+      expect(item.additionalTextEdits).toBeUndefined();
+    }
   });
 });
