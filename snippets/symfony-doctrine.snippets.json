@@ -6,7 +6,8 @@
       "#[ORM\\Column]"
     ],
     "description": "Symfony Doctrine ORM Column (attributes)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM Column (annotations)",
@@ -17,7 +18,8 @@
       " */"
     ],
     "description": "Symfony Doctrine ORM Column (annotations)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM auto generated id column (annotations)",
@@ -30,7 +32,8 @@
       " */"
     ],
     "description": "Symfony Doctrine ORM auto generated id column (annotations)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM auto generated id column (attributes)",
@@ -41,7 +44,8 @@
       "#[ORM\\Column(name: '${1:id}'$2)]"
     ],
     "description": "Symfony Doctrine ORM auto generated id column (attributes)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM Many To[One|Many] Relation (attributes)",
@@ -50,7 +54,8 @@
       "#[ORM\\ManyTo${1|Many,One|}(targetEntity: $2::class, cascade: ['${3|all,persist,remove|}'])]"
     ],
     "description": "Symfony Doctrine ORM Many To[One|Many] Relation (attributes)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM Many To[One|Many] Relation (annotations)",
@@ -61,7 +66,8 @@
       " */"
     ],
     "description": "Symfony Doctrine ORM Many To[One|Many] Relation (annotations)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM One To[One|Many] Relation (attributes)",
@@ -70,7 +76,8 @@
       "#[ORM\\OneTo${1|Many,One|}(targetEntity: $2::class, ${3|mappedBy,inversedBy|}: '$4', cascade: ['${5|all,persist,remove|}'])]"
     ],
     "description": "Symfony Doctrine ORM One To[One|Many] Relation (attributes)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM One To[One|Many] Relation (annotations)",
@@ -81,7 +88,8 @@
       " */"
     ],
     "description": "Symfony Doctrine ORM One To[One|Many] Relation (annotations)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM Relation Join Column (annotations)",
@@ -90,7 +98,8 @@
       "@ORM\\JoinColumn(name=\"$1\", referencedColumnName=\"${2:id}\")"
     ],
     "description": "Symfony Doctrine ORM Relation Join Column (annotations)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM Relation Join Column (attributes)",
@@ -99,7 +108,8 @@
       "#[ORM\\JoinColumn(name: '$1', referencedColumnName: '${2:id}')]"
     ],
     "description": "Symfony Doctrine ORM Relation Join Column (attributes)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Import Doctrine ORM Mapping class",
@@ -119,7 +129,8 @@
       " */"
     ],
     "description": "Embeddable (annotations)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Embeddable (attributes)",
@@ -128,7 +139,8 @@
       "#[ORM\\Embeddable]"
     ],
     "description": "Embeddable (attributes)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Embedded (annotations)",
@@ -139,7 +151,8 @@
       " */"
     ],
     "description": "Embedded (annotations)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Embedded (attributes)",
@@ -148,7 +161,8 @@
       "#[ORM\\Embedded(class: $1::class)]"
     ],
     "description": "Embedded (attributes)",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Doctrine\\ORM\\Mapping as ORM"
   },
   {
     "name": "Symfony Doctrine ORM repository",

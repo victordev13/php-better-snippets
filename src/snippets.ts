@@ -15,6 +15,7 @@ export interface SnippetDefinition {
   description: string;
   scope?: string;
   area: SnippetArea;
+  requiredUse?: string | string[];
 }
 
 type RawSnippetDefinition = Omit<SnippetDefinition, 'area'>;

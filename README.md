@@ -11,6 +11,7 @@ The snippets follow the fluent interfaces and Type declarations standard.
 ## Extension Settings
 
 - `php-better-snippets.enable-symfony-snippets` (boolean, default `true`): controls whether the Symfony-related snippets (controllers, Doctrine, Messenger, Scheduler, Symfony attributes) are suggested. Set it to `false` if you only work with plain PHP projects and want a shorter suggestion list.
+- `php-better-snippets.enable-auto-imports` (boolean, default `true`): controls whether accepting a snippet that depends on an imported class (e.g. Doctrine ORM or Symfony attributes) automatically inserts the required `use` statement at the top of the file. Set it to `false` if you prefer to manage imports yourself or your PHP extension already does this.
 
 ### PHP Snippets:
 

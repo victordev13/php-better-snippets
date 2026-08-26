@@ -35,12 +35,24 @@ export class Range {
   ) {}
 }
 
+export class TextEdit {
+  constructor(
+    public range: Range,
+    public newText: string
+  ) {}
+
+  static insert(position: Position, newText: string): TextEdit {
+    return new TextEdit(new Range(position, position), newText);
+  }
+}
+
 export class CompletionItem {
   detail?: string;
   insertText?: unknown;
   filterText?: string;
   sortText?: string;
   range?: Range;
+  additionalTextEdits?: TextEdit[];
 
   constructor(
     public label: string,

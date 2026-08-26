@@ -6,7 +6,8 @@
       "#[AsMessageHandler]"
     ],
     "description": "Symfony Messenger AsMessageHandler attribute",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Symfony\\Component\\Messenger\\Attribute\\AsMessageHandler"
   },
   {
     "name": "Symfony Messenger AsMessage attribute",
@@ -15,7 +16,8 @@
       "#[AsMessage('${1:async}')]"
     ],
     "description": "Symfony Messenger AsMessage attribute",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Symfony\\Component\\Messenger\\Attribute\\AsMessage"
   },
   {
     "name": "Symfony Messenger Message class (readonly)",
