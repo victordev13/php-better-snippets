@@ -45,7 +45,7 @@ Snippets live in `snippets/*.snippets.json`, one file per area:
   - `symfony-messenger.snippets.json`
   - `symfony-scheduler.snippets.json`
 
-Each file is a JSON array of `{ name, prefix, body, description, scope? }` objects (`prefix` and `body` may also be arrays, for multiple prefixes/multi-line bodies). `src/snippets.ts` only imports and concatenates all of these into a single array — edit the JSON file for the relevant area to add/change a snippet, never `snippets.ts`.
+Each file is a JSON array of `{ name, prefix, body, description, scope?, requiredUse? }` objects (`prefix` and `body` may also be arrays, for multiple prefixes/multi-line bodies). `src/snippets.ts` only imports and concatenates all of these into a single array — edit the JSON file for the relevant area to add/change a snippet, never `snippets.ts`.
 
 ## Custom variables
 
@@ -61,6 +61,21 @@ The currently available variables are:
 Any snippet body containing the literal text `$PHP_RESOLVED_NAMESPACE` (the `NAMESPACE_MARKER` constant in `src/snippets.ts`) has every occurrence replaced by the real namespace of the target file, resolved from the project's `composer.json` PSR-4/`autoload-dev` PSR-4 mappings (`src/namespaceResolver.ts`). If no `composer.json` is found or no PSR-4 entry covers the file, the marker is replaced with an empty string for manual editing — there is no fallback to a folder-based heuristic. Snippets without this marker are unaffected by namespace resolution.
 
 The marker is **not** a tabstop, so the cursor never lands on the namespace — write it as plain text (`$PHP_RESOLVED_NAMESPACE`, no `${N:...}` wrapper). Number the snippet's other tabstops (`$1`, `$2`, ...) in the order they should be filled, without reserving a number for the namespace at all.
+
+## Required use statements
+
+A snippet may declare a required `use` statement via the optional `requiredUse` field:
+  - `requiredUse: "Doctrine\\ORM\\Mapping as ORM"` — a single class alias.
+  - `requiredUse: ["Symfony\\Component\\Console\\Attribute\\AsCommand", "Symfony\\Component\\Console\\Command\\Command"]` — multiple use statements, as an array.
+
+When the completion item is accepted, if a required `use` statement is not already present in the file, `src/snippetProvider.ts` automatically adds it via `additionalTextEdits`, inserted at the most appropriate location:
+  1. After an existing block of `use` statements (if any).
+  2. After the `namespace` declaration (if any).
+  3. After the `<?php` tag and optional `declare(strict_types=1);` (if any).
+
+The value must match the complete text between `use` and `;` exactly (e.g. `Doctrine\ORM\Mapping as ORM` for `use Doctrine\ORM\Mapping as ORM;`), and duplicates are not inserted — the file is checked first.
+
+This whole behavior can be turned off by the user via the `php-better-snippets.enable-auto-imports` setting (default `true`); when disabled, `additionalTextEdits` is never generated, regardless of `requiredUse`.
 
 ## Tests
 

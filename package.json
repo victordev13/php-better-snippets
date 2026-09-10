@@ -37,6 +37,11 @@
           "type": "boolean",
           "default": true,
           "description": "Enable Symfony-related snippets (controllers, Doctrine, Messenger, Scheduler, attributes, etc.). Disable this if you only work with plain PHP projects."
+        },
+        "php-better-snippets.enable-auto-imports": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically insert the required `use` statement at the top of the file when accepting a snippet that depends on an imported class (e.g. `use Doctrine\\ORM\\Mapping as ORM;` for Doctrine attribute snippets). Disable this if you prefer to manage imports yourself or your PHP extension already does this."
         }
       }
     }

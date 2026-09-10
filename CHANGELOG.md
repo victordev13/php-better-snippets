@@ -6,6 +6,14 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ## [Unreleased]
 
+### Added
+ - Auto-insert required `use` statements: snippets with a `requiredUse` field now automatically add the necessary class import via `additionalTextEdits` when accepted. If the `use` is already present, nothing is added. The insertion point is chosen in order of preference: after an existing `use` block, after `namespace`, after `<?php` (and optional `declare(strict_types=1);`), or nowhere if none exist. Closes #23.
+   - Updated Doctrine ORM snippets (`ormCol`, `ormId`, `ormManyTo`, `ormOneTo`, `ormJoinCol`, `embeddable`, `embedded`) to require `use Doctrine\ORM\Mapping as ORM;`
+   - Updated Symfony attribute snippets (`asCommand`, `isGranted`, `autowire`, `autowireParam`, `autowireEnv`, `when`, `asTaggedItem`) to require their respective namespaces
+   - Updated Symfony Messenger snippets (`asMessageHandler`, `asMessage`) to require `use Symfony\Component\Messenger\Attribute\AsMessageHandler;` and `use Symfony\Component\Messenger\Attribute\AsMessage;`
+   - Updated Symfony Route snippets (attribute and annotation variants) to require their respective namespaces
+ - New setting `php-better-snippets.enable-auto-imports` (default `true`) to disable the automatic `use` statement insertion described above.
+
 ## [1.0.3] - 2026-08-25
 
 - release

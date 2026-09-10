@@ -6,7 +6,8 @@
       "#[Route('$1', name: '$2', methods: ['${3|GET,POST,PUT,DELETE,PATCH|}'])]"
     ],
     "description": "Symfony Route attribute",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Symfony\\Component\\Routing\\Attribute\\Route"
   },
   {
     "name": "Symfony Route annotation",
@@ -15,7 +16,8 @@
       "/** @Route(path=\"$1\", name=\"$2\", methods={\"${3|GET,POST,PUT,DELETE,PATCH|}\"}) */"
     ],
     "description": "Symfony Route annotation",
-    "scope": "php"
+    "scope": "php",
+    "requiredUse": "Symfony\\Component\\Routing\\Annotation\\Route"
   },
   {
     "name": "dd (alternative to Symfony dd function with dump and die)",
