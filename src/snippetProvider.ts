@@ -116,14 +116,15 @@ export class PhpSnippetProvider implements vscode.CompletionItemProvider {
           const matchLength = matchingSymbolPrefixLength(textBeforeCursor, prefix);
           if (matchLength > 0) {
             range = new vscode.Range(new vscode.Position(position.line, position.character - matchLength), position);
-          } else if (!wordRange && context.triggerKind === vscode.CompletionTriggerKind.Invoke) {
-            // Invocation with no word under the cursor (e.g. Ctrl+Space on an
-            // empty line): keep browsing all snippets. The `!wordRange` guard
-            // matters because Invoke is also the kind reported while typing
-            // word characters, and an item with an empty range is never
-            // filtered out by VS Code (the filter word is empty, so it always
-            // scores) — every symbol-prefixed snippet would show up while
-            // typing an unrelated identifier.
+          } else if (!wordRange && textBeforeCursor.length === 0 && context.triggerKind === vscode.CompletionTriggerKind.Invoke) {
+            // Invocation with no word under the cursor AND nothing at all
+            // typed before it on the line (e.g. Ctrl+Space on an empty line):
+            // keep browsing all snippets. The extra `textBeforeCursor.length
+            // === 0` check matters because non-word characters other than a
+            // snippet's own symbol — a quote inside an array shape (`$arr['`),
+            // a comma, etc. — also leave `wordRange` undefined; without this
+            // check every symbol-prefixed snippet would show up whenever
+            // Ctrl+Space is pressed right after one of those characters.
             range = new vscode.Range(position, position);
           } else {
             // Something else is being typed (a word, or a different symbol)

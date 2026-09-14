@@ -266,6 +266,22 @@ describe('PhpSnippetProvider', () => {
     expect(items.some((i) => i.filterText === 'get')).toBe(true);
   });
 
+  it('does not offer any snippet on a manual invoke inside an array shape (e.g. after `$arr[\'`)', () => {
+    mockedResolveNamespace.mockReturnValue(undefined);
+
+    // No word under the cursor (the quote is a word separator), but there IS
+    // text before it on the line — unlike a genuinely empty line, this must
+    // not fall back to "browse every snippet".
+    const document = fakeSymbolDocument("$arr['");
+    const position = new Position(0, 6);
+
+    const items = new PhpSnippetProvider().provideCompletionItems(document, position, undefined, {
+      triggerKind: CompletionTriggerKind.Invoke
+    } as never);
+
+    expect(items).toHaveLength(0);
+  });
+
   it('leaves snippets without the namespace marker untouched', () => {
     mockedResolveNamespace.mockReturnValue('App\\Service');
 
