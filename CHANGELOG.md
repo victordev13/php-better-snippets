@@ -6,6 +6,8 @@ All notable changes to the "php-better-snippets" extension will be documented in
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-09-14
+
 ### Fixed
  - Manual invoke (Ctrl+Space) right after a non-word character that isn't a snippet's own symbol prefix (e.g. the quote in an array shape `$arr['`) no longer lists every snippet in the package. The fallback that browses all snippets is now restricted to a genuinely empty line (nothing typed before the cursor), which was its original intent.
 
